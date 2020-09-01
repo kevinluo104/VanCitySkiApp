@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Seymour">
+
+
+
+    <ImageView
+        android:id="@+id/imageView318"
+        android:layout_width="match_parent"
+        android:layout_height="310dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@id/guideline133"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/mount_seymour" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline133"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp"
+        app:layout_constraintGuide_percent="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline134"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp"
+        app:layout_constraintGuide_percent="1.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline135"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline136"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline137"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <TextView
+        android:id="@+id/textView321"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="288dp"
+        android:fontFamily="sans-serif"
+        android:text="MOUNT SEYMOUR"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline137"
+        app:layout_constraintStart_toStartOf="@+id/guideline135"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="414dp"
+        android:layout_marginTop="8dp"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView318">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView322"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="78dp"
+                android:layout_marginTop="29dp"
+                android:text="Temperature"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline142"
+                app:layout_constraintHorizontal_bias="0.47"
+                app:layout_constraintStart_toStartOf="@+id/guideline139"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView319"
+                android:layout_width="71dp"
+                android:layout_height="47dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline142"
+                app:layout_constraintStart_toStartOf="@+id/guideline139"
+                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_launcher_foreground" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline138"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="20dp"
+                app:layout_constraintGuide_percent="0.0" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline139"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="20dp"
+                app:layout_constraintGuide_percent="0.20" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline140"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="20dp"
+                app:layout_constraintGuide_percent="0.40" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline141"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="20dp"
+                app:layout_constraintGuide_percent="0.60" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline142"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="20dp"
+                app:layout_constraintGuide_percent="0.80" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline143"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="20dp"
+                app:layout_constraintGuide_percent="1.0" />
+
+            <TextView
+                android:id="@+id/textView323"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Conditions"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline142"
+                app:layout_constraintStart_toStartOf="@+id/guideline139"
+                app:layout_constraintTop_toBottomOf="@+id/textView322" />
+
+            <TextView
+                android:id="@+id/textView324"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="Visibility:"
+                android:textSize="20sp"
+                app:layout_constraintHorizontal_bias="0.49"
+                app:layout_constraintEnd_toStartOf="@+id/guideline142"
+                app:layout_constraintStart_toStartOf="@+id/guideline139"
+                app:layout_constraintTop_toBottomOf="@+id/textView323" />
+
+            <TextView
+                android:id="@+id/textView325"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="Conditions:"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline142"
+                app:layout_constraintStart_toStartOf="@+id/guideline139"
+                app:layout_constraintTop_toBottomOf="@+id/textView324" />
+
+            <TextView
+                android:id="@+id/textView326"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Runs Open:"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline142"
+                app:layout_constraintStart_toStartOf="@+id/guideline139"
+                app:layout_constraintTop_toBottomOf="@+id/textView325" />
+
+            <View
+                android:id="@+id/view16"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="462dp"
+                android:background="@android:color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <TextView
+                android:id="@+id/textView327"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="431dp"
+                android:text="Snowfall"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView328"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="41dp"
+                android:layout_marginTop="32dp"
+                android:text="48hrsnow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+            <TextView
+                android:id="@+id/textView329"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="84dp"
+                android:text="48hr"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+            <TextView
+                android:id="@+id/textView330"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="24hrsnow"
+                app:layout_constraintEnd_toStartOf="@+id/guideline141"
+                app:layout_constraintHorizontal_bias="0.46"
+                app:layout_constraintStart_toStartOf="@+id/guideline139"
+                app:layout_constraintTop_toTopOf="@+id/view16" />
+
+            <TextView
+                android:id="@+id/textView331"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="24hr"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/guideline141"
+                app:layout_constraintHorizontal_bias="0.44"
+                app:layout_constraintStart_toStartOf="@+id/guideline139"
+                app:layout_constraintTop_toBottomOf="@+id/textView330" />
+
+            <TextView
+                android:id="@+id/textView332"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="7Daysnow"
+                app:layout_constraintEnd_toStartOf="@+id/guideline142"
+                app:layout_constraintHorizontal_bias="0.78"
+                app:layout_constraintStart_toStartOf="@+id/guideline139"
+                app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+            <TextView
+                android:id="@+id/textView333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="7Day"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/guideline142"
+                app:layout_constraintHorizontal_bias="0.78"
+                app:layout_constraintStart_toStartOf="@+id/guideline139"
+                app:layout_constraintTop_toBottomOf="@+id/textView332" />
+
+            <TextView
+                android:id="@+id/textView334"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="34dp"
+                android:text="Seasonsnow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+            <TextView
+                android:id="@+id/textView335"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="40dp"
+                android:text="Season"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView334" />
+
+            <View
+                android:id="@+id/view17"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="650dp"
+                android:background="@android:color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <TextView
+                android:id="@+id/textView336"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="157dp"
+                android:text="Lift/Run Status"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+            <TextView
+                android:id="@+id/textView337"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="85dp"
+                android:layout_marginTop="32dp"
+                android:text="Brockton Chair"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/guideline140"
+                app:layout_constraintHorizontal_bias="0.58"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view17" />
+
+            <ImageView
+                android:id="@+id/imageView320"
+                android:layout_width="31dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view17"
+                app:srcCompat="@drawable/ic_launcher_foreground" />
+
+
+            <TextView
+                android:id="@+id/textView338"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="58dp"
+                android:layout_marginTop="104dp"
+                android:text="Lodge Chair"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/guideline140"
+                app:layout_constraintHorizontal_bias="0.58"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/view17" />
+
+            <ImageView
+                android:id="@+id/imageView321"
+                android:layout_width="31dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="92dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view17"
+                app:srcCompat="@drawable/ic_launcher_foreground" />
+
+            <TextView
+                android:id="@+id/textView339"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="158dp"
+                android:layout_marginTop="176dp"
+                android:text="Mystery Peak Express"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/guideline140"
+                app:layout_constraintHorizontal_bias="0.58"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view17" />
+
+            <ImageView
+                android:id="@+id/imageView322"
+                android:layout_width="31dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="164dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view17"
+                app:srcCompat="@drawable/ic_launcher_foreground" />
+
+            <TextView
+                android:id="@+id/textView340"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="143dp"
+                android:layout_marginTop="248dp"
+                android:text="Goldie Magic Carpet"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/guideline140"
+                app:layout_constraintHorizontal_bias="0.58"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view17" />
+
+            <ImageView
+                android:id="@+id/imageView323"
+                android:layout_width="31dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="236dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view17"
+                app:srcCompat="@drawable/ic_launcher_foreground" />
+
+            <Button
+                android:id="@+id/button11"
+                android:layout_width="168dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginEnd="5dp"
+                android:backgroundTint="#B81414"
+                android:textColor="#FFFFFF"
+                android:text="Full Run Status"
+                app:layout_constraintEnd_toStartOf="@+id/guideline143"
+                app:layout_constraintTop_toBottomOf="@+id/view17" />
+
+            <Button
+                android:id="@+id/button12"
+                android:layout_width="168dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="94dp"
+                android:layout_marginEnd="5dp"
+                android:backgroundTint="#B81414"
+                android:textColor="#FFFFFF"
+                android:text="Full Run Status"
+                app:layout_constraintEnd_toStartOf="@+id/guideline143"
+                app:layout_constraintTop_toBottomOf="@+id/view17" />
+
+            <Button
+                android:id="@+id/button13"
+                android:layout_width="168dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="166dp"
+                android:layout_marginEnd="5dp"
+                android:backgroundTint="#B81414"
+                android:textColor="#FFFFFF"
+                android:text="Full Run Status"
+                app:layout_constraintEnd_toStartOf="@+id/guideline143"
+                app:layout_constraintTop_toBottomOf="@+id/view17" />
+
+            <Button
+                android:id="@+id/button14"
+                android:layout_width="168dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="238dp"
+                android:layout_marginEnd="5dp"
+                android:backgroundTint="#B81414"
+                android:textColor="#FFFFFF"
+                android:text="Full Run Status"
+                app:layout_constraintEnd_toStartOf="@+id/guideline143"
+                app:layout_constraintTop_toBottomOf="@+id/view17" />
+
+            <TextView
+                android:id="@+id/textView341"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:text="Runs Open: 0/11"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button11" />
+
+            <TextView
+                android:id="@+id/textView342"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:text="Runs Open: 0/9"
+                app:layout_constraintEnd_toStartOf="@+id/guideline143"
+                app:layout_constraintTop_toBottomOf="@+id/button12" />
+
+            <TextView
+                android:id="@+id/textView343"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:text="Runs Open: 0/19"
+                app:layout_constraintEnd_toStartOf="@+id/guideline143"
+                app:layout_constraintTop_toBottomOf="@+id/button13" />
+
+            <TextView
+                android:id="@+id/textView344"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:text="Runs Open: 0/3"
+                app:layout_constraintEnd_toStartOf="@+id/guideline143"
+                app:layout_constraintTop_toBottomOf="@+id/button14" />
+
+            <View
+                android:id="@+id/view18"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="1018dp"
+                android:background="@android:color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <TextView
+                android:id="@+id/textView345"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="68dp"
+                android:text="Tube Park Status"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView340" />
+
+            <TextView
+                android:id="@+id/textView346"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="190dp"
+                android:layout_marginTop="28dp"
+                android:text="Enquist Snow Tube Park"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline140"
+                app:layout_constraintHorizontal_bias="0.58"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view18" />
+
+            <TextView
+                android:id="@+id/textView347"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="103dp"
+                android:layout_marginTop="96dp"
+                android:text="Tobaggan Area"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline140"
+                app:layout_constraintHorizontal_bias="0.58"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view18" />
+
+            <ImageView
+                android:id="@+id/imageView324"
+                android:layout_width="31dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="18dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view18"
+                app:srcCompat="@drawable/ic_launcher_foreground" />
+
+            <ImageView
+                android:id="@+id/imageView325"
+                android:layout_width="31dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="86dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view18"
+                app:srcCompat="@drawable/ic_launcher_foreground" />
+
+            <View
+                android:id="@+id/view19"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="1226dp"
+                android:background="@android:color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <TextView
+                android:id="@+id/textView348"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="60dp"
+                android:text="Snowshoe Status"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView347" />
+
+            <TextView
+                android:id="@+id/textView349"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="226dp"
+                android:layout_marginTop="28dp"
+                android:text="Discovery Snowshoe Trails"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline140"
+                app:layout_constraintHorizontal_bias="0.58"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view19" />
+
+            <ImageView
+                android:id="@+id/imageView326"
+                android:layout_width="31dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="18dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view19"
+                app:srcCompat="@drawable/ic_launcher_foreground" />
+
+            <TextView
+                android:id="@+id/textView228"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Lifts Open:"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline142"
+                app:layout_constraintStart_toStartOf="@+id/guideline139"
+                app:layout_constraintTop_toBottomOf="@+id/textView326" />
+
+            <TextView
+                android:id="@+id/textView229"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Terrain Parks Open:"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline142"
+                app:layout_constraintStart_toStartOf="@+id/guideline139"
+                app:layout_constraintTop_toBottomOf="@+id/textView228" />
+
+            <TextView
+                android:id="@+id/textView230"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Tube Parks Open:"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline142"
+                app:layout_constraintStart_toStartOf="@+id/guideline139"
+                app:layout_constraintTop_toBottomOf="@+id/textView229" />
+
+            <Button
+                android:id="@+id/button16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="55dp"
+                android:layout_marginTop="404dp"
+                android:backgroundTint="#B81414"
+                android:text="FULL WEATHER FORECAST"
+                android:textColor="#FFFFFF"
+                android:textAlignment="center"
+                app:layout_constraintStart_toStartOf="@+id/guideline140"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView231"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Snowshoe Trails Open:"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline142"
+                app:layout_constraintStart_toStartOf="@+id/guideline139"
+                app:layout_constraintTop_toBottomOf="@+id/textView230" />
+
+            <TextView
+                android:id="@+id/textView423"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="Terrain Parks Open: 0/2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView342" />
+
+            <TextView
+                android:id="@+id/textView424"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="Terrain Parks Open: 0/3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView343" />
+
+            <TextView
+                android:id="@+id/textView425"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="Terrain Parks Open: 0/1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView344" />
+
+            <Button
+                android:id="@+id/button23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Refresh"
+                android:backgroundTint="#B81414"
+                android:textColor="#FFFFFF"
+                tools:layout_editor_absoluteX="304dp"
+                tools:layout_editor_absoluteY="173dp" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

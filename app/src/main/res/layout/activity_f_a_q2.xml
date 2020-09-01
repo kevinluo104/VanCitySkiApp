@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FAQ2">
+
+    <TextView
+        android:id="@+id/textView236"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/asar"
+        android:text="FAQ"
+        android:textColor="#000000"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view28"
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="56dp"
+        android:background="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="1000dp"
+        android:layout_marginTop="8dp"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view28">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView249"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Q: How come Grouse Mountain and Cypress Mountain display open runs and lifts even though they're closed?"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView250"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A: We're currently doing a test-run of the app. All non-weather related info. is from the past. All runs/lifts will be set to closed after testing is done."
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView251"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Q: Why do some image icons display as Android icons instead? "
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView252"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A: A bug in the app is present. Please email us at vancityskiapp@gmail.com and include the time and which image icon displays the Android icon. Thanks!"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView253"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Q: How do I go back to the main page?"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView254"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A: Pressing the back device should bring you back. If you refreshed any page, you might need to double-tap the back button to go back."
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

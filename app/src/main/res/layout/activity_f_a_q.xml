@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FAQ">
+
+    <TextView
+        android:id="@+id/textView235"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/asar"
+        android:text="FAQ"
+        android:textColor="#000000"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view27"
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="56dp"
+        android:background="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="1000dp"
+        android:layout_marginTop="8dp"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view27">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/textView237"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Q: If I encounter a problem with the app or would like to give comments, who do I contact?"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView238"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="A: You can contact me at vancityskiapp@gmail.com, please include what the problem is and how it was caused. It would be greatly appreciated!"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView239"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Q: Its currently sunny on Mount Seymour, why is the app displaying that its raining? "
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView240"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="A: Mount Seymour hasn't updated their weather conditions since June 4th. I'm assuming an update will come from them by mid-October in preparation for the upcoming ski season. "
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView241"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Q: Weather conditions for Cypress Mountain sometimes doesn't appear, what gives?"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView242"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="A: Cypress Mountain's security certificates are a bit outdated right now and the system sometimes has trouble verifying them. Refreshing the app usually does the trick."
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView243"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Q: How do I refresh the app?"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView244"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text='A: There should usually be a red button with the word "Refresh" on some pages. Or, you can completely close the app and re-open it.'
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView245"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Q: What site are the live conditions accessed from?"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView246"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="A: Vancouver's weather is accessed from weather.gc.ca; Cypress, Grouse, and Seymour's conditions are all accessed via their official respective websites."
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView247"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Q: Is the information in this app accurate?"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView248"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="A: All information should be accurate as they are taken from official websites and updated automatically. The information here might even be updated faster than the ski resort apps themselves as they update their information manually as opposed to automatically."
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/button20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#B81414"
+                android:textColor="#FFFFFF"
+                android:text="FAQ PAGE 2" />
+
+
+        </LinearLayout>
+    </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
