@@ -294,7 +294,15 @@ public class MainActivity extends AppCompatActivity {
             image.setImageResource(R.drawable.thunderstorm_w_light_rain);
             return;
         }
-        if (hour >= 6 && hour < 21) {
+        if (text.equals("https://weather.gc.ca/weathericons/23.gif")) { // HAZE
+            image.setImageResource(R.drawable.haze);
+            return;
+        }
+        if (text.equals("https://weather.gc.ca/weathericons/44.gif")) { // SMOKE
+            image.setImageResource(R.drawable.smoke);
+            return;
+        }
+        if (hour >= 7 && hour < 20) {
             switch (text) {
                 case "https://weather.gc.ca/weathericons/03.gif":  // MOSTLY CLOUDY
                     image.setImageResource(R.drawable.mainly_cloudy_day);
@@ -675,6 +683,12 @@ public class MainActivity extends AppCompatActivity {
             case "https://weather.gc.ca/weathericons/19.gif": // THUNDERSTORM WITH LIGHT RAIN NIGHT   SHOWERS AT TIMES HEAVY. RISK OF THUNDERSTORMS.     SHOWERS. RISK OF THUNDERSTORMS.
                 imageView.setImageResource(R.drawable.thunderstorm_w_light_rain);
                 return;
+            case "https://weather.gc.ca/weathericons/small/44.png": // SMOKE
+                imageView.setImageResource(R.drawable.smoke);
+                return;
+            case "https://weather.gc.ca/weathericons/small/23.png": // HAZE
+                    imageView.setImageResource(R.drawable.haze);
+                return;
         }
     }
 
@@ -722,6 +736,12 @@ public class MainActivity extends AppCompatActivity {
             case "https://weather.gc.ca/weathericons/small/19.png":
             case "https://weather.gc.ca/weathericons/19.gif": // THUNDERSTORM WITH LIGHT RAIN NIGHT  SHOWERS AT TIMES HEAVY. RISK OF THUNDERSTORMS.   SHOWERS. RISK OF THUNDERSTORMS.
                 imageView.setImageResource(R.drawable.thunderstorm_w_light_rain);
+                return;
+            case "https://weather.gc.ca/weathericons/small/44.png": // SMOKE
+                imageView.setImageResource(R.drawable.smoke);
+                return;
+            case "https://weather.gc.ca/weathericons/small/23.png": // HAZE
+                imageView.setImageResource(R.drawable.haze);
                 return;
         }
     }
@@ -1249,7 +1269,7 @@ public class MainActivity extends AppCompatActivity {
             image.setImageResource(R.drawable.cloudy);
             return;
         }
-        if (hour >= 6 && hour < 21) {
+        if (hour >= 7 && hour < 20) {
             switch (text) {
             }
         } else {
@@ -1292,7 +1312,7 @@ public class MainActivity extends AppCompatActivity {
         if (text.equals("Lightly Raining Skies")) {
             image.setImageResource(R.drawable.chance_of_showers);
         }
-        if (hour >= 6 && hour < 21) {
+        if (hour >= 7 && hour < 20) {
             switch (text) {
                 case "Mainly Cloudy Skies":
                     image.setImageResource(R.drawable.mainly_cloudy_day);
@@ -1328,8 +1348,10 @@ public class MainActivity extends AppCompatActivity {
         if (text.equals("Light Rain")) {
             image.setImageResource(R.drawable.chance_of_showers);
             return;
+        } else if (text.equals("Sunny")) {
+            image.setImageResource(R.drawable.sunny);
         }
-        if (hour >= 6 && hour < 21) {
+        if (hour >= 7 && hour < 20) {
             switch (text) {
             }
         } else {
