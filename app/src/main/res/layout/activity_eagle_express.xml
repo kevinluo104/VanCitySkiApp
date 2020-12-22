@@ -151,6 +151,7 @@
                 android:id="@+id/imageView54"
                 android:layout_width="47dp"
                 android:layout_height="58dp"
+                android:layout_marginEnd="50dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline77"
                 app:layout_constraintHorizontal_bias="0.25"
                 app:layout_constraintStart_toStartOf="parent"
@@ -588,7 +589,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="166dp"
+                android:layout_marginTop="167dp"
                 app:layout_constraintStart_toEndOf="@+id/imageView152"
                 app:layout_constraintTop_toBottomOf="@+id/view8"
                 app:srcCompat="@drawable/groomed_run" />
@@ -608,7 +609,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="454dp"
+                android:layout_marginTop="455dp"
                 app:layout_constraintStart_toEndOf="@+id/imageView156"
                 app:layout_constraintTop_toBottomOf="@+id/view8"
                 app:srcCompat="@drawable/groomed_run" />
@@ -884,6 +885,13 @@
                 app:layout_constraintStart_toStartOf="@+id/guideline73"
                 app:layout_constraintTop_toBottomOf="@+id/textView134" />
 
+            <TextView
+                android:id="@+id/textView264"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                app:layout_constraintTop_toBottomOf="@+id/textView152"
+                tools:layout_editor_absoluteX="181dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

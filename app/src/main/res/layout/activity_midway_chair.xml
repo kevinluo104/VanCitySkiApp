@@ -262,16 +262,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/view16"
                 app:srcCompat="@drawable/greencircle" />
 
-            <ImageView
-                android:id="@+id/imageView308"
-                android:layout_width="26dp"
-                android:layout_height="23dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="38dp"
-                app:layout_constraintStart_toEndOf="@+id/textView317"
-                app:layout_constraintTop_toBottomOf="@+id/view16"
-                app:srcCompat="@drawable/nightrun" />
-
 
             <ImageView
                 android:id="@+id/imageView309"
@@ -303,36 +293,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/view16"
                 app:srcCompat="@drawable/bluerun" />
 
-
-            <ImageView
-                android:id="@+id/imageView312"
-                android:layout_width="26dp"
-                android:layout_height="23dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="102dp"
-                app:layout_constraintStart_toEndOf="@+id/textView318"
-                app:layout_constraintTop_toBottomOf="@+id/view16"
-                app:srcCompat="@drawable/nightrun" />
-
-            <ImageView
-                android:id="@+id/imageView313"
-                android:layout_width="26dp"
-                android:layout_height="23dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="174dp"
-                app:layout_constraintStart_toEndOf="@+id/textView319"
-                app:layout_constraintTop_toBottomOf="@+id/view16"
-                app:srcCompat="@drawable/nightrun" />
-
-            <ImageView
-                android:id="@+id/imageView314"
-                android:layout_width="26dp"
-                android:layout_height="23dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="246dp"
-                app:layout_constraintStart_toEndOf="@+id/textView320"
-                app:layout_constraintTop_toBottomOf="@+id/view16"
-                app:srcCompat="@drawable/nightrun" />
 
             <ImageView
                 android:id="@+id/imageView315"
@@ -367,6 +327,43 @@
                 app:layout_constraintTop_toBottomOf="@+id/view16"
                 app:srcCompat="@drawable/ic_launcher_foreground" />
 
+            <TextView
+                android:id="@+id/textView271"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                app:layout_constraintTop_toBottomOf="@+id/textView320"
+                tools:layout_editor_absoluteX="208dp" />
+
+            <ImageView
+                android:id="@+id/imageView217"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintStart_toEndOf="@+id/textView317"
+                app:layout_constraintTop_toBottomOf="@+id/view16"
+                app:srcCompat="@drawable/groomed_run" />
+
+            <ImageView
+                android:id="@+id/imageView218"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintStart_toEndOf="@+id/textView318"
+                app:layout_constraintTop_toBottomOf="@+id/imageView217"
+                app:srcCompat="@drawable/groomed_run" />
+
+            <ImageView
+                android:id="@+id/imageView248"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="36dp"
+                app:layout_constraintStart_toEndOf="@+id/textView319"
+                app:layout_constraintTop_toBottomOf="@+id/imageView218"
+                app:srcCompat="@drawable/groomed_run" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

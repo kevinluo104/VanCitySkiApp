@@ -93,7 +93,8 @@ public class Seymour extends AppCompatActivity {
                                     TextView textView230 = findViewById(R.id.textView230);
                                     textView230.setText("Tube Parks Open: " + seymourSingleton.tubeParksOpen + "/2");
                                     TextView textView231 = findViewById(R.id.textView231);
-                                    textView231.setText("Snowshoe Trails Status: " + seymourSingleton.snowshoeTrailsStatus);
+                                    String snowshoeTrialStatus = seymourSingleton.snowshoeTrailsStatus.substring(0, 1).toUpperCase() + seymourSingleton.snowshoeTrailsStatus.substring(1);
+                                    textView231.setText("Snowshoe Trails Status: " + snowshoeTrialStatus);
                                     setWeatherIcon(seymourSingleton.conditions);
                                     TextView textView328 = findViewById(R.id.textView328);
                                     textView328.setText(seymourSingleton.fortyEightHrSnow);
@@ -132,7 +133,7 @@ public class Seymour extends AppCompatActivity {
                                     TextView textView344 = findViewById(R.id.textView344);
                                     textView344.setText("Runs Open: " + seymourSingleton.goldieMagicCarpetRunsOpen + "/3");
                                     TextView textView425 = findViewById(R.id.textView425);
-                                    if (seymourSingleton.mushroom.equals("Open")) {
+                                    if (seymourSingleton.mushroom.equals("open")) {
                                         textView425.setText("Terrain Parks Open: 1/1");
                                     } else {
                                         textView425.setText("Terrain Parks Open: 0/1");
@@ -184,16 +185,29 @@ public class Seymour extends AppCompatActivity {
         if (text.equals("Light Rain")) {
             imageView319.setImageResource(R.drawable.chance_of_showers);
             return;
+        } else if (text.equals("Snowing") || text.equals("Fresh snow")) {
+            imageView319.setImageResource(R.drawable.light_snow);
+            return;
+        } else if (text.equals("Sunny")) {
+            imageView319.setImageResource(R.drawable.sunny);
+            return;
+        } else if (text.equals("Clear")) {
+            imageView319.setImageResource(R.drawable.clear_night);
+            return;
+        } else if (text.equals("Overcast")) {
+            imageView319.setImageResource(R.drawable.overcast);
+            return;
         }
-        if (hour >= 6 && hour < 21) {
-            switch (text) {
-            }
-        } else {
-            switch (text) {
-            }
+            if (hour >= 6 && hour < 21) {
+                switch (text) {
+                }
+            } else {
+                switch (text) {
+                }
 
+            }
         }
-    }
+
 
     public void setStatus(ImageView image, String status) {
         switch (status) {

@@ -83,10 +83,10 @@ public class MysteryPeakExpress extends AppCompatActivity {
 
                                     ImageView imageView436 = findViewById(R.id.imageView436);
                                     setStatus(imageView436, seymourSingleton.northlands);
-                                    ImageView imageView438 = findViewById(R.id.imageView438);
-                                    setStatus(imageView438, seymourSingleton.nuthouse);
                                     ImageView imageView437 = findViewById(R.id.imageView437);
-                                    setStatus(imageView437, seymourSingleton.theRockstarEnergyPit);
+                                    setStatus(imageView437, seymourSingleton.nuthouse);
+                                    ImageView imageView438 = findViewById(R.id.imageView438);
+                                    setStatus(imageView438, seymourSingleton.theRockstarEnergyPit);
                                 }
                             }, getApplicationContext());
                             seymourSingleton.startThread();
@@ -112,6 +112,9 @@ public class MysteryPeakExpress extends AppCompatActivity {
             case "Standby":
             case "standby":
                 image.setImageResource(R.drawable.triangle);
+                return;
+            case "?":
+                image.setImageResource(R.drawable.question_mark);
                 return;
         }
     }

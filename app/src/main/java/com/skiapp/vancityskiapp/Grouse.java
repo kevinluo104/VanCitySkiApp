@@ -51,10 +51,13 @@ public class Grouse extends AppCompatActivity {
                                     switch (grouseSingleton.visibility) {
                                         case "Limited Visibility":
                                             tv47.setText("Visibility: Limited");
+                                            break;
                                         case "Variable Visibility":
                                             tv47.setText("Visibility: Variable");
+                                            break;
                                         case "Unlimited Visibility":
                                             tv47.setText("Visibility: Unlimited");
+                                            break;
                                     }
                                     TextView tv52 = findViewById(R.id.textView52);
                                     tv52.setText(grouseSingleton.twelveHrSnow);
@@ -155,7 +158,7 @@ public class Grouse extends AppCompatActivity {
                                     ImageView iv106 = findViewById(R.id.imageView106);
                                     setStatus(iv106, grouseSingleton.cutPark);
                                     ImageView iv107 = findViewById(R.id.imageView107);
-                                    setStatus(iv107, grouseSingleton.grouseWoods);
+                                    setStatus(iv107, grouseSingleton.lightWalk);
                                     ImageView iv108 = findViewById(R.id.imageView108);
                                     setStatus(iv108, grouseSingleton.grousePark);
 
@@ -175,7 +178,7 @@ public class Grouse extends AppCompatActivity {
                                     TextView textView114 = findViewById(R.id.textView114);
                                     textView114.setText("Terrain Parks Open: " + grouseSingleton.terrainParksOpen + "/6");
                                     TextView textView227 = findViewById(R.id.textView227);
-                                    textView227.setText("Snowshoe Trails Open: " + grouseSingleton.snowshoeTrailsOpen + "/4");
+                                    textView227.setText("Snowshoe Trails Open: " + grouseSingleton.snowshoeTrailsOpen + "/5");
 
                                     ImageView imageView14 = findViewById(R.id.imageView14);
                                     setGrousePic(grouseSingleton.picture, imageView14);
@@ -222,7 +225,7 @@ public class Grouse extends AppCompatActivity {
             image.setImageResource(R.drawable.clear_night);
             return;
         }
-        if (text.equals("Sunny Skies")) {
+        if (text.equals("Sunny Skies") || text.equals("Blue Bird Skies!")) {
             image.setImageResource(R.drawable.sunny);
             return;
         }
@@ -230,6 +233,19 @@ public class Grouse extends AppCompatActivity {
             image.setImageResource(R.drawable.chance_of_showers);
             return;
         }
+        if (text.equals("Mix of Snow & Rain")) {
+            image.setImageResource(R.drawable.wet_snow_mixed_with_rain);
+            return;
+        }
+        if (text.equals("Snowing Heavily")) {
+            image.setImageResource(R.drawable.snow);
+            return;
+        }
+        if (text.equals("Lightly Snowing Skies")) {
+            image.setImageResource(R.drawable.light_snow);
+            return;
+        }
+
         if (hour >= 6 && hour < 21) {
             switch (text) {
                 case "Mainly Cloudy Skies":

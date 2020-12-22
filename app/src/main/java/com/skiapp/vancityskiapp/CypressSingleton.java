@@ -22,13 +22,13 @@ public class CypressSingleton extends AppCompatActivity {
     @SuppressLint("StaticFieldLeak")
     private static Context context;
     private Document cypressWeather;
-    private Document pastCypressWeather;
     public String conditions = "";
     public String temperature = "";
-    public String overnightSnow = "OnightSnow";
+    public String fortyEightHrSnow = "48hSnow";
     public String sevenDaySnow = "7DaySnow";
     public String twentyFourHrSnow = "24hSnow";
     public String seasonSnow = "SeasonSnow";
+    public String snowConditions = "";
     public String eagleExpress = "";
     public String lionsExpress = "";
     public String ravenRidge = "";
@@ -144,99 +144,110 @@ public class CypressSingleton extends AppCompatActivity {
             public void run() {
                 try {
                     cypressWeather = Jsoup.connect("https://cypressmountain.com/downhill-conditions-and-cams").userAgent("Mozilla").get();
-                    pastCypressWeather = Jsoup.connect("https://web.archive.org/web/20190301170230/http://www.cypressmountain.com/downhill-conditions-and-cams").userAgent("Mozilla").get();
                     runOnUiThread(new Runnable() {
                         public void run() {
                             conditions = cypressWeather.select(("span.text.text_14.mix-text_color7.mix-text_alignCenter.mix-text_alignLeftMd.mix-text_regular.mix-text_capitalize")).first().text();
+                            String[] arr = conditions.split(" ");
+                            StringBuffer sb = new StringBuffer();
+
+                            for (int i = 0; i < arr.length; i++) {
+                                sb.append(Character.toUpperCase(arr[i].charAt(0)))
+                                        .append(arr[i].substring(1)).append(" ");
+                            }
+                            conditions = sb.toString().trim();
+
                             temperature = cypressWeather.select("span.js-measurement").first().text();
-                            overnightSnow = cypressWeather.select("span.js-measurement").get(4).text() + "cm";
-                            twentyFourHrSnow = cypressWeather.select("span.js-measurement").get(5).text() + "cm";
-                            sevenDaySnow = cypressWeather.select("span.js-measurement").get(6).text() + "cm";
-                            seasonSnow = cypressWeather.select("span.js-measurement").get(7).text() + "cm";
+                            fortyEightHrSnow = cypressWeather.select("span.js-measurement").get(9).text() + "cm";
+                            twentyFourHrSnow = cypressWeather.select("span.js-measurement").get(8).text() + "cm";
+                            sevenDaySnow = cypressWeather.select("span.js-measurement").get(10).text() + "cm";
+                            seasonSnow = cypressWeather.select("span.js-measurement").get(11).text() + "cm";
+                            Element firstCondition = cypressWeather.select("span.text.text_24.text_30Md.mix-text_bold.mix-text_spaceBreak.mix-text_color1.mix-text_alignCenter.mix-text_alignLeftMd.mix-text_lessStrict").first();
+                            Element secondCondition = cypressWeather.select("span.text.text_24.text_30Md.mix-text_bold.mix-text_spaceBreak.mix-text_color1.mix-text_alignCenter.mix-text_alignLeftMd.mix-text_lessStrict").get(1);
+                            snowConditions = firstCondition.ownText() + " " + secondCondition.ownText();
 
                             if (counter == 0) {
-                                eagleExpress = setChairliftStatus(eagleExpress, 134);
-                                lionsExpress = setChairliftStatus(lionsExpress, 135);
-                                ravenRidge = setChairliftStatus(ravenRidge, 136);
-                                easyRider = setChairliftStatus(easyRider, 137);
-                                skyChair = setChairliftStatus(skyChair, 138);
-                                midwayChair = setChairliftStatus(midwayChair, 139);
+                                eagleExpress = setChairliftStatus(eagleExpress, 115);
+                                lionsExpress = setChairliftStatus(lionsExpress, 116);
+                                ravenRidge = setChairliftStatus(ravenRidge, 120);
+                                easyRider = setChairliftStatus(easyRider, 117);
+                                skyChair = setChairliftStatus(skyChair, 118);
+                                midwayChair = setChairliftStatus(midwayChair, 119);
 
-                                panorama = setRunStatusEagleExpress(panorama, 144);
-                                windjammer = setRunStatusEagleExpress(windjammer, 145);
-                                upperFork = setRunStatusEagleExpress(upperFork, 146);
-                                lowerFork = setRunStatusEagleExpress(lowerFork, 147);
-                                jaseyJay = setRunStatusEagleExpress(jaseyJay, 148);
-                                mcIvors = setRunStatusEagleExpress(mcIvors, 149);
-                                unrun = setRunStatusEagleExpress(unrun, 150);
-                                trumpeter = setRunStatusEagleExpress(trumpeter, 151);
-                                lowerTrumpeter = setRunStatusEagleExpress(lowerTrumpeter, 152);
-                                hoseSide = setRunStatusEagleExpress(hoseSide, 153);
-                                bHip = setRunStatusEagleExpress(bHip, 154);
-                                blowBy = setRunStatusEagleExpress(blowBy, 155);
-                                detentionGlades = setRunStatusEagleExpress(detentionGlades, 156);
+                                panorama = setRunStatusEagleExpress(panorama, 125);
+                                windjammer = setRunStatusEagleExpress(windjammer, 126);
+                                upperFork = setRunStatusEagleExpress(upperFork, 127);
+                                lowerFork = setRunStatusEagleExpress(lowerFork, 128);
+                                jaseyJay = setRunStatusEagleExpress(jaseyJay, 129);
+                                mcIvors = setRunStatusEagleExpress(mcIvors, 130);
+                                unrun = setRunStatusEagleExpress(unrun, 131);
+                                trumpeter = setRunStatusEagleExpress(trumpeter, 132);
+                                lowerTrumpeter = setRunStatusEagleExpress(lowerTrumpeter, 133);
+                                hoseSide = setRunStatusEagleExpress(hoseSide, 134);
+                                bHip = setRunStatusEagleExpress(bHip, 135);
+                                blowBy = setRunStatusEagleExpress(blowBy, 136);
+                                detentionGlades = setRunStatusEagleExpress(detentionGlades, 137);
 
-                                skatePark = setTerrainParkStatusEagleExpress(skatePark, 157);
-                                district = setTerrainParkStatusEagleExpress(district, 158);
-                                stompingGrounds = setTerrainParkStatusEagleExpress(stompingGrounds, 159);
+                                skatePark = setTerrainParkStatusEagleExpress(skatePark, 138);
+                                district = setTerrainParkStatusEagleExpress(district, 139);
+                                stompingGrounds = setTerrainParkStatusEagleExpress(stompingGrounds, 140);
 
 
-                                collins = setRunStatusLionsExpress(collins, 161);
-                                horizon = setRunStatusLionsExpress(horizon, 162);
-                                humptyDumpty = setRunStatusLionsExpress(humptyDumpty, 163);
-                                catTrackUpper = setRunStatusLionsExpress(catTrackUpper, 164);
-                                primaryPower = setRunStatusLionsExpress(primaryPower, 165);
-                                horizonByPass = setRunStatusLionsExpress(horizonByPass, 166);
-                                lowerBowen = setRunStatusLionsExpress(lowerBowen, 167);
-                                hutch = setRunStatusLionsExpress(hutch, 168);
-                                catTrackLower = setRunStatusLionsExpress(catTrackLower, 169);
-                                upperBowen = setRunStatusLionsExpress(upperBowen, 170);
-                                bowenFace = setRunStatusLionsExpress(bowenFace, 171);
-                                gibsons = setRunStatusLionsExpress(gibsons, 172);
-                                upperRainbow = setRunStatusLionsExpress(upperRainbow, 173);
-                                bowenWest = setRunStatusLionsExpress(bowenWest, 174);
-                                rainbow = setRunStatusLionsExpress(rainbow, 175);
-                                slash = setRunStatusLionsExpress(slash, 176);
-                                moons = setRunStatusLionsExpress(moons, 177);
-                                LTDGlades = setRunStatusLionsExpress(LTDGlades, 178);
-                                elevatorGlades = setRunStatusLionsExpress(elevatorGlades, 179);
-                                darksideGlades = setRunStatusLionsExpress(darksideGlades, 180);
-                                cratorGlades = setRunStatusLionsExpress(cratorGlades, 181);
-                                bowenWestGlades = setRunStatusLionsExpress(bowenWestGlades, 182);
-                                underTheVolcanoGlades = setRunStatusLionsExpress(underTheVolcanoGlades, 183);
-                                gibsonGlades = setRunStatusLionsExpress(gibsonGlades, 184);
+                                collins = setRunStatusLionsExpress(collins, 142);
+                                horizon = setRunStatusLionsExpress(horizon, 143);
+                                humptyDumpty = setRunStatusLionsExpress(humptyDumpty, 144);
+                                catTrackUpper = setRunStatusLionsExpress(catTrackUpper, 145);
+                                primaryPower = setRunStatusLionsExpress(primaryPower, 146);
+                                horizonByPass = setRunStatusLionsExpress(horizonByPass, 147);
+                                lowerBowen = setRunStatusLionsExpress(lowerBowen, 148);
+                                hutch = setRunStatusLionsExpress(hutch, 149);
+                                catTrackLower = setRunStatusLionsExpress(catTrackLower, 150);
+                                upperBowen = setRunStatusLionsExpress(upperBowen, 151);
+                                bowenFace = setRunStatusLionsExpress(bowenFace, 152);
+                                gibsons = setRunStatusLionsExpress(gibsons, 153);
+                                upperRainbow = setRunStatusLionsExpress(upperRainbow, 154);
+                                bowenWest = setRunStatusLionsExpress(bowenWest, 155);
+                                rainbow = setRunStatusLionsExpress(rainbow, 156);
+                                slash = setRunStatusLionsExpress(slash, 157);
+                                moons = setRunStatusLionsExpress(moons, 158);
+                                LTDGlades = setRunStatusLionsExpress(LTDGlades, 159);
+                                elevatorGlades = setRunStatusLionsExpress(elevatorGlades, 160);
+                                darksideGlades = setRunStatusLionsExpress(darksideGlades, 161);
+                                cratorGlades = setRunStatusLionsExpress(cratorGlades, 162);
+                                bowenWestGlades = setRunStatusLionsExpress(bowenWestGlades, 163);
+                                underTheVolcanoGlades = setRunStatusLionsExpress(underTheVolcanoGlades, 164);
+                                gibsonGlades = setRunStatusLionsExpress(gibsonGlades, 165);
 
-                                sunrisePark = setTerrainParkStatusLionsExpress(sunrisePark, 185);
+                                sunrisePark = setTerrainParkStatusLionsExpress(sunrisePark, 166);
 
-                                bennys = setRunStatusRavenRidge(bennys, 187);
-                                crazyRaven = setRunStatusRavenRidge(crazyRaven, 188);
-                                lowerCoyote7 = setRunStatusRavenRidge(lowerCoyote7, 189);
-                                threeBears = setRunStatusRavenRidge(threeBears, 190);
-                                rideout = setRunStatusRavenRidge(rideout, 191);
-                                bilodeau = setRunStatusRavenRidge(bilodeau, 192);
-                                upperCoyote7 = setRunStatusRavenRidge(upperCoyote7, 193);
-                                firstSun = setRunStatusRavenRidge(firstSun, 194);
-                                shoreGlades = setRunStatusRavenRidge(shoreGlades, 195);
-                                shoreLine = setRunStatusRavenRidge(shoreLine, 196);
-                                backOnBlack = setRunStatusRavenRidge(backOnBlack, 197);
-                                meteor = setRunStatusRavenRidge(meteor, 198);
-                                blackFly = setRunStatusRavenRidge(blackFly, 199);
+                                bennys = setRunStatusRavenRidge(bennys, 168);
+                                crazyRaven = setRunStatusRavenRidge(crazyRaven, 169);
+                                lowerCoyote7 = setRunStatusRavenRidge(lowerCoyote7, 170);
+                                threeBears = setRunStatusRavenRidge(threeBears, 171);
+                                rideout = setRunStatusRavenRidge(rideout, 172);
+                                bilodeau = setRunStatusRavenRidge(bilodeau, 173);
+                                upperCoyote7 = setRunStatusRavenRidge(upperCoyote7, 174);
+                                firstSun = setRunStatusRavenRidge(firstSun, 175);
+                                shoreGlades = setRunStatusRavenRidge(shoreGlades, 176);
+                                shoreLine = setRunStatusRavenRidge(shoreLine, 177);
+                                backOnBlack = setRunStatusRavenRidge(backOnBlack, 178);
+                                meteor = setRunStatusRavenRidge(meteor, 179);
+                                blackFly = setRunStatusRavenRidge(blackFly, 180);
 
-                                runway = setRunStatusEasyRider(runway, 201);
-                                steezyRider = setTerrainParkStatusEasyRider(steezyRider, 202);
-                                gnarlysDen = setTerrainParkStatusEasyRider(gnarlysDen, 203);
+                                runway = setRunStatusEasyRider(runway, 182);
+                                steezyRider = setTerrainParkStatusEasyRider(steezyRider, 183);
+                                gnarlysDen = setTerrainParkStatusEasyRider(gnarlysDen, 184);
 
-                                T33 = setRunStatusSkyChair(T33, 205);
-                                horseflyCanyon = setRunStatusSkyChair(horseflyCanyon, 206);
-                                glades = setRunStatusSkyChair(glades, 207);
-                                tomcat = setRunStatusSkyChair(tomcat, 208);
-                                ripcord = setRunStatusSkyChair(ripcord, 209);
-                                topGun = setRunStatusSkyChair(topGun, 210);
+                                T33 = setRunStatusSkyChair(T33, 186);
+                                horseflyCanyon = setRunStatusSkyChair(horseflyCanyon, 187);
+                                glades = setRunStatusSkyChair(glades, 188);
+                                tomcat = setRunStatusSkyChair(tomcat, 189);
+                                ripcord = setRunStatusSkyChair(ripcord, 190);
+                                topGun = setRunStatusSkyChair(topGun, 191);
 
-                                shuttle = setRunStatusMidwayChair(shuttle, 212);
-                                blaster = setRunStatusMidwayChair(blaster, 213);
-                                hutRun = setRunStatusMidwayChair(hutRun, 214);
-                                webbSite = setRunStatusMidwayChair(webbSite, 215);
+                                shuttle = setRunStatusMidwayChair(shuttle, 193);
+                                blaster = setRunStatusMidwayChair(blaster, 194);
+                                hutRun = setRunStatusMidwayChair(hutRun, 195);
+                                webbSite = setRunStatusMidwayChair(webbSite, 196);
                             }
                             counter++;
                             listener.onResultFetched();
@@ -258,16 +269,16 @@ public class CypressSingleton extends AppCompatActivity {
     }
 
     public String setChairliftStatus(String lift, int rowNum) {
-        Element first = pastCypressWeather.select("li").get(rowNum);
+       Element first = cypressWeather.select("li").get(rowNum);
         switch (first.select("img").first().absUrl("src")) {
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/green-check.png":
+            case "https://cypressmountain.com/images/Cypress/icons/green-check.png":
                 lift = "open";
                 liftsOpen++;
                 return lift;
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/red-x.png":
+            case "https://cypressmountain.com/images/Cypress/icons/red-x.png":
                 lift = "closed";
                 return lift;
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/yellow-caution.png":
+            case "https://cypressmountain.com/images/Cypress/icons/yellow-caution.png":
                 lift = "standby";
                 return lift;
         }
@@ -276,17 +287,17 @@ public class CypressSingleton extends AppCompatActivity {
 
 
     public String setRunStatusEagleExpress(String run, int rowNum) {
-        Element first = pastCypressWeather.select("li").get(rowNum);
+        Element first = cypressWeather.select("li").get(rowNum);
         switch (first.select("img").first().absUrl("src")) {
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/green-check.png":
+            case "https://cypressmountain.com/images/Cypress/icons/green-check.png":
                 run = "open";
                 runsOpenEagleExpress++;
                 runsOpen++;
                 return run;
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/red-x.png":
+            case "https://cypressmountain.com/images/Cypress/icons/red-x.png":
                 run = "closed";
                 return run;
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/yellow-caution.png":
+            case "https://cypressmountain.com/images/Cypress/icons/yellow-caution.png":
                 run = "standby";
                 return run;
         }
@@ -294,17 +305,17 @@ public class CypressSingleton extends AppCompatActivity {
     }
 
     public String setTerrainParkStatusEagleExpress(String run, int rowNum) {
-        Element first = pastCypressWeather.select("li").get(rowNum);
+        Element first = cypressWeather.select("li").get(rowNum);
         switch (first.select("img").first().absUrl("src")) {
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/green-check.png":
+            case "https://cypressmountain.com/images/Cypress/icons/green-check.png":
                 run = "open";
                 terrainParksOpenEagleExpress++;
                 terrainParksOpen++;
                 return run;
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/red-x.png":
+            case "https://cypressmountain.com/images/Cypress/icons/red-x.png":
                 run = "closed";
                 return run;
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/yellow-caution.png":
+            case "https://cypressmountain.com/images/Cypress/icons/yellow-caution.png":
                 run = "standby";
                 return run;
         }
@@ -312,17 +323,17 @@ public class CypressSingleton extends AppCompatActivity {
     }
 
     public String setRunStatusLionsExpress(String run, int rowNum) {
-        Element first = pastCypressWeather.select("li").get(rowNum);
+        Element first = cypressWeather.select("li").get(rowNum);
         switch (first.select("img").first().absUrl("src")) {
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/green-check.png":
+            case "https://cypressmountain.com/images/Cypress/icons/green-check.png":
                 run = "open";
                 runsOpenLionsExpress++;
                 runsOpen++;
                 return run;
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/red-x.png":
+            case "https://cypressmountain.com/images/Cypress/icons/red-x.png":
                 run = "closed";
                 return run;
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/yellow-caution.png":
+            case "https://cypressmountain.com/images/Cypress/icons/yellow-caution.png":
                 run = "standby";
                 return run;
         }
@@ -330,17 +341,17 @@ public class CypressSingleton extends AppCompatActivity {
     }
 
     public String setTerrainParkStatusLionsExpress(String run, int rowNum) {
-        Element first = pastCypressWeather.select("li").get(rowNum);
+        Element first = cypressWeather.select("li").get(rowNum);
         switch (first.select("img").first().absUrl("src")) {
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/green-check.png":
+            case "https://cypressmountain.com/images/Cypress/icons/green-check.png":
                 run = "open";
                 terrainParksOpenLionsExpress++;
                 terrainParksOpen++;
                 return run;
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/red-x.png":
+            case "https://cypressmountain.com/images/Cypress/icons/red-x.png":
                 run = "closed";
                 return run;
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/yellow-caution.png":
+            case "https://cypressmountain.com/images/Cypress/icons/yellow-caution.png":
                 run = "standby";
                 return run;
         }
@@ -349,17 +360,17 @@ public class CypressSingleton extends AppCompatActivity {
 
 
     public String setRunStatusRavenRidge(String run, int rowNum) {
-        Element first = pastCypressWeather.select("li").get(rowNum);
+        Element first = cypressWeather.select("li").get(rowNum);
         switch (first.select("img").first().absUrl("src")) {
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/green-check.png":
+            case "https://cypressmountain.com/images/Cypress/icons/green-check.png":
                 run = "open";
                 runsOpenRavenRidge++;
                 runsOpen++;
                 return run;
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/red-x.png":
+            case "https://cypressmountain.com/images/Cypress/icons/red-x.png":
                 run = "closed";
                 return run;
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/yellow-caution.png":
+            case "https://cypressmountain.com/images/Cypress/icons/yellow-caution.png":
                 run = "standby";
                 return run;
         }
@@ -367,17 +378,17 @@ public class CypressSingleton extends AppCompatActivity {
     }
 
     public String setRunStatusEasyRider(String run, int rowNum) {
-        Element first = pastCypressWeather.select("li").get(rowNum);
+        Element first = cypressWeather.select("li").get(rowNum);
         switch (first.select("img").first().absUrl("src")) {
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/green-check.png":
+            case "https://cypressmountain.com/images/Cypress/icons/green-check.png":
                 run = "open";
                 runsOpenEasyRider++;
                 runsOpen++;
                 return run;
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/red-x.png":
+            case "https://cypressmountain.com/images/Cypress/icons/red-x.png":
                 run = "closed";
                 return run;
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/yellow-caution.png":
+            case "https://cypressmountain.com/images/Cypress/icons/yellow-caution.png":
                 run = "standby";
                 return run;
         }
@@ -385,17 +396,17 @@ public class CypressSingleton extends AppCompatActivity {
     }
 
     public String setTerrainParkStatusEasyRider(String run, int rowNum) {
-        Element first = pastCypressWeather.select("li").get(rowNum);
+        Element first = cypressWeather.select("li").get(rowNum);
         switch (first.select("img").first().absUrl("src")) {
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/green-check.png":
+            case "https://cypressmountain.com/images/Cypress/icons/green-check.png":
                 run = "open";
                 terrainParksOpenEasyRider++;
                 terrainParksOpen++;
                 return run;
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/red-x.png":
+            case "https://cypressmountain.com/images/Cypress/icons/red-x.png":
                 run = "closed";
                 return run;
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/yellow-caution.png":
+            case "https://cypressmountain.com/images/Cypress/icons/yellow-caution.png":
                 run = "standby";
                 return run;
         }
@@ -403,17 +414,17 @@ public class CypressSingleton extends AppCompatActivity {
     }
 
     public String setRunStatusSkyChair(String run, int rowNum) {
-        Element first = pastCypressWeather.select("li").get(rowNum);
+        Element first = cypressWeather.select("li").get(rowNum);
         switch (first.select("img").first().absUrl("src")) {
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/green-check.png":
+            case "https://cypressmountain.com/images/Cypress/icons/green-check.png":
                 run = "open";
                 runsOpenSkyChair++;
                 runsOpen++;
                 return run;
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/red-x.png":
+            case "https://cypressmountain.com/images/Cypress/icons/red-x.png":
                 run = "closed";
                 return run;
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/yellow-caution.png":
+            case "https://cypressmountain.com/images/Cypress/icons/yellow-caution.png":
                 run = "standby";
                 return run;
         }
@@ -421,17 +432,17 @@ public class CypressSingleton extends AppCompatActivity {
     }
 
     public String setRunStatusMidwayChair(String run, int rowNum) {
-        Element first = pastCypressWeather.select("li").get(rowNum);
+        Element first = cypressWeather.select("li").get(rowNum);
         switch (first.select("img").first().absUrl("src")) {
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/green-check.png":
+            case "https://cypressmountain.com/images/Cypress/icons/green-check.png":
                 run = "open";
                 runsOpenMidwayChair++;
                 runsOpen++;
                 return run;
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/red-x.png":
+            case "https://cypressmountain.com/images/Cypress/icons/red-x.png":
                 run = "closed";
                 return run;
-            case "https://web.archive.org/web/20190301170230im_/http://www.cypressmountain.com/assets/images/Cypress/icons/yellow-caution.png":
+            case "https://cypressmountain.com/images/Cypress/icons/yellow-caution.png":
                 run = "standby";
                 return run;
         }

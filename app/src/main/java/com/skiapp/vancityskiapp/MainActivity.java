@@ -194,10 +194,13 @@ public class MainActivity extends AppCompatActivity {
                                         switch (grouseSingleton.visibility) {
                                             case "Limited Visibility":
                                                 textView22.setText("Visibility: Limited");
+                                                break;
                                             case "Variable Visibility":
                                                 textView22.setText("Visibility: Variable");
+                                                break;
                                             case "Unlimited Visibility":
                                                 textView22.setText("Visibility: Unlimited");
+                                                break;
                                         }
                                         TextView textView36 = findViewById(R.id.textView36);
                                         textView36.setText("New Snow: " + grouseSingleton.overnightSnow);
@@ -209,6 +212,7 @@ public class MainActivity extends AppCompatActivity {
                                         textView34.setText("Lifts Open: " + grouseSingleton.liftsOpen + "/5");
                                         ImageView imageView4 = findViewById(R.id.imageView4);
                                         setGrousePic(grouseSingleton.picture, imageView4);
+                                        System.out.println("this is grouse pic" + grouseSingleton.picture);
                                     }
                                 }, getApplicationContext());
                                 grouseSingleton.startThread();
@@ -232,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
                                         TextView textView29 = findViewById(R.id.textView29);
                                         textView29.setText("Lifts Open: " + cypressSingleton.liftsOpen + "/6");
                                         TextView textView35 = findViewById(R.id.textView35);
-                                        textView35.setText("New Snow: " + cypressSingleton.overnightSnow);
+                                        textView35.setText("New Snow: " + cypressSingleton.twentyFourHrSnow);
                                         ImageView imageView2 = findViewById(R.id.imageView2);
                                         setCypressPic(cypressSingleton.conditions, imageView2);
 
@@ -302,7 +306,19 @@ public class MainActivity extends AppCompatActivity {
             image.setImageResource(R.drawable.smoke);
             return;
         }
-        if (hour >= 7 && hour < 20) {
+        if (text.equals("https://weather.gc.ca/weathericons/13.gif")) {  // RAIN
+            image.setImageResource(R.drawable.rain);
+            return;
+        }
+        if (text.equals("https://weather.gc.ca/weathericons/24.gif")) {  // MIST
+            image.setImageResource(R.drawable.mist);
+            return;
+        }
+        if (text.equals("https://weather.gc.ca/weathericons/10.gif")) {  // OVERCAST
+            image.setImageResource(R.drawable.overcast);
+            return;
+        }
+        if (hour >= 8 && hour < 16) {
             switch (text) {
                 case "https://weather.gc.ca/weathericons/03.gif":  // MOSTLY CLOUDY
                     image.setImageResource(R.drawable.mainly_cloudy_day);
@@ -445,7 +461,7 @@ public class MainActivity extends AppCompatActivity {
             case 0:
             case 23:
             case 22:
-                first.setText(listOfTemp.get(0) + degreeSymbol);
+                first.setText(listOfTemp.get(0) + "C");
                 second.setText(listOfTemp.get(1) + degreeSymbol);
                 third.setText(listOfTemp.get(2) + degreeSymbol);
                 fourth.setText(listOfTemp.get(3) + degreeSymbol);
@@ -457,7 +473,7 @@ public class MainActivity extends AppCompatActivity {
             case 1:
             case 3:
             case 2:
-                first.setText(listOfTemp.get(1) + degreeSymbol);
+                first.setText(listOfTemp.get(1) + "C");
                 second.setText(listOfTemp.get(2) + degreeSymbol);
                 third.setText(listOfTemp.get(3) + degreeSymbol);
                 fourth.setText(listOfTemp.get(4) + degreeSymbol);
@@ -469,7 +485,7 @@ public class MainActivity extends AppCompatActivity {
             case 4:
             case 6:
             case 5:
-                first.setText(listOfTemp.get(2) + degreeSymbol);
+                first.setText(listOfTemp.get(2) + "C");
                 second.setText(listOfTemp.get(3) + degreeSymbol);
                 third.setText(listOfTemp.get(4) + degreeSymbol);
                 fourth.setText(listOfTemp.get(5) + degreeSymbol);
@@ -481,7 +497,7 @@ public class MainActivity extends AppCompatActivity {
             case 7:
             case 9:
             case 8:
-                first.setText(listOfTemp.get(3) + degreeSymbol);
+                first.setText(listOfTemp.get(3) + "C");
                 second.setText(listOfTemp.get(4) + degreeSymbol);
                 third.setText(listOfTemp.get(5) + degreeSymbol);
                 fourth.setText(listOfTemp.get(6) + degreeSymbol);
@@ -493,7 +509,7 @@ public class MainActivity extends AppCompatActivity {
             case 10:
             case 12:
             case 11:
-                first.setText(listOfTemp.get(4) + degreeSymbol);
+                first.setText(listOfTemp.get(4) + "C");
                 second.setText(listOfTemp.get(5) + degreeSymbol);
                 third.setText(listOfTemp.get(6) + degreeSymbol);
                 fourth.setText(listOfTemp.get(7) + degreeSymbol);
@@ -505,7 +521,7 @@ public class MainActivity extends AppCompatActivity {
             case 13:
             case 15:
             case 14:
-                first.setText(listOfTemp.get(5) + degreeSymbol);
+                first.setText(listOfTemp.get(5) + "C");
                 second.setText(listOfTemp.get(6) + degreeSymbol);
                 third.setText(listOfTemp.get(7) + degreeSymbol);
                 fourth.setText(listOfTemp.get(0) + degreeSymbol);
@@ -517,7 +533,7 @@ public class MainActivity extends AppCompatActivity {
             case 16:
             case 18:
             case 17:
-                first.setText(listOfTemp.get(6) + degreeSymbol);
+                first.setText(listOfTemp.get(6) + "C");
                 second.setText(listOfTemp.get(7) + degreeSymbol);
                 third.setText(listOfTemp.get(0) + degreeSymbol);
                 fourth.setText(listOfTemp.get(1) + degreeSymbol);
@@ -529,7 +545,8 @@ public class MainActivity extends AppCompatActivity {
             case 19:
             case 21:
             case 20:
-                first.setText(listOfTemp.get(7) + degreeSymbol);
+               // first.setText(listOfTemp.get(7) + degreeSymbol);
+                first.setText(listOfTemp.get(7) + "C");
                 second.setText(listOfTemp.get(0) + degreeSymbol);
                 third.setText(listOfTemp.get(1) + degreeSymbol);
                 fourth.setText(listOfTemp.get(2) + degreeSymbol);
@@ -548,33 +565,33 @@ public class MainActivity extends AppCompatActivity {
             case 22:
                 assignNightIcon(condList.get(8), first);
                 assignNightIcon(condList.get(9), second);
-                assignDayIcon(condList.get(10), third);
+                assignNightIcon(condList.get(10), third);
                 assignDayIcon(condList.get(11), fourth);
                 assignDayIcon(condList.get(12), fifth);
                 assignDayIcon(condList.get(13), sixth);
-                assignDayIcon(condList.get(14), seventh);
+                assignNightIcon(condList.get(14), seventh);
                 assignNightIcon(condList.get(15), eighth);
                 break;
             case 1:
             case 3:
             case 2:
                 assignNightIcon(condList.get(9), first);
-                assignDayIcon(condList.get(10), second);
+                assignNightIcon(condList.get(10), second);
                 assignDayIcon(condList.get(11), third);
                 assignDayIcon(condList.get(12), fourth);
                 assignDayIcon(condList.get(13), fifth);
-                assignDayIcon(condList.get(14), sixth);
+                assignNightIcon(condList.get(14), sixth);
                 assignNightIcon(condList.get(15), seventh);
                 assignNightIcon(condList.get(8), eighth);
                 break;
             case 4:
             case 6:
             case 5:
-                assignDayIcon(condList.get(10), first);
+                assignNightIcon(condList.get(10), first);
                 assignDayIcon(condList.get(11), second);
                 assignDayIcon(condList.get(12), third);
                 assignDayIcon(condList.get(13), fourth);
-                assignDayIcon(condList.get(14), fifth);
+                assignNightIcon(condList.get(14), fifth);
                 assignNightIcon(condList.get(15), sixth);
                 assignNightIcon(condList.get(8), seventh);
                 assignNightIcon(condList.get(9), eighth);
@@ -585,44 +602,44 @@ public class MainActivity extends AppCompatActivity {
                 assignDayIcon(condList.get(11), first);
                 assignDayIcon(condList.get(12), second);
                 assignDayIcon(condList.get(13), third);
-                assignDayIcon(condList.get(14), fourth);
+                assignNightIcon(condList.get(14), fourth);
                 assignNightIcon(condList.get(15), fifth);
                 assignNightIcon(condList.get(8), sixth);
                 assignNightIcon(condList.get(9), seventh);
-                assignDayIcon(condList.get(10), eighth);
+                assignNightIcon(condList.get(10), eighth);
                 break;
             case 10:
             case 12:
             case 11:
                 assignDayIcon(condList.get(12), first);
                 assignDayIcon(condList.get(13), second);
-                assignDayIcon(condList.get(14), third);
+                assignNightIcon(condList.get(14), third);
                 assignNightIcon(condList.get(15), fourth);
                 assignNightIcon(condList.get(8), fifth);
                 assignNightIcon(condList.get(9), sixth);
-                assignDayIcon(condList.get(10), seventh);
+                assignNightIcon(condList.get(10), seventh);
                 assignDayIcon(condList.get(11), eighth);
                 break;
             case 13:
             case 15:
             case 14:
                 assignDayIcon(condList.get(13), first);
-                assignDayIcon(condList.get(14), second);
+                assignNightIcon(condList.get(14), second);
                 assignNightIcon(condList.get(15), third);
                 assignNightIcon(condList.get(8), fourth);
                 assignNightIcon(condList.get(9), fifth);
-                assignDayIcon(condList.get(10), sixth);
+                assignNightIcon(condList.get(10), sixth);
                 assignDayIcon(condList.get(11), seventh);
                 assignDayIcon(condList.get(12), eighth);
                 break;
             case 16:
             case 18:
             case 17:
-                assignDayIcon(condList.get(14), first);
+                assignNightIcon(condList.get(14), first);
                 assignNightIcon(condList.get(15), second);
                 assignNightIcon(condList.get(8), third);
                 assignNightIcon(condList.get(9), fourth);
-                assignDayIcon(condList.get(10), fifth);
+                assignNightIcon(condList.get(10), fifth);
                 assignDayIcon(condList.get(11), sixth);
                 assignDayIcon(condList.get(12), seventh);
                 assignDayIcon(condList.get(13), eighth);
@@ -633,11 +650,11 @@ public class MainActivity extends AppCompatActivity {
                 assignNightIcon(condList.get(15), first);
                 assignNightIcon(condList.get(8), second);
                 assignNightIcon(condList.get(9), third);
-                assignDayIcon(condList.get(10), fourth);
+                assignNightIcon(condList.get(10), fourth);
                 assignDayIcon(condList.get(11), fifth);
                 assignDayIcon(condList.get(12), sixth);
                 assignDayIcon(condList.get(13), seventh);
-                assignDayIcon(condList.get(14), eighth);
+                assignNightIcon(condList.get(14), eighth);
                 break;
         }
     }
@@ -645,6 +662,13 @@ public class MainActivity extends AppCompatActivity {
     public void assignDayIcon(String text, View image) {
         ImageView imageView = findViewById(image.getId());
         switch (text) {
+            case "https://weather.gc.ca/weathericons/24.gif": // MIST
+                imageView.setImageResource(R.drawable.mist);
+                return;
+            case "https://weather.gc.ca/weathericons/15.gif": // WET SNOW MIXED WITH RAIN
+            case "https://weather.gc.ca/weathericons/small/15.png":
+                imageView.setImageResource(R.drawable.wet_snow_mixed_with_rain);
+                return;
             case "https://weather.gc.ca/weathericons/03.gif":  // MAIN PAGE MOSTLY CLOUDY
             case "https://weather.gc.ca/weathericons/small/03.png": // MAINLY CLOUDY
                 imageView.setImageResource(R.drawable.mainly_cloudy_day);
@@ -687,7 +711,10 @@ public class MainActivity extends AppCompatActivity {
                 imageView.setImageResource(R.drawable.smoke);
                 return;
             case "https://weather.gc.ca/weathericons/small/23.png": // HAZE
-                    imageView.setImageResource(R.drawable.haze);
+                imageView.setImageResource(R.drawable.haze);
+                return;
+            case "https://weather.gc.ca/weathericons/10.gif": // CLOUDY
+                imageView.setImageResource(R.drawable.overcast);
                 return;
         }
     }
@@ -695,6 +722,13 @@ public class MainActivity extends AppCompatActivity {
     public void assignNightIcon(String text, View image) {
         ImageView imageView = findViewById(image.getId());
         switch (text) {
+            case "https://weather.gc.ca/weathericons/24.gif": // MIST
+                imageView.setImageResource(R.drawable.mist);
+                return;
+            case "https://weather.gc.ca/weathericons/15.gif": // WET SNOW MIXED WITH RAIN
+            case "https://weather.gc.ca/weathericons/small/15.png":
+                imageView.setImageResource(R.drawable.wet_snow_mixed_with_rain);
+                return;
             case "https://weather.gc.ca/weathericons/small/32.png":   // PARTLY CLOUDY NIGHT
             case "https://weather.gc.ca/weathericons/32.gif":
                 imageView.setImageResource(R.drawable.cloudy_periods);
@@ -742,6 +776,9 @@ public class MainActivity extends AppCompatActivity {
                 return;
             case "https://weather.gc.ca/weathericons/small/23.png": // HAZE
                 imageView.setImageResource(R.drawable.haze);
+                return;
+            case "https://weather.gc.ca/weathericons/10.gif": // CLOUDY
+                imageView.setImageResource(R.drawable.overcast);
                 return;
         }
     }
@@ -1269,6 +1306,26 @@ public class MainActivity extends AppCompatActivity {
             image.setImageResource(R.drawable.cloudy);
             return;
         }
+        if (text.equals("Clear Night")) {
+            image.setImageResource(R.drawable.clear_night);
+            return;
+        }
+        if (text.equals("Rain/Snow")) {
+            image.setImageResource(R.drawable.wet_snow_mixed_with_rain);
+            return;
+        }
+        if (text.equals("Sunny")) {
+            image.setImageResource(R.drawable.sunny);
+            return;
+        }
+        if (text.equals("Snow")) {
+            image.setImageResource(R.drawable.snow);
+            return;
+        }
+        if (text.equals("Rain")) {
+            image.setImageResource(R.drawable.rain);
+            return;
+        }
         if (hour >= 7 && hour < 20) {
             switch (text) {
             }
@@ -1301,7 +1358,7 @@ public class MainActivity extends AppCompatActivity {
             image.setImageResource(R.drawable.clear_night);
             return;
         }
-        if (text.equals("Sunny Skies")) {
+        if (text.equals("Sunny Skies") || text.equals("Blue Bird Skies!")) {
             image.setImageResource(R.drawable.sunny);
             return;
         }
@@ -1309,10 +1366,20 @@ public class MainActivity extends AppCompatActivity {
             image.setImageResource(R.drawable.chance_of_showers);
             return;
         }
-        if (text.equals("Lightly Raining Skies")) {
-            image.setImageResource(R.drawable.chance_of_showers);
+        if (text.equals("Mix Of Snow & Rain")) {
+            image.setImageResource(R.drawable.wet_snow_mixed_with_rain);
+            return;
         }
-        if (hour >= 7 && hour < 20) {
+        if (text.equals("Snowing Heavily")) {
+            image.setImageResource(R.drawable.snow);
+            return;
+        }
+        if (text.equals("Lightly Snowing Skies")) {
+            image.setImageResource(R.drawable.light_snow);
+            return;
+        }
+
+        if (hour >= 8 && hour < 16) {
             switch (text) {
                 case "Mainly Cloudy Skies":
                     image.setImageResource(R.drawable.mainly_cloudy_day);
@@ -1322,6 +1389,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 case "Sunny Skies":
                     image.setImageResource(R.drawable.sunny);
+                    return;
             }
         } else {
             switch (text) {
@@ -1350,8 +1418,18 @@ public class MainActivity extends AppCompatActivity {
             return;
         } else if (text.equals("Sunny")) {
             image.setImageResource(R.drawable.sunny);
+            return;
+        } else if (text.equals("Snowing") || text.equals("Fresh snow")) {
+            image.setImageResource(R.drawable.light_snow);
+            return;
+        } else if (text.equals("Clear")) {
+            image.setImageResource(R.drawable.clear_night);
+            return;
+        } else if (text.equals("Overcast")) {
+            image.setImageResource(R.drawable.overcast);
+            return;
         }
-        if (hour >= 7 && hour < 20) {
+        if (hour >= 8 && hour < 16) {
             switch (text) {
             }
         } else {

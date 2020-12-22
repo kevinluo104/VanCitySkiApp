@@ -39,7 +39,7 @@ public class MagicCarpet extends AppCompatActivity {
                                     TextView textView380 = findViewById(R.id.textView380);
                                     textView380.setText("Runs Open: " + seymourSingleton.goldieMagicCarpetRunsOpen + "/3");
                                     TextView textView421 = findViewById(R.id.textView421);
-                                    if (seymourSingleton.mushroom.equals("Open")) {
+                                    if (seymourSingleton.mushroom.equals("open")) {
                                         textView421.setText("Terrain Parks Open: 1/1");
                                     } else {
                                         textView421.setText("Terrain Parks Open: 0/1");
@@ -77,6 +77,9 @@ public class MagicCarpet extends AppCompatActivity {
             case "Standby":
             case "standby":
                 image.setImageResource(R.drawable.triangle);
+                return;
+            case "?":
+                image.setImageResource(R.drawable.question_mark);
                 return;
         }
     }

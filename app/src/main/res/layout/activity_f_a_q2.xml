@@ -45,21 +45,6 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView249"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Q: How come Grouse Mountain and Cypress Mountain display open runs and lifts even though they're closed?"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textView250"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="A: We're currently doing a test-run of the app. All non-weather related info. is from the past. All runs/lifts will be set to closed after testing is done."
-            android:textSize="16sp" />
-
-        <TextView
             android:id="@+id/textView251"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,7 +56,7 @@
             android:id="@+id/textView252"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="A: A bug in the app is present. Please email us at vancityskiapp@gmail.com and include the time and which image icon displays the Android icon. Thanks!"
+            android:text="A: A bug in the app is present, or one of the ski resort's website isn't loading properly. If it's the latter case, please try again in a few minutes. If it's the former case, please email us at vancityskiapp@gmail.com and include the time and which image icon displays the Android icon. Thanks!"
             android:textSize="16sp" />
 
         <TextView

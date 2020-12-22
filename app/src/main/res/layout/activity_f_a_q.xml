@@ -57,37 +57,7 @@
                 android:id="@+id/textView238"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="A: You can contact me at vancityskiapp@gmail.com, please include what the problem is and how it was caused. It would be greatly appreciated!"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/textView239"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Q: Its currently sunny on Mount Seymour, why is the app displaying that its raining? "
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textView240"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="A: Mount Seymour hasn't updated their weather conditions since June 4th. I'm assuming an update will come from them by mid-October in preparation for the upcoming ski season. "
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/textView241"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Q: Weather conditions for Cypress Mountain sometimes doesn't appear, what gives?"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textView242"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="A: Cypress Mountain's security certificates are a bit outdated right now and the system sometimes has trouble verifying them. Refreshing the app usually does the trick."
+                android:text="A: I'd love to hear any comments or issues you have with the app! You can contact me at vancityskiapp@gmail.com, please include what the problem is and how it was caused if it is regarding an issue. It would be greatly appreciated!"
                 android:textSize="16sp" />
 
             <TextView
@@ -132,7 +102,22 @@
                 android:id="@+id/textView248"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="A: All information should be accurate as they are taken from official websites and updated automatically. The information here might even be updated faster than the ski resort apps themselves as they update their information manually as opposed to automatically."
+                android:text="A: All information should be accurate as they are taken from official websites and updated automatically. However, this app is not affiliated with the respective ski resorts themselves."
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView249"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Q: When was this app last updated?"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView250"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="A: It was last updated on Dec. 21, 2020."
                 android:textSize="16sp" />
 
             <Button

@@ -6,10 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import java.io.IOException;
+import java.util.Calendar;
 
 public class SeymourSingleton extends AppCompatActivity {
     private static SeymourSingleton instance = null;
     private static ResultListener listener;
+    private Calendar cal = Calendar.getInstance();
+    private int hour = cal.get(Calendar.HOUR_OF_DAY);
     private static Context context;
     private Document seymourWeather;
     private int counter = 0;
@@ -38,12 +41,13 @@ public class SeymourSingleton extends AppCompatActivity {
     public String rookies = "";
     public String nuthouse = "";
     public String mushroom = "";
-    public int brocktonChairRunsOpen = 0;
-    public int lodgeChairRunsOpen = 0;
+    public String brocktonChairRunsOpen = "?";
+    public String lodgeChairRunsOpen = "?";
     public int lodgeChairTerrainParksOpen = 0;
-    public int mysteryPeakExpressRunsOpen = 0;
+    public String mysteryPeakExpressRunsOpen = "?";
     public int mysteryPeakExpressTerrainParksOpen = 0;
-    public int goldieMagicCarpetRunsOpen = 0;
+    public String goldieMagicCarpetRunsOpen = "?";
+    public int goldieMagicCarpetTerrainParksOpen = 0;
     public String brocktonGully = "Closed";
     public String backdoor = "Closed";
     public String exit22 = "Closed";
@@ -118,29 +122,44 @@ public class SeymourSingleton extends AppCompatActivity {
                             twentyFourHrSnow = seymourWeather.select("td").get(7).ownText();
                             sevenDaySnow = seymourWeather.select("td").get(9).ownText();
                             seasonSnow = seymourWeather.select("td").get(13).ownText();
-                            if (seymourWeather.select("td.rtecenter").get(21).ownText().equals("Open")) {
+                            discoverySnowshoeTrails = setSnowshoeTrailStatus(34);
+                            snowshoeTrailsStatus = setSnowshoeTrailStatus(34);
+                           /* if (seymourWeather.select("td.rtecenter").get(34).ownText().equals("Open")) {
                                 discoverySnowshoeTrails = "open";
                                 snowshoeTrailsStatus = "Open";
                             } else {
                                 discoverySnowshoeTrails = "closed";
                                 snowshoeTrailsStatus = "Closed";
-                            }
+                            }*/
                             if (counter == 0) {
-                                brocktonChair = setChairliftStatus(brocktonChair, 12);
-                                lodgeChair = setChairliftStatus(lodgeChair, 10);
-                                mysteryPeakExpress = setChairliftStatus(mysteryPeakExpress, 11);
-                                goldieMagicCarpet = setChairliftStatus(goldieMagicCarpet, 13);
+                                brocktonChair = setChairliftStatus(25);
+                                if (brocktonChair.equals("closed"))
+                                    brocktonChairRunsOpen = "0";
+                                lodgeChair = setChairliftStatus(23);
+                                if (lodgeChair.equals("closed"))
+                                    lodgeChairRunsOpen = "0";
+                                mysteryPeakExpress = setChairliftStatus(24);
+                                if (mysteryPeakExpress.equals("closed"))
+                                    mysteryPeakExpressRunsOpen = "0";
+                                goldieMagicCarpet = setChairliftStatus(26);
+                                if (goldieMagicCarpet.equals("closed"))
+                                    goldieMagicCarpetRunsOpen = "0";
 
-                                enquistSnowTubePark = setTubeParkStatus(enquistSnowTubePark, 19);
-                                tobagganArea = setTubeParkStatus(tobagganArea, 20);
+                                enquistSnowTubePark = setTubeParkStatus(32);
+                                tobagganArea = setTubeParkStatus(33);
 
-                                northlands = setTerrainParkMysteryPeakExpressStatus(northlands, 14);
-                                nuthouse = setTerrainParkMysteryPeakExpressStatus(nuthouse, 17);
-                                theRockstarEnergyPit = setTerrainParkMysteryPeakExpressStatus(theRockstarEnergyPit, 15);
+                                northlands = setTerrainParkMysteryPeakExpressStatus(northlands, 27);
+                                nuthouse = setTerrainParkMysteryPeakExpressStatus(nuthouse, 30);
+                                System.out.println("nuthouse: " + nuthouse);
+                                theRockstarEnergyPit = setTerrainParkMysteryPeakExpressStatus(theRockstarEnergyPit, 28);
 
-                                mushroom = setTerrainParkLodgeChairStatus(mushroom, 18);
-                                rookies = setTerrainParkLodgeChairStatus(rookies, 16);
+                                mushroom = setTerrainParkLodgeChairStatus(31);
+                                rookies = setTerrainParkLodgeChairStatus(29);
                             }
+                            setBrocktonChairRuns();
+                            setLodgeChairRuns();
+                            setMysteryPeakExpressRuns();
+                            setGoldieMagicCarpetRuns();
                             counter++;
                             listener.onResultFetched();
                         }
@@ -157,9 +176,34 @@ public class SeymourSingleton extends AppCompatActivity {
 
     }
 
-    public String setChairliftStatus(String lift, int rowNum) {
+    public String setChairliftStatus(int rowNum) {
         String first = seymourWeather.select("td.rtecenter").get(rowNum).ownText();
+        // String ss = seymourWeather.select("td.rtecenter").get(22).ownText();
+        // System.out.println("this is ss " + ss);
+        String lift = "closed";
         switch (first) {
+            case "8:30 AM - 9:30 PM":
+                if (hour >= 8 && hour < 22) {
+                    lift = "open";
+                    liftsOpen++;
+                }
+                return lift;
+            case "9:30 AM - 4:00 PM":
+                if (hour >= 9 && hour < 16) {
+                    lift = "open";
+                    liftsOpen++;
+                }
+                return lift;
+            case "8:30 AM - 9:00 PM":
+                if (hour >= 8 && hour < 21) {
+                    lift = "open";
+                    liftsOpen++;
+                }
+                return lift;
+        }
+        return lift;
+    }
+        /*switch (first) {
             case "Open":
                 lift = "open";
                 liftsOpen++;
@@ -172,10 +216,20 @@ public class SeymourSingleton extends AppCompatActivity {
                 return lift;
         }
         return lift;
-    }
+    }*/
 
-    public String setTubeParkStatus(String tubePark, int rowNum) {
+    public String setTubeParkStatus(int rowNum) {
         String first = seymourWeather.select("td.rtecenter").get(rowNum).ownText();
+        String tubePark = "closed";
+        switch (first) {
+            case "10:00 AM - 4:00 PM":
+                if (hour >= 10 && hour < 16) {
+                    tubePark = "open";
+                    tubeParksOpen++;
+                    return tubePark;
+                }
+
+       /* return lift;
         switch (first) {
             case "Open":
                 tubePark = "open";
@@ -188,12 +242,40 @@ public class SeymourSingleton extends AppCompatActivity {
                 tubePark = "standby";
                 return tubePark;
         }
+        return tubePark;*/
+        }
         return tubePark;
     }
 
-    public String setTerrainParkLodgeChairStatus(String terrainPark, int rowNum) {
+    public String setSnowshoeTrailStatus(int rowNum) {
+        String first = seymourWeather.select("td.rtecenter").get(34).ownText();
+        String snowShoe = "closed";
+        switch(first) {
+            case "8:30AM - 4:00 PM":
+                if (hour > 8 && hour < 16) {
+                    snowShoe = "open";
+                    snowshoeTrailsStatus = "open";
+                    return snowShoe;
+                }
+        }
+        return snowShoe;
+    }
+
+    public String setTerrainParkLodgeChairStatus(int rowNum) {
         String first = seymourWeather.select("td.rtecenter").get(rowNum).ownText();
+        String terrainPark = "closed";
         switch (first) {
+            case "10:30 AM - 9:00 PM":
+                if (hour > 10 && hour < 21) {
+                    terrainPark = "open";
+                    lodgeChairTerrainParksOpen++;
+                    goldieMagicCarpetTerrainParksOpen++;
+                    terrainParksOpen++;
+                    return terrainPark;
+                }
+        }
+        return terrainPark;
+     /*   switch (first) {
             case "Open":
                 terrainPark = "open";
                 terrainParksOpen++;
@@ -206,7 +288,7 @@ public class SeymourSingleton extends AppCompatActivity {
                 terrainPark = "standby";
                 return terrainPark;
         }
-        return terrainPark;
+        return terrainPark;*/
     }
 
     public String setTerrainParkMysteryPeakExpressStatus(String terrainPark, int rowNum) {
@@ -217,6 +299,13 @@ public class SeymourSingleton extends AppCompatActivity {
                 terrainParksOpen++;
                 mysteryPeakExpressTerrainParksOpen++;
                 return terrainPark;
+            case "10:30 AM - 9:00 PM":
+                if (hour > 10 && hour < 21) {
+                    terrainPark = "open";
+                    terrainParksOpen++;
+                    mysteryPeakExpressTerrainParksOpen++;
+                    return terrainPark;
+                }
             case "Closed":
                 terrainPark = "closed";
                 return terrainPark;
@@ -227,10 +316,97 @@ public class SeymourSingleton extends AppCompatActivity {
         return terrainPark;
     }
 
+    public String setTerrainParkMagicCarpeStatus(int rowNum) {
+        String first = seymourWeather.select("td.rtecenter").get(rowNum).ownText();
+        String terrainPark = "closed";
+        switch (first) {
+            case "10:30 AM - 9:00 PM":
+                if (hour > 10 && hour < 21) {
+                    terrainPark = "open";
+                    goldieMagicCarpetTerrainParksOpen++;
+                    return terrainPark;
+                }
+        }
+        return terrainPark;
+     /*   switch (first) {
+            case "Open":
+                terrainPark = "open";
+                terrainParksOpen++;
+                lodgeChairTerrainParksOpen++;
+                return terrainPark;
+            case "Closed":
+                terrainPark = "closed";
+                return terrainPark;
+            case "Standby":               // USED BY SEYMOUR??
+                terrainPark = "standby";
+                return terrainPark;
+        }
+        return terrainPark;*/
+    }
+
     public void openError() {
         Intent i = new Intent(context, Error.class);
         i.putExtra("ErrorFrom", "Seymour");
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(i);
+    }
+    public void setBrocktonChairRuns() {
+        if (!brocktonChair.equals("closed")) {
+            brocktonGully = "?";
+            backdoor = "?";
+            exit22 ="?";
+            hangTen = "?";
+            maverick = "?";
+            sammyJ = "?";
+            sammysExpress = "?";
+            cliffHouse = "?";
+            scooter = "?";
+            sternsStairway = "?";
+        }
+    }
+
+    public void setLodgeChairRuns() {
+        if (!lodgeChair.equals("closed")) {
+            lodgeConnector = "?";
+            mushroomRun = "?";
+            rookiesRun = "?";
+            cabinTrail = "?";
+            chucksPlace = "?";
+            lowerUnicorn = "?";
+            mistletoe = "?";
+            seymour16s = "?";
+            trapperJohns = "?";
+        }
+    }
+
+    public void setMysteryPeakExpressRuns() {
+        if (!mysteryPeakExpress.equals("closed")) {
+            manning = "?";
+            boomerang = "?";
+            crowfoot = "?";
+            earls = "?";
+            elevatorShaft = "?";
+            friendlyNuthouse = "?";
+            gunBarrel = "?";
+            looperExpress = "?";
+            mysteryLake = "?";
+            northlandsRun = "?";
+            petes = "?";
+            slingshot = "?";
+            towerline = "?";
+            velvetGully = "?";
+            wonger = "?";
+            devilsDrop = "?";
+            noelsFlight = "?";
+            nutcracker = "?";
+            unicorn = "?";
+        }
+    }
+    public void setGoldieMagicCarpetRuns() {
+        if (!goldieMagicCarpet.equals("closed")) {
+            flowerBasin = "?";
+            mushroomRun = "?";
+            rookiesRun = "?";
+        }
     }
 }

@@ -83,6 +83,9 @@ public class BrocktonChair extends AppCompatActivity {
             case "Standby":
                 image.setImageResource(R.drawable.triangle);
                 return;
+            case "?":
+                image.setImageResource(R.drawable.question_mark);
+                return;
         }
     }
 }

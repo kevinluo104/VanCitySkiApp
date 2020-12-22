@@ -62,6 +62,11 @@ public class LodgeChair extends AppCompatActivity {
                                     setStatus(imageView443, seymourSingleton.mushroom);
                                     ImageView imageView444 = findViewById(R.id.imageView444);
                                     setStatus(imageView444, seymourSingleton.rookies);
+                                    if (seymourSingleton.mushroom.equals("open")) {
+                                        imageView443.setImageResource(R.drawable.greencheck);
+                                    } else {
+                                        imageView443.setImageResource(R.drawable.redx);
+                                    }
                                 }
                             }, getApplicationContext());
                             seymourSingleton.startThread();
@@ -87,6 +92,9 @@ public class LodgeChair extends AppCompatActivity {
             case "Standby":
             case "standby":
                 image.setImageResource(R.drawable.triangle);
+                return;
+            case "?":
+                image.setImageResource(R.drawable.question_mark);
                 return;
         }
     }

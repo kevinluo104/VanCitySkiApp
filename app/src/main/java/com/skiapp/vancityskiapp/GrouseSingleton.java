@@ -14,7 +14,6 @@ public class GrouseSingleton extends AppCompatActivity {
     private static GrouseSingleton instance = null;
     private static Context context;
     public Document grouseWeather;
-    public Document pastWeather;
     public String temperature = "Temperature";
     public String weather = "Weather";
     public String visibility = "Visibility:";
@@ -75,8 +74,10 @@ public class GrouseSingleton extends AppCompatActivity {
     public String damMountainLoop = "";
     public String snowshoeGrind = "";
     public String thunderbirdRidge = "";
+    public String lightWalk = "";
     public String picture = "";
     private int counter = 0;
+
 
     private GrouseSingleton() {
         startThread();
@@ -96,69 +97,77 @@ public class GrouseSingleton extends AppCompatActivity {
             new Thread() {
                 public void run() {
                     try {
-                        grouseWeather = Jsoup.connect("https://www.grousemountain.com/current_conditions#weather").get();
-                        pastWeather = Jsoup.connect("https://web.archive.org/web/20191203135732/https://www.grousemountain.com/current_conditions").get();
+                        grouseWeather = Jsoup.connect("https://www.grousemountain.com/current_conditions").get();
                         runOnUiThread( new Runnable()
                         {
                             public void run()
                             {
                                 temperature = grouseWeather.select("h3.metric").first().text();
-                                weather = grouseWeather.select("p").get(5).text();
+                                weather = grouseWeather.select("p").get(6).text();
+                                String[] arr = weather.split(" ");
+                                StringBuffer sb = new StringBuffer();
+
+                                for (int i = 0; i < arr.length; i++) {
+                                    sb.append(Character.toUpperCase(arr[i].charAt(0)))
+                                            .append(arr[i].substring(1)).append(" ");
+                                }
+                                weather = sb.toString().trim();
                                 visibility = grouseWeather.select("div.current_status p").first().text();
-                                overnightSnow = setNewSnow(overnightSnow,1);;
-                                twelveHrSnow = setNewSnow(twelveHrSnow, 0);
-                                twentyFourHrSnow = setNewSnow(twentyFourHrSnow, 2);
-                                fortyEightHrSnow = setNewSnow(fortyEightHrSnow, 3);
+                                System.out.println("visibility of gorouse: " + visibility);
+                                overnightSnow = setNewSnow(1);;
+                                twelveHrSnow = setNewSnow(0);
+                                twentyFourHrSnow = setNewSnow(2);
+                                fortyEightHrSnow = setNewSnow(3);
                                 if (counter == 0) {
-                                    greenwayChair = setOpenClosedLifts(greenwayChair, 3);
-                                    olympicExpressChair = setOpenClosedLifts(olympicExpressChair, 0);
-                                    screamingEagleChair = setOpenClosedLifts(screamingEagleChair, 2);
-                                    peakChair = setOpenClosedLifts(peakChair, 1);
-                                    magicCarpet = setOpenClosedLifts(magicCarpet, 4);
-                                    chaletRoad = setOpenClosedRuns(chaletRoad, 0);
-                                    paradise = setOpenClosedRuns(paradise, 1);
-                                    skiWee = setOpenClosedRuns(skiWee, 2);
-                                    theCut = setOpenClosedRuns(theCut, 3);
-                                    blueFace = setOpenClosedRuns(blueFace, 4);
-                                    centennial = setOpenClosedRuns(centennial, 5);
-                                    deliverance = setOpenClosedRuns(deliverance, 6);
-                                    dogleg = setOpenClosedRuns(dogleg, 7);
-                                    expo = setOpenClosedRuns(expo, 8);
-                                    heavensSake = setOpenClosedRuns(heavensSake, 9);
-                                    lowerBuckhorn = setOpenClosedRuns(lowerBuckhorn, 10);
-                                    lowerPeak = setOpenClosedRuns(lowerPeak, 11);
-                                    lowerSideCut = setOpenClosedRuns(lowerSideCut, 12);
-                                    paperTrail = setOpenClosedRuns(paperTrail, 13);
-                                    peak = setOpenClosedRuns(peak, 14);
-                                    sideCut = setOpenClosedRuns(sideCut, 15);
-                                    skyline = setOpenClosedRuns(skyline, 16);
-                                    tyeeChute = setOpenClosedRuns(tyeeChute, 17);
-                                    upperBuckhorn = setOpenClosedRuns(upperBuckhorn, 18);
-                                    blazes = setOpenClosedRuns(blazes, 19);
-                                    coffin = setOpenClosedRuns(coffin, 20);
-                                    hades = setOpenClosedRuns(hades, 21);
-                                    inferno = setOpenClosedRuns(inferno, 22);
-                                    outerLimits = setOpenClosedRuns(outerLimits, 23);
-                                    devilsAdvocate = setOpenClosedRuns(devilsAdvocate, 24);
-                                    purgatory = setOpenClosedRuns(purgatory, 25);
-                                    peakGlades = setOpenClosedRuns(peakGlades, 26);
-                                    grinderTracks = setOpenClosedRuns(grinderTracks, 27);
-                                    expoGlades = setOpenClosedRuns(expoGlades, 28);
-                                    coolasCorner = setOpenClosedRuns(coolasCorner, 29);
-                                    chimney = setOpenClosedRuns(chimney, 30);
-                                    upperBlazes = setOpenClosedRuns(upperBlazes, 31);
-                                    mountainHighway = setOpenClosedRuns(mountainHighway, 32);
-                                    cutJumpLine = setOpenClosedParks(cutRookiePark, 2);
-                                    paradiseJibPark = setOpenClosedParks(paradiseJibPark, 1);
-                                    cutRookiePark = setOpenClosedParks(cutRookiePark, 3);
-                                    cutPark = setOpenClosedParks(cutPark, 0);
-                                    grouseWoods = setOpenClosedParks(grouseWoods, 4);
-                                    grousePark = setOpenClosedParks(grousePark, 5);
-                                    blueGrouseLoop = setOpenClosedSnowshoe(blueGrouseLoop, 0);
-                                    damMountainLoop = setOpenClosedSnowshoe(damMountainLoop, 1);
-                                    snowshoeGrind = setOpenClosedSnowshoe(snowshoeGrind, 2);
-                                    thunderbirdRidge = setOpenClosedSnowshoe(thunderbirdRidge, 3);
-                                    picture = grouseWeather.select("p").get(5).text();
+                                    greenwayChair = setOpenClosedLifts(3);
+                                    olympicExpressChair = setOpenClosedLifts(0);
+                                    screamingEagleChair = setOpenClosedLifts(2);
+                                    peakChair = setOpenClosedLifts(1);
+                                    magicCarpet = setOpenClosedLifts(4);
+                                    chaletRoad = setOpenClosedRuns(0);
+                                    paradise = setOpenClosedRuns(1);
+                                    skiWee = setOpenClosedRuns(2);
+                                    theCut = setOpenClosedRuns(3);
+                                    blueFace = setOpenClosedRuns(4);
+                                    centennial = setOpenClosedRuns(5);
+                                    deliverance = setOpenClosedRuns(6);
+                                    dogleg = setOpenClosedRuns(7);
+                                    expo = setOpenClosedRuns(8);
+                                    heavensSake = setOpenClosedRuns(9);
+                                    lowerBuckhorn = setOpenClosedRuns(10);
+                                    lowerPeak = setOpenClosedRuns(11);
+                                    lowerSideCut = setOpenClosedRuns(12);
+                                    paperTrail = setOpenClosedRuns(13);
+                                    peak = setOpenClosedRuns(14);
+                                    sideCut = setOpenClosedRuns(15);
+                                    skyline = setOpenClosedRuns(16);
+                                    tyeeChute = setOpenClosedRuns(17);
+                                    upperBuckhorn = setOpenClosedRuns(18);
+                                    blazes = setOpenClosedRuns(19);
+                                    coffin = setOpenClosedRuns(20);
+                                    hades = setOpenClosedRuns(21);
+                                    inferno = setOpenClosedRuns(22);
+                                    outerLimits = setOpenClosedRuns(23);
+                                    devilsAdvocate = setOpenClosedRuns(24);
+                                    purgatory = setOpenClosedRuns(25);
+                                    peakGlades = setOpenClosedRuns(26);
+                                    grinderTracks = setOpenClosedRuns(27);
+                                    expoGlades = setOpenClosedRuns(28);
+                                    coolasCorner = setOpenClosedRuns(29);
+                                    chimney = setOpenClosedRuns(30);
+                                    upperBlazes = setOpenClosedRuns(31);
+                                    mountainHighway = setOpenClosedRuns(32);
+                                    cutJumpLine = setOpenClosedParks(2);
+                                    paradiseJibPark = setOpenClosedParks(1);
+                                    cutRookiePark = setOpenClosedParks(3);
+                                    cutPark = setOpenClosedParks(0);
+                                    grousePark = setOpenClosedParks(4);
+                                    blueGrouseLoop = setOpenClosedSnowshoe(0);
+                                    damMountainLoop = setOpenClosedSnowshoe(2);
+                                    snowshoeGrind = setOpenClosedSnowshoe(3);
+                                    thunderbirdRidge = setOpenClosedSnowshoe(4);
+                                    lightWalk = setOpenClosedSnowshoe(1);
+                                    picture = grouseWeather.select("p").get(6).text();
                                 }
                                 counter++;
                                 listener.onResultFetched();
@@ -176,9 +185,10 @@ public class GrouseSingleton extends AppCompatActivity {
             }.start();
         }
 
-    public String setNewSnow(String text, int rowNum) {
-        Element data = pastWeather.select("div.conditions-snow-report__content").get(0);
+    public String setNewSnow(int rowNum) {
+        Element data = grouseWeather.select("div.conditions-snow-report__content").get(0);
         Element status = data.select("li").get(rowNum);
+        String text;
         try {
             Element dcm2 = status.select("h3.metric").get(0);
             text = (dcm2.text());
@@ -189,10 +199,10 @@ public class GrouseSingleton extends AppCompatActivity {
         return text;
     }
 
-    public String setOpenClosedLifts(String lift, int rowNum) {
-
-        Element data = pastWeather.select("ul.data-table").get(2);
+    public String setOpenClosedLifts(int rowNum) {
+        Element data = grouseWeather.select("ul.data-table").get(2);
         Element status = data.select("li").get(rowNum);
+        String lift;
         try {
             Element dcm2 = status.select("span.closed").get(0);
             lift = "closed";
@@ -204,10 +214,10 @@ public class GrouseSingleton extends AppCompatActivity {
         return lift;
     }
 
-    public String setOpenClosedRuns(String run, int rowNum) {
-
-        Element data = pastWeather.select("ul.data-table").get(3);
+    public String setOpenClosedRuns(int rowNum) {
+        Element data = grouseWeather.select("ul.data-table").get(3);
         Element status = data.select("li").get(rowNum);
+        String run;
         try {
             Element dcm2 = status.select("span.closed").get(0);
             run = "closed";
@@ -221,9 +231,10 @@ public class GrouseSingleton extends AppCompatActivity {
 
 
 
-    public String setOpenClosedParks(String terrainPark, int rowNum) {
-        Element data = pastWeather.select("ul.data-table").get(4);
+    public String setOpenClosedParks(int rowNum) {
+        Element data = grouseWeather.select("ul.data-table").get(4);
         Element status = data.select("li").get(rowNum);
+        String terrainPark;
         try {
             Element dcm2 = status.select("span.closed").get(0);
             terrainPark = "closed";
@@ -235,9 +246,10 @@ public class GrouseSingleton extends AppCompatActivity {
         return terrainPark;
     }
 
-    public String setOpenClosedSnowshoe(String snowshoeTrail, int rowNum) {
-        Element data = pastWeather.select("ul.data-table").get(5);
+    public String setOpenClosedSnowshoe(int rowNum) {
+        Element data = grouseWeather.select("ul.data-table").get(5);
         Element status = data.select("li").get(rowNum);
+        String snowshoeTrail;
         try {
             Element dcm2 = status.select("span.closed").get(0);
             snowshoeTrail = "closed";
