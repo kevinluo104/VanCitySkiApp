@@ -149,7 +149,8 @@ public class Grouse extends AppCompatActivity {
                                     setStatus(iv53, grouseSingleton.peakGlades);
 
                                     ImageView iv103 = findViewById(R.id.imageView103);
-                                    setStatus(iv103, grouseSingleton.cutJumpLine);
+                               //     setStatus(iv103, grouseSingleton.cutJumpLine);
+                                    iv103.setImageResource(R.drawable.redx);
                                     ImageView iv104 = findViewById(R.id.imageView104);
                                     setStatus(iv104, grouseSingleton.paradiseJibPark);
                                     System.out.println(grouseSingleton.terrainParksOpen);

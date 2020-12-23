@@ -157,11 +157,11 @@ public class GrouseSingleton extends AppCompatActivity {
                                     chimney = setOpenClosedRuns(30);
                                     upperBlazes = setOpenClosedRuns(31);
                                     mountainHighway = setOpenClosedRuns(32);
-                                    cutJumpLine = setOpenClosedParks(2);
+                                   // cutJumpLine = setOpenClosedParks(2);
                                     paradiseJibPark = setOpenClosedParks(1);
-                                    cutRookiePark = setOpenClosedParks(3);
+                                    cutRookiePark = setOpenClosedParks(2);
                                     cutPark = setOpenClosedParks(0);
-                                    grousePark = setOpenClosedParks(4);
+                                    grousePark = setOpenClosedParks(3);
                                     blueGrouseLoop = setOpenClosedSnowshoe(0);
                                     damMountainLoop = setOpenClosedSnowshoe(2);
                                     snowshoeGrind = setOpenClosedSnowshoe(3);
