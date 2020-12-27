@@ -197,6 +197,9 @@ public class Seymour extends AppCompatActivity {
         } else if (text.equals("Overcast")) {
             imageView319.setImageResource(R.drawable.overcast);
             return;
+        } else if (text.equals("Light Snow")) {
+            imageView319.setImageResource(R.drawable.light_snow);
+            return;
         }
             if (hour >= 6 && hour < 21) {
                 switch (text) {

@@ -246,6 +246,10 @@ public class Grouse extends AppCompatActivity {
             image.setImageResource(R.drawable.light_snow);
             return;
         }
+        if (text.equals("Snowy Skies")) {
+            image.setImageResource(R.drawable.snow);
+            return;
+        }
 
         if (hour >= 6 && hour < 21) {
             switch (text) {

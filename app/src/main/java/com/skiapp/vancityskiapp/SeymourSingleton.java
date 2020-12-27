@@ -114,7 +114,21 @@ public class SeymourSingleton extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         public void run() {
                             temperature = seymourWeather.select("span.currentConditionsTemperature").first().text();
+                            int index = temperature.indexOf(".");
+                            if (index > 0) {
+                                temperature = temperature.substring(0, temperature.lastIndexOf(".")) + "°C";
+                                System.out.println("seymou temp:" + temperature);
+                            }
+
                             conditions = seymourWeather.select("td").get(1).ownText();
+                            String[] arr = conditions.split(" ");
+                            StringBuffer sb = new StringBuffer();
+
+                            for (int i = 0; i < arr.length; i++) {
+                                sb.append(Character.toUpperCase(arr[i].charAt(0)))
+                                        .append(arr[i].substring(1)).append(" ");
+                            }
+                            conditions = sb.toString().trim();
                             visibility = seymourWeather.select("td").get(3).ownText();
                             snowConditions = "Conditions: " + seymourWeather.select("td").get(6).ownText();
                             runsOpen = Integer.parseInt(seymourWeather.select("td").get(4).ownText());

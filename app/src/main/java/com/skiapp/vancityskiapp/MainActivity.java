@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                             openFAQ();
                         }
                     });
-                    vanWeather = Jsoup.connect("https://weather.gc.ca/city/pages/bc-74_metric_e.html").get();  // VANCOUVER WEATHER
+                    vanWeather = Jsoup.connect("https://weather.gc.ca/city/pages/bc-74_metric_e.html").userAgent("Mozilla").get();  // VANCOUVER WEATHER
                     hourlyVan = Jsoup.connect("https://weather.gc.ca/forecast/hourly/bc-74_metric_e.html").get(); // VANCOUVER HOURLY WEATHER
                     runOnUiThread(new Runnable() {
                         public void run() {
@@ -239,6 +239,8 @@ public class MainActivity extends AppCompatActivity {
                                         textView35.setText("New Snow: " + cypressSingleton.twentyFourHrSnow);
                                         ImageView imageView2 = findViewById(R.id.imageView2);
                                         setCypressPic(cypressSingleton.conditions, imageView2);
+                                      /*  if (cypressSingleton.conditions.equals("Rain/snow"))
+                                            cypressSingleton.conditions = "Rain/Snow";*/
 
                                         //    TextView tv7 = findViewById(R.id.textView7);
                                         //  tv7.setText("Refresh at bottom of screen if nothing shows up!");
@@ -459,9 +461,17 @@ public class MainActivity extends AppCompatActivity {
     public void setVanTempHourly(ArrayList<String> listOfTemp, TextView first, TextView second, TextView third, TextView fourth, TextView fifth, TextView sixth, TextView seventh, TextView eighth) {
         switch (hour) {
             case 0:
+                first.setText(listOfTemp.get(0) + "C");
+                second.setText(listOfTemp.get(1) + degreeSymbol);
+                third.setText(listOfTemp.get(2) + degreeSymbol);
+                fourth.setText(listOfTemp.get(3) + degreeSymbol);
+                fifth.setText(listOfTemp.get(4) + degreeSymbol);
+                sixth.setText(listOfTemp.get(5) + degreeSymbol);
+                seventh.setText(listOfTemp.get(6) + degreeSymbol);
+                eighth.setText(listOfTemp.get(7) + degreeSymbol);
             case 23:
             case 22:
-                first.setText(listOfTemp.get(0) + "C");
+                first.setText(listOfTemp.get(0) + "°C");
                 second.setText(listOfTemp.get(1) + degreeSymbol);
                 third.setText(listOfTemp.get(2) + degreeSymbol);
                 fourth.setText(listOfTemp.get(3) + degreeSymbol);
@@ -471,8 +481,17 @@ public class MainActivity extends AppCompatActivity {
                 eighth.setText(listOfTemp.get(7) + degreeSymbol);
                 break;
             case 1:
-            case 3:
             case 2:
+                first.setText(listOfTemp.get(1) + "°C");
+                second.setText(listOfTemp.get(2) + degreeSymbol);
+                third.setText(listOfTemp.get(3) + degreeSymbol);
+                fourth.setText(listOfTemp.get(4) + degreeSymbol);
+                fifth.setText(listOfTemp.get(5) + degreeSymbol);
+                sixth.setText(listOfTemp.get(6) + degreeSymbol);
+                seventh.setText(listOfTemp.get(7) + degreeSymbol);
+                eighth.setText(listOfTemp.get(0) + degreeSymbol);
+                break;
+            case 3:
                 first.setText(listOfTemp.get(1) + "C");
                 second.setText(listOfTemp.get(2) + degreeSymbol);
                 third.setText(listOfTemp.get(3) + degreeSymbol);
@@ -483,8 +502,17 @@ public class MainActivity extends AppCompatActivity {
                 eighth.setText(listOfTemp.get(0) + degreeSymbol);
                 break;
             case 4:
-            case 6:
             case 5:
+                first.setText(listOfTemp.get(2) + "°C");
+                second.setText(listOfTemp.get(3) + degreeSymbol);
+                third.setText(listOfTemp.get(4) + degreeSymbol);
+                fourth.setText(listOfTemp.get(5) + degreeSymbol);
+                fifth.setText(listOfTemp.get(6) + degreeSymbol);
+                sixth.setText(listOfTemp.get(7) + degreeSymbol);
+                seventh.setText(listOfTemp.get(0) + degreeSymbol);
+                eighth.setText(listOfTemp.get(1) + degreeSymbol);
+                break;
+            case 6:
                 first.setText(listOfTemp.get(2) + "C");
                 second.setText(listOfTemp.get(3) + degreeSymbol);
                 third.setText(listOfTemp.get(4) + degreeSymbol);
@@ -495,8 +523,17 @@ public class MainActivity extends AppCompatActivity {
                 eighth.setText(listOfTemp.get(1) + degreeSymbol);
                 break;
             case 7:
-            case 9:
             case 8:
+                first.setText(listOfTemp.get(3) + "°C");
+                second.setText(listOfTemp.get(4) + degreeSymbol);
+                third.setText(listOfTemp.get(5) + degreeSymbol);
+                fourth.setText(listOfTemp.get(6) + degreeSymbol);
+                fifth.setText(listOfTemp.get(7) + degreeSymbol);
+                sixth.setText(listOfTemp.get(0) + degreeSymbol);
+                seventh.setText(listOfTemp.get(1) + degreeSymbol);
+                eighth.setText(listOfTemp.get(2) + degreeSymbol);
+                break;
+            case 9:
                 first.setText(listOfTemp.get(3) + "C");
                 second.setText(listOfTemp.get(4) + degreeSymbol);
                 third.setText(listOfTemp.get(5) + degreeSymbol);
@@ -507,8 +544,17 @@ public class MainActivity extends AppCompatActivity {
                 eighth.setText(listOfTemp.get(2) + degreeSymbol);
                 break;
             case 10:
-            case 12:
             case 11:
+                first.setText(listOfTemp.get(4) + "°C");
+                second.setText(listOfTemp.get(5) + degreeSymbol);
+                third.setText(listOfTemp.get(6) + degreeSymbol);
+                fourth.setText(listOfTemp.get(7) + degreeSymbol);
+                fifth.setText(listOfTemp.get(0) + degreeSymbol);
+                sixth.setText(listOfTemp.get(1) + degreeSymbol);
+                seventh.setText(listOfTemp.get(2) + degreeSymbol);
+                eighth.setText(listOfTemp.get(3) + degreeSymbol);
+                break;
+            case 12:
                 first.setText(listOfTemp.get(4) + "C");
                 second.setText(listOfTemp.get(5) + degreeSymbol);
                 third.setText(listOfTemp.get(6) + degreeSymbol);
@@ -519,8 +565,17 @@ public class MainActivity extends AppCompatActivity {
                 eighth.setText(listOfTemp.get(3) + degreeSymbol);
                 break;
             case 13:
-            case 15:
             case 14:
+                first.setText(listOfTemp.get(5) + "°C");
+                second.setText(listOfTemp.get(6) + degreeSymbol);
+                third.setText(listOfTemp.get(7) + degreeSymbol);
+                fourth.setText(listOfTemp.get(0) + degreeSymbol);
+                fifth.setText(listOfTemp.get(1) + degreeSymbol);
+                sixth.setText(listOfTemp.get(2) + degreeSymbol);
+                seventh.setText(listOfTemp.get(3) + degreeSymbol);
+                eighth.setText(listOfTemp.get(4) + degreeSymbol);
+                break;
+            case 15:
                 first.setText(listOfTemp.get(5) + "C");
                 second.setText(listOfTemp.get(6) + degreeSymbol);
                 third.setText(listOfTemp.get(7) + degreeSymbol);
@@ -531,8 +586,17 @@ public class MainActivity extends AppCompatActivity {
                 eighth.setText(listOfTemp.get(4) + degreeSymbol);
                 break;
             case 16:
-            case 18:
             case 17:
+                first.setText(listOfTemp.get(6) + "°C");
+                second.setText(listOfTemp.get(7) + degreeSymbol);
+                third.setText(listOfTemp.get(0) + degreeSymbol);
+                fourth.setText(listOfTemp.get(1) + degreeSymbol);
+                fifth.setText(listOfTemp.get(2) + degreeSymbol);
+                sixth.setText(listOfTemp.get(3) + degreeSymbol);
+                seventh.setText(listOfTemp.get(4) + degreeSymbol);
+                eighth.setText(listOfTemp.get(5) + degreeSymbol);
+                break;
+            case 18:
                 first.setText(listOfTemp.get(6) + "C");
                 second.setText(listOfTemp.get(7) + degreeSymbol);
                 third.setText(listOfTemp.get(0) + degreeSymbol);
@@ -543,10 +607,8 @@ public class MainActivity extends AppCompatActivity {
                 eighth.setText(listOfTemp.get(5) + degreeSymbol);
                 break;
             case 19:
-            case 21:
             case 20:
-               // first.setText(listOfTemp.get(7) + degreeSymbol);
-                first.setText(listOfTemp.get(7) + "C");
+                first.setText(listOfTemp.get(7) + "°C");
                 second.setText(listOfTemp.get(0) + degreeSymbol);
                 third.setText(listOfTemp.get(1) + degreeSymbol);
                 fourth.setText(listOfTemp.get(2) + degreeSymbol);
@@ -555,6 +617,16 @@ public class MainActivity extends AppCompatActivity {
                 seventh.setText(listOfTemp.get(5) + degreeSymbol);
                 eighth.setText(listOfTemp.get(6) + degreeSymbol);
                 break;
+            case 21:
+                first.setText(listOfTemp.get(7) + "C");
+                second.setText(listOfTemp.get(0) + degreeSymbol);
+                third.setText(listOfTemp.get(1) + degreeSymbol);
+                fourth.setText(listOfTemp.get(2) + degreeSymbol);
+                fifth.setText(listOfTemp.get(3) + degreeSymbol);
+                sixth.setText(listOfTemp.get(4) + degreeSymbol);
+                seventh.setText(listOfTemp.get(5) + degreeSymbol);
+                eighth.setText(listOfTemp.get(6) + degreeSymbol);
+
         }
     }
 
@@ -613,6 +685,7 @@ public class MainActivity extends AppCompatActivity {
             case 11:
                 assignDayIcon(condList.get(12), first);
                 assignDayIcon(condList.get(13), second);
+                System.out.println("condlist13: " + condList.get(13));
                 assignNightIcon(condList.get(14), third);
                 assignNightIcon(condList.get(15), fourth);
                 assignNightIcon(condList.get(8), fifth);
@@ -662,6 +735,9 @@ public class MainActivity extends AppCompatActivity {
     public void assignDayIcon(String text, View image) {
         ImageView imageView = findViewById(image.getId());
         switch (text) {
+//            case "https://weather.gc.ca/weathericons/small/02.png": // A MIX OF SUN AND CLOUD
+//                imageView.setImageResource(R.drawable.a_mix_of_sun_and_cloud);
+//                return;
             case "https://weather.gc.ca/weathericons/24.gif": // MIST
                 imageView.setImageResource(R.drawable.mist);
                 return;
@@ -685,7 +761,7 @@ public class MainActivity extends AppCompatActivity {
                 imageView.setImageResource(R.drawable.sunny);
                 return;
             case "https://weather.gc.ca/weathericons/small/02.png": // MIX OF SUN AND CLOUD
-                imageView.setImageResource(R.drawable.partly_cloudy);
+                imageView.setImageResource(R.drawable.a_mix_of_sun_and_cloud);
                 return;
             case "https://weather.gc.ca/weathericons/small/01.png": // MAINLY SUNNY
             case "https://weather.gc.ca/weathericons/01.gif":
@@ -1326,6 +1402,10 @@ public class MainActivity extends AppCompatActivity {
             image.setImageResource(R.drawable.rain);
             return;
         }
+        if (text.equals("Partly Cloudy Night")) {
+            image.setImageResource(R.drawable.cloudy_periods);
+            return;
+        }
         if (hour >= 7 && hour < 20) {
             switch (text) {
             }
@@ -1378,6 +1458,10 @@ public class MainActivity extends AppCompatActivity {
             image.setImageResource(R.drawable.light_snow);
             return;
         }
+        if (text.equals("Snowy Skies")) {
+            image.setImageResource(R.drawable.snow);
+            return;
+        }
 
         if (hour >= 8 && hour < 16) {
             switch (text) {
@@ -1427,6 +1511,9 @@ public class MainActivity extends AppCompatActivity {
             return;
         } else if (text.equals("Overcast")) {
             image.setImageResource(R.drawable.overcast);
+            return;
+        } else if (text.equals("Light Snow")) {
+            image.setImageResource(R.drawable.light_snow);
             return;
         }
         if (hour >= 8 && hour < 16) {

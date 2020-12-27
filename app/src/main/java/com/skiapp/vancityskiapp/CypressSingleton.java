@@ -155,6 +155,8 @@ public class CypressSingleton extends AppCompatActivity {
                                         .append(arr[i].substring(1)).append(" ");
                             }
                             conditions = sb.toString().trim();
+                            if (conditions.equals("Rain/snow"))
+                                conditions = "Rain/Snow";
 
                             temperature = cypressWeather.select("span.js-measurement").first().text();
                             fortyEightHrSnow = cypressWeather.select("span.js-measurement").get(9).text() + "cm";
