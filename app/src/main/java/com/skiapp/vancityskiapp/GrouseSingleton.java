@@ -219,12 +219,18 @@ public class GrouseSingleton extends AppCompatActivity {
         Element status = data.select("li").get(rowNum);
         String run;
         try {
-            Element dcm2 = status.select("span.closed").get(0);
-            run = "closed";
+            Element dcm5 = status.select("span.standby").get(0);
+            run = "standby";
         } catch (IndexOutOfBoundsException e) {
-            Element dcm4 = status.select("span.open").get(0);
-            runsOpen++;
-            run = "open";
+            try {
+                Element dcm2 = status.select("span.closed").get(0);
+                run = "closed";
+            } catch (IndexOutOfBoundsException e2) {
+                Element dcm4 = status.select("span.open").get(0);
+                runsOpen++;
+                run = "open";
+            }
+            return run;
         }
         return run;
     }

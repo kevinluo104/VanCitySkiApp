@@ -173,7 +173,7 @@ public class Grouse extends AppCompatActivity {
                                     setStatus(iv125, grouseSingleton.thunderbirdRidge);
 
                                     TextView tv48 = findViewById(R.id.textView48);
-                                    tv48.setText("Runs Open: " + grouseSingleton.runsOpen + "/34");
+                                    tv48.setText("Runs Open: " + grouseSingleton.runsOpen + "/33");
                                     TextView tv50 = findViewById(R.id.textView50);
                                     tv50.setText("Lifts Open: " + grouseSingleton.liftsOpen + "/5");
                                     TextView textView114 = findViewById(R.id.textView114);
@@ -287,6 +287,8 @@ public class Grouse extends AppCompatActivity {
     public void setStatus(ImageView image, String status) {
         if (status.equals("open")) {
             image.setImageResource(R.drawable.greencheck);
+        } else if (status.equals("standby")) {
+            image.setImageResource(R.drawable.triangle);
         } else {
             image.setImageResource(R.drawable.redx);
         }

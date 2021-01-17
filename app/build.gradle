@@ -8,8 +8,8 @@ android {
         applicationId "com.skiapp.vancityskiapp"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 15
-        versionName "1.0.15"
+        versionCode 16
+        versionName "1.0.16"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
