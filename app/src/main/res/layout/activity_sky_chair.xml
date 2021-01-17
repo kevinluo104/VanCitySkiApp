@@ -353,7 +353,7 @@
                 android:layout_width="26dp"
                 android:layout_height="32dp"
                 android:layout_marginTop="386dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="19dp"
                 app:layout_constraintEnd_toStartOf="@+id/textView217"
                 app:layout_constraintTop_toBottomOf="@+id/view15"
                 app:srcCompat="@drawable/double_black" />
@@ -365,6 +365,16 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="246dp"
                 app:layout_constraintStart_toEndOf="@+id/textView215"
+                app:layout_constraintTop_toBottomOf="@+id/view15"
+                app:srcCompat="@drawable/nightrun" />
+
+            <ImageView
+                android:id="@+id/imageView263"
+                android:layout_width="26dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="320dp"
+                app:layout_constraintStart_toEndOf="@+id/textView216"
                 app:layout_constraintTop_toBottomOf="@+id/view15"
                 app:srcCompat="@drawable/nightrun" />
 
@@ -430,6 +440,25 @@
                 android:layout_marginTop="100dp"
                 app:layout_constraintTop_toBottomOf="@+id/textView217"
                 tools:layout_editor_absoluteX="190dp" />
+
+            <ImageView
+                android:id="@+id/imageView261"
+                android:layout_width="26dp"
+                android:layout_height="23dp"
+                android:layout_marginTop="40dp"
+                app:layout_constraintStart_toEndOf="@+id/textView212"
+                app:layout_constraintTop_toBottomOf="@+id/view15"
+                app:srcCompat="@drawable/nightrun" />
+
+            <ImageView
+                android:id="@+id/imageView262"
+                android:layout_width="26dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="176dp"
+                app:layout_constraintStart_toEndOf="@+id/textView214"
+                app:layout_constraintTop_toBottomOf="@+id/view15"
+                app:srcCompat="@drawable/nightrun" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

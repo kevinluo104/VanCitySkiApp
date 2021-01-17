@@ -304,16 +304,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/view10"
                 app:srcCompat="@drawable/nightrun" />
 
-            <ImageView
-                android:id="@+id/imageView121"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="455dp"
-                app:layout_constraintStart_toEndOf="@+id/imageView118"
-                app:layout_constraintTop_toBottomOf="@+id/view10"
-                app:srcCompat="@drawable/groomed_run" />
-
             <TextView
                 android:id="@+id/textView163"
                 android:layout_width="wrap_content"
@@ -742,7 +732,7 @@
                 android:layout_width="26dp"
                 android:layout_height="32dp"
                 android:layout_marginTop="1252dp"
-                android:layout_marginEnd="21dp"
+                android:layout_marginEnd="20dp"
                 app:layout_constraintEnd_toStartOf="@+id/textView174"
                 app:layout_constraintTop_toBottomOf="@+id/view10"
                 app:srcCompat="@drawable/double_black" />
@@ -752,7 +742,7 @@
                 android:layout_width="26dp"
                 android:layout_height="32dp"
                 android:layout_marginTop="1324dp"
-                android:layout_marginEnd="21dp"
+                android:layout_marginEnd="20dp"
                 app:layout_constraintEnd_toStartOf="@+id/textView175"
                 app:layout_constraintTop_toBottomOf="@+id/view10"
                 app:srcCompat="@drawable/double_black" />
@@ -763,7 +753,7 @@
                 android:layout_width="26dp"
                 android:layout_height="32dp"
                 android:layout_marginTop="1396dp"
-                android:layout_marginEnd="21dp"
+                android:layout_marginEnd="20dp"
                 app:layout_constraintEnd_toStartOf="@+id/textView176"
                 app:layout_constraintTop_toBottomOf="@+id/view10"
                 app:srcCompat="@drawable/double_black" />
@@ -773,7 +763,7 @@
                 android:layout_width="26dp"
                 android:layout_height="32dp"
                 android:layout_marginTop="1468dp"
-                android:layout_marginEnd="21dp"
+                android:layout_marginEnd="20dp"
                 app:layout_constraintEnd_toStartOf="@+id/textView177"
                 app:layout_constraintTop_toBottomOf="@+id/view10"
                 app:srcCompat="@drawable/double_black" />
@@ -783,7 +773,7 @@
                 android:layout_width="26dp"
                 android:layout_height="32dp"
                 android:layout_marginTop="1540dp"
-                android:layout_marginEnd="21dp"
+                android:layout_marginEnd="20dp"
                 app:layout_constraintEnd_toStartOf="@+id/textView178"
                 app:layout_constraintTop_toBottomOf="@+id/view10"
                 app:srcCompat="@drawable/double_black" />
@@ -793,7 +783,7 @@
                 android:layout_width="26dp"
                 android:layout_height="32dp"
                 android:layout_marginTop="1612dp"
-                android:layout_marginEnd="21dp"
+                android:layout_marginEnd="20dp"
                 app:layout_constraintEnd_toStartOf="@+id/textView179"
                 app:layout_constraintTop_toBottomOf="@+id/view10"
                 app:srcCompat="@drawable/double_black" />
@@ -803,7 +793,7 @@
                 android:layout_width="26dp"
                 android:layout_height="32dp"
                 android:layout_marginTop="1684dp"
-                android:layout_marginEnd="21dp"
+                android:layout_marginEnd="19dp"
                 app:layout_constraintEnd_toStartOf="@+id/textView180"
                 app:layout_constraintTop_toBottomOf="@+id/view10"
                 app:srcCompat="@drawable/double_black" />
@@ -1187,7 +1177,7 @@
                 android:layout_width="31dp"
                 android:layout_height="39dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginEnd="19dp"
+                android:layout_marginEnd="17dp"
                 app:layout_constraintEnd_toStartOf="@+id/textView182"
                 app:layout_constraintTop_toBottomOf="@+id/view11"
                 app:srcCompat="@drawable/terrain_park" />

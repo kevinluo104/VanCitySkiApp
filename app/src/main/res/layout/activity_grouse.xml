@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="533dp"
+        android:layout_width="wrap_content"
         android:layout_height="317dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
@@ -1228,9 +1228,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="55dp"
                 android:layout_marginTop="324dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="48dp"
                 android:backgroundTint="#B81414"
-                android:text="FULL WEATHER FORECAST"
+                android:text="VIEW FULL WEATHER FORECAST"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -182,24 +182,32 @@ public class Seymour extends AppCompatActivity {
         }
         text = sb.toString().trim();
 
-        if (text.equals("Light Rain")) {
-            imageView319.setImageResource(R.drawable.chance_of_showers);
-            return;
-        } else if (text.equals("Snowing") || text.equals("Fresh snow")) {
-            imageView319.setImageResource(R.drawable.light_snow);
-            return;
-        } else if (text.equals("Sunny")) {
-            imageView319.setImageResource(R.drawable.sunny);
-            return;
-        } else if (text.equals("Clear")) {
-            imageView319.setImageResource(R.drawable.clear_night);
-            return;
-        } else if (text.equals("Overcast")) {
-            imageView319.setImageResource(R.drawable.overcast);
-            return;
-        } else if (text.equals("Light Snow")) {
-            imageView319.setImageResource(R.drawable.light_snow);
-            return;
+        switch (text) {
+            case "Light Rain":
+                imageView319.setImageResource(R.drawable.chance_of_showers);
+                return;
+            case "Snowing":
+            case "Fresh snow":
+                imageView319.setImageResource(R.drawable.snow);
+                return;
+            case "Sunny":
+                imageView319.setImageResource(R.drawable.sunny);
+                return;
+            case "Clear":
+                imageView319.setImageResource(R.drawable.clear_night);
+                return;
+            case "Overcast":
+                imageView319.setImageResource(R.drawable.overcast);
+                return;
+            case "Light Snow":
+                imageView319.setImageResource(R.drawable.light_snow);
+                return;
+            case "Mix Of Sun And Cloud":
+                imageView319.setImageResource(R.drawable.a_mix_of_sun_and_cloud);
+                return;
+            case "Raining":
+                imageView319.setImageResource(R.drawable.rain);
+                return;
         }
             if (hour >= 6 && hour < 21) {
                 switch (text) {

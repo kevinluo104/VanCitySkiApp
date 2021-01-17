@@ -339,31 +339,60 @@
                 android:id="@+id/imageView217"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="30dp"
-                app:layout_constraintStart_toEndOf="@+id/textView317"
+                app:layout_constraintStart_toEndOf="@+id/imageView264"
                 app:layout_constraintTop_toBottomOf="@+id/view16"
                 app:srcCompat="@drawable/groomed_run" />
 
             <ImageView
                 android:id="@+id/imageView218"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="30dp"
+                android:layout_width="26dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="37dp"
                 app:layout_constraintStart_toEndOf="@+id/textView318"
                 app:layout_constraintTop_toBottomOf="@+id/imageView217"
-                app:srcCompat="@drawable/groomed_run" />
+                app:srcCompat="@drawable/nightrun" />
+
+            <ImageView
+                android:id="@+id/imageView291"
+                android:layout_width="26dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="48dp"
+                app:layout_constraintStart_toEndOf="@+id/textView319"
+                app:layout_constraintTop_toBottomOf="@+id/imageView218"
+                app:srcCompat="@drawable/nightrun" />
 
             <ImageView
                 android:id="@+id/imageView248"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="36dp"
-                app:layout_constraintStart_toEndOf="@+id/textView319"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="42dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView291"
                 app:layout_constraintTop_toBottomOf="@+id/imageView218"
                 app:srcCompat="@drawable/groomed_run" />
+
+            <ImageView
+                android:id="@+id/imageView292"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="72dp"
+                app:layout_constraintStart_toEndOf="@+id/textView320"
+                app:layout_constraintTop_toTopOf="@+id/imageView248"
+                app:srcCompat="@drawable/groomed_run" />
+
+            <ImageView
+                android:id="@+id/imageView264"
+                android:layout_width="26dp"
+                android:layout_height="23dp"
+                android:layout_marginTop="38dp"
+                app:layout_constraintStart_toEndOf="@+id/textView317"
+                app:layout_constraintTop_toBottomOf="@+id/view16"
+                app:srcCompat="@drawable/nightrun" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

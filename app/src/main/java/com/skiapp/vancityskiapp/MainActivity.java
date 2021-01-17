@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         }, timeInMillis);
 
         final TextView textView234 = findViewById(R.id.textView234);
-        textView234.setText("Check out the FAQ section on the bottom of the main (Vancouver) page");
+        textView234.setText("Happy New Year! Check out the FAQ section on the bottom of the main (Vancouver) page");
         textView234.setVisibility(View.VISIBLE);
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -741,6 +741,9 @@ public class MainActivity extends AppCompatActivity {
             case "https://weather.gc.ca/weathericons/24.gif": // MIST
                 imageView.setImageResource(R.drawable.mist);
                 return;
+            case "https://weather.gc.ca/weathericons/small/28.png": // LIGHT DRIZZLE
+                imageView.setImageResource(R.drawable.light_drizzle);
+                return;
             case "https://weather.gc.ca/weathericons/15.gif": // WET SNOW MIXED WITH RAIN
             case "https://weather.gc.ca/weathericons/small/15.png":
                 imageView.setImageResource(R.drawable.wet_snow_mixed_with_rain);
@@ -800,6 +803,9 @@ public class MainActivity extends AppCompatActivity {
         switch (text) {
             case "https://weather.gc.ca/weathericons/24.gif": // MIST
                 imageView.setImageResource(R.drawable.mist);
+                return;
+            case "https://weather.gc.ca/weathericons/small/28.png": // LIGHT DRIZZLE
+                imageView.setImageResource(R.drawable.light_drizzle);
                 return;
             case "https://weather.gc.ca/weathericons/15.gif": // WET SNOW MIXED WITH RAIN
             case "https://weather.gc.ca/weathericons/small/15.png":
@@ -1122,7 +1128,8 @@ public class MainActivity extends AppCompatActivity {
                 sixAmCond = elements1.get(20).select("span.pull-left img.media-object").first().absUrl("src");
                 nineAmCond = elements1.get(23).select("span.pull-left img.media-object").first().absUrl("src");
                 twelvePmCond = vanWeather.select("img.center-block.mrgn-tp-md").first().absUrl("src");
-                threePmCond = elements1.get(4).select("span.pull-left img.media-object").first().absUrl("src");
+                //threePmCond = elements1.get(2).select("span.pull-left img.media-object").first().absUrl("src");
+                threePmCond = elements1.get(3).select("span.pull-left img.media-object").first().absUrl("src");
                 sixPmCond = elements1.get(7).select("span.pull-left img.media-object").first().absUrl("src");
                 ninePmCond = elements1.get(10).select("span.pull-left img.media-object").first().absUrl("src");
                 hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
@@ -1462,17 +1469,23 @@ public class MainActivity extends AppCompatActivity {
             image.setImageResource(R.drawable.snow);
             return;
         }
+        if (text.equals("Flurries")) {
+            image.setImageResource(R.drawable.light_snow);
+            return;
+        }
+        if (text.equals("Mix Of Sun & Cloud")) {
+            image.setImageResource(R.drawable.mainly_sunny);
+            return;
+        }
+        if (text.equals("Lightly Raining Skies")) {
+            image.setImageResource(R.drawable.chance_of_showers);
+            return;
+        }
 
         if (hour >= 8 && hour < 16) {
             switch (text) {
                 case "Mainly Cloudy Skies":
                     image.setImageResource(R.drawable.mainly_cloudy_day);
-                    return;
-                case "Mix Of Sun & Cloud":
-                    image.setImageResource(R.drawable.mainly_sunny);
-                    return;
-                case "Sunny Skies":
-                    image.setImageResource(R.drawable.sunny);
                     return;
             }
         } else {
@@ -1497,24 +1510,32 @@ public class MainActivity extends AppCompatActivity {
         }
         text = sb.toString().trim();
 
-        if (text.equals("Light Rain")) {
-            image.setImageResource(R.drawable.chance_of_showers);
-            return;
-        } else if (text.equals("Sunny")) {
-            image.setImageResource(R.drawable.sunny);
-            return;
-        } else if (text.equals("Snowing") || text.equals("Fresh snow")) {
-            image.setImageResource(R.drawable.light_snow);
-            return;
-        } else if (text.equals("Clear")) {
-            image.setImageResource(R.drawable.clear_night);
-            return;
-        } else if (text.equals("Overcast")) {
-            image.setImageResource(R.drawable.overcast);
-            return;
-        } else if (text.equals("Light Snow")) {
-            image.setImageResource(R.drawable.light_snow);
-            return;
+        switch (text) {
+            case "Light Rain":
+                image.setImageResource(R.drawable.chance_of_showers);
+                return;
+            case "Sunny":
+                image.setImageResource(R.drawable.sunny);
+                return;
+            case "Snowing":
+            case "Fresh snow":
+                image.setImageResource(R.drawable.snow);
+                return;
+            case "Clear":
+                image.setImageResource(R.drawable.clear_night);
+                return;
+            case "Overcast":
+                image.setImageResource(R.drawable.overcast);
+                return;
+            case "Light Snow":
+                image.setImageResource(R.drawable.light_snow);
+                return;
+            case "Mix Of Sun And Cloud":
+                image.setImageResource(R.drawable.a_mix_of_sun_and_cloud);
+                return;
+            case "Raining":
+                image.setImageResource(R.drawable.rain);
+                return;
         }
         if (hour >= 8 && hour < 16) {
             switch (text) {

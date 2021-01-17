@@ -11,6 +11,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.net.ssl.SSLHandshakeException;
 
@@ -146,17 +147,23 @@ public class CypressSingleton extends AppCompatActivity {
                     cypressWeather = Jsoup.connect("https://cypressmountain.com/downhill-conditions-and-cams").userAgent("Mozilla").get();
                     runOnUiThread(new Runnable() {
                         public void run() {
-                            conditions = cypressWeather.select(("span.text.text_14.mix-text_color7.mix-text_alignCenter.mix-text_alignLeftMd.mix-text_regular.mix-text_capitalize")).first().text();
-                            String[] arr = conditions.split(" ");
-                            StringBuffer sb = new StringBuffer();
+                            try {
+                                conditions = cypressWeather.select(("span.text.text_14.mix-text_color7.mix-text_alignCenter.mix-text_alignLeftMd.mix-text_regular.mix-text_capitalize")).first().text();
+                                String[] arr = conditions.split(" ");
+                                StringBuffer sb = new StringBuffer();
+                                System.out.println("arr: " + Arrays.toString(arr));
 
-                            for (int i = 0; i < arr.length; i++) {
-                                sb.append(Character.toUpperCase(arr[i].charAt(0)))
-                                        .append(arr[i].substring(1)).append(" ");
+                                for (int i = 0; i < arr.length; i++) {
+                                    sb.append(Character.toUpperCase(arr[i].charAt(0)))
+                                            .append(arr[i].substring(1)).append(" ");
+                                }
+                                conditions = sb.toString().trim();
+                                if (conditions.equals("Rain/snow"))
+                                    conditions = "Rain/Snow";
+                            } catch (Exception ignored) {
+
                             }
-                            conditions = sb.toString().trim();
-                            if (conditions.equals("Rain/snow"))
-                                conditions = "Rain/Snow";
+
 
                             temperature = cypressWeather.select("span.js-measurement").first().text();
                             fortyEightHrSnow = cypressWeather.select("span.js-measurement").get(9).text() + "cm";

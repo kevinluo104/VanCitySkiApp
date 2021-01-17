@@ -130,14 +130,27 @@ public class SeymourSingleton extends AppCompatActivity {
                             }
                             conditions = sb.toString().trim();
                             visibility = seymourWeather.select("td").get(3).ownText();
-                            snowConditions = "Conditions: " + seymourWeather.select("td").get(6).ownText();
+
+                            snowConditions = seymourWeather.select("td").get(6).ownText();
+                            System.out.println("seymour snowcodnitons: " + snowConditions);
+                            String[] arr2 = snowConditions.split(" ");
+                            StringBuffer sb2 = new StringBuffer();
+
+                            for (int i = 0; i < arr2.length; i++) {
+                                sb2.append(Character.toUpperCase(arr2[i].charAt(0)))
+                                        .append(arr2[i].substring(1)).append(" ");
+                            }
+                            snowConditions = "Conditions: " + sb2.toString().trim();
+
                             runsOpen = Integer.parseInt(seymourWeather.select("td").get(4).ownText());
+                            if (hour > 21 || hour < 8)
+                                runsOpen = 0;
                             fortyEightHrSnow = seymourWeather.select("td").get(8).ownText();
                             twentyFourHrSnow = seymourWeather.select("td").get(7).ownText();
                             sevenDaySnow = seymourWeather.select("td").get(9).ownText();
                             seasonSnow = seymourWeather.select("td").get(13).ownText();
-                            discoverySnowshoeTrails = setSnowshoeTrailStatus(34);
-                            snowshoeTrailsStatus = setSnowshoeTrailStatus(34);
+                            discoverySnowshoeTrails = setSnowshoeTrailStatus();
+                            snowshoeTrailsStatus = setSnowshoeTrailStatus();
                            /* if (seymourWeather.select("td.rtecenter").get(34).ownText().equals("Open")) {
                                 discoverySnowshoeTrails = "open";
                                 snowshoeTrailsStatus = "Open";
@@ -146,29 +159,29 @@ public class SeymourSingleton extends AppCompatActivity {
                                 snowshoeTrailsStatus = "Closed";
                             }*/
                             if (counter == 0) {
-                                brocktonChair = setChairliftStatus(25);
+                                brocktonChair = setChairliftStatus(20);
                                 if (brocktonChair.equals("closed"))
                                     brocktonChairRunsOpen = "0";
-                                lodgeChair = setChairliftStatus(23);
+                                lodgeChair = setChairliftStatus(18);
                                 if (lodgeChair.equals("closed"))
                                     lodgeChairRunsOpen = "0";
-                                mysteryPeakExpress = setChairliftStatus(24);
+                                mysteryPeakExpress = setChairliftStatus(19);
                                 if (mysteryPeakExpress.equals("closed"))
                                     mysteryPeakExpressRunsOpen = "0";
-                                goldieMagicCarpet = setChairliftStatus(26);
+                                goldieMagicCarpet = setChairliftStatus(21);
                                 if (goldieMagicCarpet.equals("closed"))
                                     goldieMagicCarpetRunsOpen = "0";
 
-                                enquistSnowTubePark = setTubeParkStatus(32);
-                                tobagganArea = setTubeParkStatus(33);
+                                enquistSnowTubePark = setTubeParkStatus(27);
+                                tobagganArea = setTubeParkStatus(28);
 
-                                northlands = setTerrainParkMysteryPeakExpressStatus(northlands, 27);
-                                nuthouse = setTerrainParkMysteryPeakExpressStatus(nuthouse, 30);
+                                northlands = setTerrainParkMysteryPeakExpressStatus(northlands, 22);
+                                nuthouse = setTerrainParkMysteryPeakExpressStatus(nuthouse, 25);
                                 System.out.println("nuthouse: " + nuthouse);
-                                theRockstarEnergyPit = setTerrainParkMysteryPeakExpressStatus(theRockstarEnergyPit, 28);
+                                theRockstarEnergyPit = setTerrainParkMysteryPeakExpressStatus(theRockstarEnergyPit, 23);
 
-                                mushroom = setTerrainParkLodgeChairStatus(31);
-                                rookies = setTerrainParkLodgeChairStatus(29);
+                                mushroom = setTerrainParkLodgeChairStatus(26);
+                                rookies = setTerrainParkLodgeChairStatus(24);
                             }
                             setBrocktonChairRuns();
                             setLodgeChairRuns();
@@ -192,6 +205,8 @@ public class SeymourSingleton extends AppCompatActivity {
 
     public String setChairliftStatus(int rowNum) {
         String first = seymourWeather.select("td.rtecenter").get(rowNum).ownText();
+        System.out.println(rowNum + first);
+        System.out.println("rowNum, first: " + rowNum + first);
         // String ss = seymourWeather.select("td.rtecenter").get(22).ownText();
         // System.out.println("this is ss " + ss);
         String lift = "closed";
@@ -210,6 +225,24 @@ public class SeymourSingleton extends AppCompatActivity {
                 return lift;
             case "8:30 AM - 9:00 PM":
                 if (hour >= 8 && hour < 21) {
+                    lift = "open";
+                    liftsOpen++;
+                }
+                return lift;
+            case "10:30 AM - 4:00 PM":
+                if (hour >= 10 && hour < 16) {
+                    lift = "open";
+                    liftsOpen++;
+                }
+                return lift;
+            case "9:30 AM - 9:30 PM":
+                if (hour >= 9 && hour < 22) {
+                    lift = "open";
+                    liftsOpen++;
+                }
+                return lift;
+            case "9:30 AM - 9:00 PM":
+                if (hour >= 9 && hour < 21) {
                     lift = "open";
                     liftsOpen++;
                 }
@@ -261,12 +294,12 @@ public class SeymourSingleton extends AppCompatActivity {
         return tubePark;
     }
 
-    public String setSnowshoeTrailStatus(int rowNum) {
-        String first = seymourWeather.select("td.rtecenter").get(34).ownText();
+    public String setSnowshoeTrailStatus() {
+        String first = seymourWeather.select("td.rtecenter").get(29).ownText();
         String snowShoe = "closed";
         switch(first) {
-            case "8:30AM - 4:00 PM":
-                if (hour > 8 && hour < 16) {
+            case "9:30 AM - 4:00 PM":
+                if (hour > 9 && hour < 16) {
                     snowShoe = "open";
                     snowshoeTrailsStatus = "open";
                     return snowShoe;
@@ -376,6 +409,7 @@ public class SeymourSingleton extends AppCompatActivity {
             cliffHouse = "?";
             scooter = "?";
             sternsStairway = "?";
+            sunshineRidge = "?";
         }
     }
 

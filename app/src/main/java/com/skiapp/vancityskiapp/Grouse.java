@@ -177,7 +177,7 @@ public class Grouse extends AppCompatActivity {
                                     TextView tv50 = findViewById(R.id.textView50);
                                     tv50.setText("Lifts Open: " + grouseSingleton.liftsOpen + "/5");
                                     TextView textView114 = findViewById(R.id.textView114);
-                                    textView114.setText("Terrain Parks Open: " + grouseSingleton.terrainParksOpen + "/6");
+                                    textView114.setText("Terrain Parks Open: " + grouseSingleton.terrainParksOpen + "/5");
                                     TextView textView227 = findViewById(R.id.textView227);
                                     textView227.setText("Snowshoe Trails Open: " + grouseSingleton.snowshoeTrailsOpen + "/5");
 
@@ -250,14 +250,23 @@ public class Grouse extends AppCompatActivity {
             image.setImageResource(R.drawable.snow);
             return;
         }
+        if (text.equals("Flurries")) {
+            image.setImageResource(R.drawable.light_snow);
+            return;
+        }
+        if (text.equals("Mix Of Sun & Cloud")) {
+            image.setImageResource(R.drawable.mainly_sunny);
+            return;
+        }
+        if (text.equals("Lightly Raining Skies")) {
+            image.setImageResource(R.drawable.chance_of_showers);
+            return;
+        }
 
         if (hour >= 6 && hour < 21) {
             switch (text) {
                 case "Mainly Cloudy Skies":
                     image.setImageResource(R.drawable.mainly_cloudy_day);
-                    return;
-                case "Mix Of Sun & Cloud":
-                    image.setImageResource(R.drawable.mainly_sunny);
                     return;
                 case "Sunny Skies":
                     image.setImageResource(R.drawable.sunny);

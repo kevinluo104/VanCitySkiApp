@@ -354,7 +354,7 @@
                 android:id="@+id/textView148"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="51dp"
+                android:layout_marginStart="53dp"
                 android:layout_marginTop="896dp"
                 android:text="Detention Glades"
                 android:textSize="16sp"
@@ -519,7 +519,7 @@
                 android:layout_width="26dp"
                 android:layout_height="32dp"
                 android:layout_marginTop="890dp"
-                android:layout_marginEnd="13dp"
+                android:layout_marginEnd="14dp"
                 app:layout_constraintEnd_toStartOf="@+id/textView148"
                 app:layout_constraintTop_toBottomOf="@+id/view8"
                 app:srcCompat="@drawable/double_black" />
@@ -602,6 +602,16 @@
                 android:layout_marginTop="239dp"
                 app:layout_constraintStart_toEndOf="@+id/imageView153"
                 app:layout_constraintTop_toBottomOf="@+id/view8"
+                app:srcCompat="@drawable/groomed_run" />
+
+            <ImageView
+                android:id="@+id/imageView121"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="36dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView154"
+                app:layout_constraintTop_toBottomOf="@+id/imageView159"
                 app:srcCompat="@drawable/groomed_run" />
 
             <ImageView
@@ -814,7 +824,7 @@
                 android:id="@+id/imageView173"
                 android:layout_width="31dp"
                 android:layout_height="39dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="3dp"
                 android:layout_marginTop="12dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view9"
@@ -824,7 +834,7 @@
                 android:id="@+id/imageView174"
                 android:layout_width="31dp"
                 android:layout_height="39dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="3dp"
                 android:layout_marginTop="84dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view9"
@@ -834,7 +844,7 @@
                 android:id="@+id/imageView175"
                 android:layout_width="31dp"
                 android:layout_height="39dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="3dp"
                 android:layout_marginTop="156dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view9"
