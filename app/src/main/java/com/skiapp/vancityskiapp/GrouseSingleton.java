@@ -204,12 +204,18 @@ public class GrouseSingleton extends AppCompatActivity {
         Element status = data.select("li").get(rowNum);
         String lift;
         try {
-            Element dcm2 = status.select("span.closed").get(0);
-            lift = "closed";
+            Element dcm5 = status.select("span.standby").get(0);
+            lift = "standby";
         } catch (IndexOutOfBoundsException e) {
-            Element dcm4 = status.select("span.open").get(0);
-            lift = "open";
-            liftsOpen++;
+            try {
+                Element dcm2 = status.select("span.closed").get(0);
+                lift = "closed";
+            } catch (IndexOutOfBoundsException e2) {
+                Element dcm4 = status.select("span.open").get(0);
+                lift = "open";
+                liftsOpen++;
+            }
+            return lift;
         }
         return lift;
     }
@@ -242,12 +248,18 @@ public class GrouseSingleton extends AppCompatActivity {
         Element status = data.select("li").get(rowNum);
         String terrainPark;
         try {
-            Element dcm2 = status.select("span.closed").get(0);
-            terrainPark = "closed";
+            Element dcm5 = status.select("span.standby").get(0);
+            terrainPark = "standby";
         } catch (IndexOutOfBoundsException e) {
-            Element dcm4 = status.select("span.open").get(0);
-            terrainPark = "open";
-            terrainParksOpen++;
+            try {
+                Element dcm2 = status.select("span.closed").get(0);
+                terrainPark = "closed";
+            } catch (IndexOutOfBoundsException e2) {
+                Element dcm4 = status.select("span.open").get(0);
+                terrainPark = "open";
+                terrainParksOpen++;
+            }
+            return terrainPark;
         }
         return terrainPark;
     }
@@ -257,12 +269,18 @@ public class GrouseSingleton extends AppCompatActivity {
         Element status = data.select("li").get(rowNum);
         String snowshoeTrail;
         try {
-            Element dcm2 = status.select("span.closed").get(0);
-            snowshoeTrail = "closed";
+            Element dcm5 = status.select("span.standby").get(0);
+            snowshoeTrail = "standby";
         } catch (IndexOutOfBoundsException e) {
-            Element dcm4 = status.select("span.open").get(0);
-            snowshoeTrail = "open";
-            snowshoeTrailsOpen++;
+            try {
+                Element dcm2 = status.select("span.closed").get(0);
+                snowshoeTrail = "closed";
+            } catch (IndexOutOfBoundsException e2) {
+                Element dcm4 = status.select("span.open").get(0);
+                snowshoeTrail = "open";
+                snowshoeTrailsOpen++;
+            }
+            return snowshoeTrail;
         }
         return snowshoeTrail;
     }
