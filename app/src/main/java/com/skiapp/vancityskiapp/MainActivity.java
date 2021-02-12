@@ -1,15 +1,27 @@
 package com.skiapp.vancityskiapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.content.IntentSender;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.play.core.appupdate.AppUpdateInfo;
+import com.google.android.play.core.appupdate.AppUpdateManager;
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
+import com.google.android.play.core.install.model.AppUpdateType;
+import com.google.android.play.core.install.model.UpdateAvailability;
+import com.google.android.play.core.tasks.OnSuccessListener;
+import com.google.android.play.core.tasks.Task;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -36,12 +48,29 @@ public class MainActivity extends AppCompatActivity {
     private CypressSingleton cypressSingleton;
     private SeymourSingleton seymourSingleton;
     private int timeInMillis = 6000;
+    private int REQUEST_CODE = 11;
 
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(MainActivity.this);
+        Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
+        appUpdateInfoTask.addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
+            @Override
+            public void onSuccess(AppUpdateInfo result) {
+                if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && result.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+                    try {
+                        appUpdateManager.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, MainActivity.this, REQUEST_CODE);
+                    } catch (IntentSender.SendIntentException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
         final long startTime = System.currentTimeMillis();
         final TextView textView233 = findViewById(R.id.textView233);
         textView233.setText("Loading data...");
@@ -291,6 +320,17 @@ public class MainActivity extends AppCompatActivity {
         }.start();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE) {
+            Toast.makeText(this, "Start Download", Toast.LENGTH_SHORT).show();
+            if (resultCode != RESULT_OK) {
+                Log.d("mmm", "Update flow failed" + resultCode);
+            }
+        }
+    }
+
     public void vancouverWeather(String text, ImageView image) {
         if (text.equals("https://weather.gc.ca/weathericons/12.gif")) {   // LIGHT RAIN
             image.setImageResource(R.drawable.chance_of_showers);
@@ -318,6 +358,10 @@ public class MainActivity extends AppCompatActivity {
         }
         if (text.equals("https://weather.gc.ca/weathericons/10.gif")) {  // OVERCAST
             image.setImageResource(R.drawable.overcast);
+            return;
+        }
+        if (text.equals("https://weather.gc.ca/weathericons/16.gif")) {  // LIGHT SNOW
+            image.setImageResource(R.drawable.light_snow);
             return;
         }
         if (hour >= 8 && hour < 16) {
@@ -352,6 +396,12 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 case "https://weather.gc.ca/weathericons/39.gif": // THUNDERSTORMS NIGHT
                     image.setImageResource(R.drawable.thunderstorm_night);
+                    return;
+                case "https://weather.gc.ca/weathericons/38.gif": // NO NAME YET (CHANCE OF FLURRIES NIGHT)
+                    image.setImageResource(R.drawable.chance_of_flurries_night);
+                    return;
+                case "https://weather.gc.ca/weathericons/37.gif": // NO NAME YET (CHANCE OF MIX OF SNOW AND RAIN NIGHT)
+                    image.setImageResource(R.drawable.chance_of_mix_of_snow_and_rain_night);
                     return;
             }
         }
@@ -461,7 +511,7 @@ public class MainActivity extends AppCompatActivity {
     public void setVanTempHourly(ArrayList<String> listOfTemp, TextView first, TextView second, TextView third, TextView fourth, TextView fifth, TextView sixth, TextView seventh, TextView eighth) {
         switch (hour) {
             case 0:
-                first.setText(listOfTemp.get(0) + "C");
+                first.setText(listOfTemp.get(0) + "°C");
                 second.setText(listOfTemp.get(1) + degreeSymbol);
                 third.setText(listOfTemp.get(2) + degreeSymbol);
                 fourth.setText(listOfTemp.get(3) + degreeSymbol);
@@ -492,7 +542,7 @@ public class MainActivity extends AppCompatActivity {
                 eighth.setText(listOfTemp.get(0) + degreeSymbol);
                 break;
             case 3:
-                first.setText(listOfTemp.get(1) + "C");
+                first.setText(listOfTemp.get(1) + "°C");
                 second.setText(listOfTemp.get(2) + degreeSymbol);
                 third.setText(listOfTemp.get(3) + degreeSymbol);
                 fourth.setText(listOfTemp.get(4) + degreeSymbol);
@@ -513,7 +563,7 @@ public class MainActivity extends AppCompatActivity {
                 eighth.setText(listOfTemp.get(1) + degreeSymbol);
                 break;
             case 6:
-                first.setText(listOfTemp.get(2) + "C");
+                first.setText(listOfTemp.get(2) + "°C");
                 second.setText(listOfTemp.get(3) + degreeSymbol);
                 third.setText(listOfTemp.get(4) + degreeSymbol);
                 fourth.setText(listOfTemp.get(5) + degreeSymbol);
@@ -534,7 +584,7 @@ public class MainActivity extends AppCompatActivity {
                 eighth.setText(listOfTemp.get(2) + degreeSymbol);
                 break;
             case 9:
-                first.setText(listOfTemp.get(3) + "C");
+                first.setText(listOfTemp.get(3) + "°C");
                 second.setText(listOfTemp.get(4) + degreeSymbol);
                 third.setText(listOfTemp.get(5) + degreeSymbol);
                 fourth.setText(listOfTemp.get(6) + degreeSymbol);
@@ -555,7 +605,7 @@ public class MainActivity extends AppCompatActivity {
                 eighth.setText(listOfTemp.get(3) + degreeSymbol);
                 break;
             case 12:
-                first.setText(listOfTemp.get(4) + "C");
+                first.setText(listOfTemp.get(4) + "°C");
                 second.setText(listOfTemp.get(5) + degreeSymbol);
                 third.setText(listOfTemp.get(6) + degreeSymbol);
                 fourth.setText(listOfTemp.get(7) + degreeSymbol);
@@ -576,7 +626,7 @@ public class MainActivity extends AppCompatActivity {
                 eighth.setText(listOfTemp.get(4) + degreeSymbol);
                 break;
             case 15:
-                first.setText(listOfTemp.get(5) + "C");
+                first.setText(listOfTemp.get(5) + "°C");
                 second.setText(listOfTemp.get(6) + degreeSymbol);
                 third.setText(listOfTemp.get(7) + degreeSymbol);
                 fourth.setText(listOfTemp.get(0) + degreeSymbol);
@@ -597,7 +647,7 @@ public class MainActivity extends AppCompatActivity {
                 eighth.setText(listOfTemp.get(5) + degreeSymbol);
                 break;
             case 18:
-                first.setText(listOfTemp.get(6) + "C");
+                first.setText(listOfTemp.get(6) + "°C");
                 second.setText(listOfTemp.get(7) + degreeSymbol);
                 third.setText(listOfTemp.get(0) + degreeSymbol);
                 fourth.setText(listOfTemp.get(1) + degreeSymbol);
@@ -618,7 +668,7 @@ public class MainActivity extends AppCompatActivity {
                 eighth.setText(listOfTemp.get(6) + degreeSymbol);
                 break;
             case 21:
-                first.setText(listOfTemp.get(7) + "C");
+                first.setText(listOfTemp.get(7) + "°C");
                 second.setText(listOfTemp.get(0) + degreeSymbol);
                 third.setText(listOfTemp.get(1) + degreeSymbol);
                 fourth.setText(listOfTemp.get(2) + degreeSymbol);
@@ -691,6 +741,7 @@ public class MainActivity extends AppCompatActivity {
                 assignNightIcon(condList.get(8), fifth);
                 assignNightIcon(condList.get(9), sixth);
                 assignNightIcon(condList.get(10), seventh);
+                System.out.println("condlist10: " + condList.get(9));
                 assignDayIcon(condList.get(11), eighth);
                 break;
             case 13:
@@ -795,8 +846,18 @@ public class MainActivity extends AppCompatActivity {
             case "https://weather.gc.ca/weathericons/10.gif": // CLOUDY
                 imageView.setImageResource(R.drawable.overcast);
                 return;
+            case "https://weather.gc.ca/weathericons/small/08.png": // CHANCE OF FLURRIES DAY
+                imageView.setImageResource(R.drawable.chance_of_flurries);
+                return;
+            case "https://weather.gc.ca/weathericons/small/16.png": // PERIODS OF LIGHT SNOW
+                imageView.setImageResource(R.drawable.periods_of_light_snow);
+                return;
+            case "https://weather.gc.ca/weathericons/16.gif" :  // LIGHT SNOW
+                imageView.setImageResource(R.drawable.light_snow);
+                return;
+            }
         }
-    }
+
 
     public void assignNightIcon(String text, View image) {
         ImageView imageView = findViewById(image.getId());
@@ -861,6 +922,20 @@ public class MainActivity extends AppCompatActivity {
                 return;
             case "https://weather.gc.ca/weathericons/10.gif": // CLOUDY
                 imageView.setImageResource(R.drawable.overcast);
+                return;
+            case "https://weather.gc.ca/weathericons/small/16.png": // PERIODS OF LIGHT SNOW
+                imageView.setImageResource(R.drawable.periods_of_light_snow);
+                return;
+            case "https://weather.gc.ca/weathericons/38.gif":
+            case "https://weather.gc.ca/weathericons/small/38.png": // CHANCE OF FLURRIES
+                imageView.setImageResource(R.drawable.chance_of_flurries_night);
+                return;
+            case "https://weather.gc.ca/weathericons/16.gif" :  // LIGHT SNOW
+                imageView.setImageResource(R.drawable.light_snow);
+                return;
+            case "https://weather.gc.ca/weathericons/small/37.png":
+            case "https://weather.gc.ca/weathericons/37.gif": // NO NAME YET (CHANCE OF MIX OF SNOW AND RAIN NIGHT)
+                imageView.setImageResource(R.drawable.chance_of_mix_of_snow_and_rain_night);
                 return;
         }
     }
@@ -1415,6 +1490,10 @@ public class MainActivity extends AppCompatActivity {
         }
         if (text.equals("Partly Cloudy Night")) {
             image.setImageResource(R.drawable.cloudy_periods);
+            return;
+        }
+        if (text.equals("Snow Showers/some Snow")) {
+            image.setImageResource(R.drawable.light_snow);
             return;
         }
         if (hour >= 7 && hour < 20) {

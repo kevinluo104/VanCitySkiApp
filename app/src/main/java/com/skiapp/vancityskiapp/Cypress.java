@@ -226,6 +226,10 @@ public class Cypress extends AppCompatActivity {
             image.setImageResource(R.drawable.snow);
             return;
         }
+        if (text.equals("Snow Showers/some Snow")) {
+            image.setImageResource(R.drawable.periods_of_light_snow);
+            return;
+        }
         if (text.equals("Rain")) {
             image.setImageResource(R.drawable.rain);
             return;
