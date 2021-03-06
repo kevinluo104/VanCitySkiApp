@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.play.core.appupdate.AppUpdateInfo;
 import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
@@ -32,8 +33,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity {
+import eu.dkaratzas.android.inapp.update.Constants;
+import eu.dkaratzas.android.inapp.update.InAppUpdateManager;
+import eu.dkaratzas.android.inapp.update.InAppUpdateStatus;
 
+public class MainActivity extends AppCompatActivity implements InAppUpdateManager.InAppUpdateHandler {
+
+    private InAppUpdateManager inAppUpdateManager;
     private Document vanWeather;
     private Calendar cal = Calendar.getInstance();
     private int hour = cal.get(Calendar.HOUR_OF_DAY);
@@ -56,7 +62,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(MainActivity.this);
+        inAppUpdateManager = InAppUpdateManager.Builder(this, 101)
+                .resumeUpdates(true)
+                .mode(Constants.UpdateMode.IMMEDIATE)
+                .snackBarMessage("An update has just been downloaded")
+                .snackBarAction("RESTART")
+                .handler(this);
+
+        inAppUpdateManager.checkForAppUpdate();
+
+
+        /*final AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(MainActivity.this);
         Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
         appUpdateInfoTask.addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
             @Override
@@ -69,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             }
-        });
+        });*/
 
         final long startTime = System.currentTimeMillis();
         final TextView textView233 = findViewById(R.id.textView233);
@@ -83,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         }, timeInMillis);
 
         final TextView textView234 = findViewById(R.id.textView234);
-        textView234.setText("Happy New Year! Check out the FAQ section on the bottom of the main (Vancouver) page");
+        textView234.setText("Welcome! Check out the FAQ section on the bottom of the main (Vancouver) page");
         textView234.setVisibility(View.VISIBLE);
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -331,6 +347,26 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onInAppUpdateError(int code, Throwable error) {
+
+    }
+
+    @Override
+    public void onInAppUpdateStatus(InAppUpdateStatus status) {
+        if (status.isDownloaded()) {
+            View rootView = getWindow().getDecorView().findViewById(android.R.id.content);
+
+            Snackbar snackbar = Snackbar.make(rootView, "An update has just been downloaded.", Snackbar.LENGTH_INDEFINITE);
+            snackbar.setAction("Restart", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    inAppUpdateManager.completeUpdate();
+                }
+            });
+            snackbar.show();
+        }
+    }
     public void vancouverWeather(String text, ImageView image) {
         if (text.equals("https://weather.gc.ca/weathericons/12.gif")) {   // LIGHT RAIN
             image.setImageResource(R.drawable.chance_of_showers);
@@ -362,6 +398,18 @@ public class MainActivity extends AppCompatActivity {
         }
         if (text.equals("https://weather.gc.ca/weathericons/16.gif")) {  // LIGHT SNOW
             image.setImageResource(R.drawable.light_snow);
+            return;
+        }
+        if (text.equals("https://weather.gc.ca/weathericons/17.gif")) {  // SNOW
+            image.setImageResource(R.drawable.snow);
+            return;
+        }
+        if (text.equals("https://weather.gc.ca/weathericons/15.gif")) {  // WET SNOW MIXED WITH RAIN
+            image.setImageResource(R.drawable.wet_snow_mixed_with_rain);
+            return;
+        }
+        if (text.equals("https://weather.gc.ca/weathericons/28.gif")) {  // LIGHT DRIZZLE
+            image.setImageResource(R.drawable.light_drizzle);
             return;
         }
         if (hour >= 8 && hour < 16) {
@@ -792,9 +840,6 @@ public class MainActivity extends AppCompatActivity {
             case "https://weather.gc.ca/weathericons/24.gif": // MIST
                 imageView.setImageResource(R.drawable.mist);
                 return;
-            case "https://weather.gc.ca/weathericons/small/28.png": // LIGHT DRIZZLE
-                imageView.setImageResource(R.drawable.light_drizzle);
-                return;
             case "https://weather.gc.ca/weathericons/15.gif": // WET SNOW MIXED WITH RAIN
             case "https://weather.gc.ca/weathericons/small/15.png":
                 imageView.setImageResource(R.drawable.wet_snow_mixed_with_rain);
@@ -855,6 +900,14 @@ public class MainActivity extends AppCompatActivity {
             case "https://weather.gc.ca/weathericons/16.gif" :  // LIGHT SNOW
                 imageView.setImageResource(R.drawable.light_snow);
                 return;
+            case "https://weather.gc.ca/weathericons/17.gif":
+            case "https://weather.gc.ca/weathericons/small/17.png": // SNOW
+                imageView.setImageResource(R.drawable.snow);
+                return;
+            case "https://weather.gc.ca/weathericons/28.gif":
+            case "https://weather.gc.ca/weathericons/small/28.png":  // LIGHT DRIZZLE
+                imageView.setImageResource(R.drawable.light_drizzle);
+                return;
             }
         }
 
@@ -865,6 +918,7 @@ public class MainActivity extends AppCompatActivity {
             case "https://weather.gc.ca/weathericons/24.gif": // MIST
                 imageView.setImageResource(R.drawable.mist);
                 return;
+            case "https://weather.gc.ca/weathericons/28.gif":
             case "https://weather.gc.ca/weathericons/small/28.png": // LIGHT DRIZZLE
                 imageView.setImageResource(R.drawable.light_drizzle);
                 return;
@@ -936,6 +990,10 @@ public class MainActivity extends AppCompatActivity {
             case "https://weather.gc.ca/weathericons/small/37.png":
             case "https://weather.gc.ca/weathericons/37.gif": // NO NAME YET (CHANCE OF MIX OF SNOW AND RAIN NIGHT)
                 imageView.setImageResource(R.drawable.chance_of_mix_of_snow_and_rain_night);
+                return;
+            case "https://weather.gc.ca/weathericons/17.gif":
+            case "https://weather.gc.ca/weathericons/small/17.png": // SNOW
+                imageView.setImageResource(R.drawable.snow);
                 return;
         }
     }
@@ -1496,6 +1554,14 @@ public class MainActivity extends AppCompatActivity {
             image.setImageResource(R.drawable.light_snow);
             return;
         }
+        if (text.equals("Windy")) {
+            image.setImageResource(R.drawable.windy);
+            return;
+        }
+        if (text.equals("Freezing Rain/ice Pellets")) {
+            image.setImageResource(R.drawable.ice_pellets);
+            return;
+        }
         if (hour >= 7 && hour < 20) {
             switch (text) {
             }
@@ -1618,6 +1684,9 @@ public class MainActivity extends AppCompatActivity {
                 return;
             case "Raining":
                 image.setImageResource(R.drawable.rain);
+                return;
+            case "Windy":
+                image.setImageResource(R.drawable.windy);
                 return;
         }
         if (hour >= 8 && hour < 16) {

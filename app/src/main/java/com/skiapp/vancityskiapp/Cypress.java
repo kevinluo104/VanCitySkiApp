@@ -238,6 +238,14 @@ public class Cypress extends AppCompatActivity {
             image.setImageResource(R.drawable.cloudy_periods);
             return;
         }
+        if (text.equals("Windy")) {
+            image.setImageResource(R.drawable.windy);
+            return;
+        }
+        if (text.equals("Freezing Rain/ice Pellets")) {
+            image.setImageResource(R.drawable.ice_pellets);
+            return;
+        }
         if (hour >= 6 && hour < 21) {
             switch (text) {
             }

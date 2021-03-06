@@ -205,8 +205,8 @@ public class SeymourSingleton extends AppCompatActivity {
 
     public String setChairliftStatus(int rowNum) {
         String first = seymourWeather.select("td.rtecenter").get(rowNum).ownText();
-        System.out.println(rowNum + first);
-        System.out.println("rowNum, first: " + rowNum + first);
+        System.out.println(rowNum + "" + first);
+
         // String ss = seymourWeather.select("td.rtecenter").get(22).ownText();
         // System.out.println("this is ss " + ss);
         String lift = "closed";
@@ -243,6 +243,18 @@ public class SeymourSingleton extends AppCompatActivity {
                 return lift;
             case "9:30 AM - 9:00 PM":
                 if (hour >= 9 && hour < 21) {
+                    lift = "open";
+                    liftsOpen++;
+                }
+                return lift;
+            case "11:30 AM - 9:30 PM":
+                if (hour >= 11 && hour < 22) {
+                    lift = "open";
+                    liftsOpen++;
+                }
+                return lift;
+            case "12:30 PM - 4:00 PM":
+                if (hour >= 12 && hour < 16) {
                     lift = "open";
                     liftsOpen++;
                 }

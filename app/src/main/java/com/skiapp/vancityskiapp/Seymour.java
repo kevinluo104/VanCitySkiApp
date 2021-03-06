@@ -208,6 +208,9 @@ public class Seymour extends AppCompatActivity {
             case "Raining":
                 imageView319.setImageResource(R.drawable.rain);
                 return;
+            case "Windy":
+                imageView319.setImageResource(R.drawable.windy);
+                return;
         }
             if (hour >= 6 && hour < 21) {
                 switch (text) {

@@ -74,6 +74,21 @@
             android:text="A: Pressing the back device should bring you back. If you refreshed any page, you might need to double-tap the back button to go back."
             android:textSize="16sp" />
 
+        <TextView
+            android:id="@+id/textView255"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Q: Why do the runs show up as '?' on Mount Seymour?"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView256"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A: Unfortunately, Mount Seymour only has data for the individual ski lifts but not the individual runs."
+            android:textSize="16sp" />
+
     </LinearLayout>
 
     </ScrollView>
