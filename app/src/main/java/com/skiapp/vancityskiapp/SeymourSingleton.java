@@ -316,6 +316,12 @@ public class SeymourSingleton extends AppCompatActivity {
                     snowshoeTrailsStatus = "open";
                     return snowShoe;
                 }
+            case "8:30 AM - 4:30 PM":
+                if (hour > 8 && hour < 17) {
+                    snowShoe = "open";
+                    snowshoeTrailsStatus = "open";
+                    return snowShoe;
+                }
         }
         return snowShoe;
     }

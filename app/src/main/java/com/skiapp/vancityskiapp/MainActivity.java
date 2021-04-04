@@ -412,7 +412,7 @@ public class MainActivity extends AppCompatActivity implements InAppUpdateManage
             image.setImageResource(R.drawable.light_drizzle);
             return;
         }
-        if (hour >= 8 && hour < 16) {
+        if (hour >= 6 && hour < 19) {
             switch (text) {
                 case "https://weather.gc.ca/weathericons/03.gif":  // MOSTLY CLOUDY
                     image.setImageResource(R.drawable.mainly_cloudy_day);
@@ -735,33 +735,33 @@ public class MainActivity extends AppCompatActivity implements InAppUpdateManage
             case 22:
                 assignNightIcon(condList.get(8), first);
                 assignNightIcon(condList.get(9), second);
-                assignNightIcon(condList.get(10), third);
+                assignDayIcon(condList.get(10), third);
                 assignDayIcon(condList.get(11), fourth);
                 assignDayIcon(condList.get(12), fifth);
                 assignDayIcon(condList.get(13), sixth);
-                assignNightIcon(condList.get(14), seventh);
+                assignDayIcon(condList.get(14), seventh);
                 assignNightIcon(condList.get(15), eighth);
                 break;
             case 1:
             case 3:
             case 2:
                 assignNightIcon(condList.get(9), first);
-                assignNightIcon(condList.get(10), second);
+                assignDayIcon(condList.get(10), second);
                 assignDayIcon(condList.get(11), third);
                 assignDayIcon(condList.get(12), fourth);
                 assignDayIcon(condList.get(13), fifth);
-                assignNightIcon(condList.get(14), sixth);
+                assignDayIcon(condList.get(14), sixth);
                 assignNightIcon(condList.get(15), seventh);
                 assignNightIcon(condList.get(8), eighth);
                 break;
             case 4:
             case 6:
             case 5:
-                assignNightIcon(condList.get(10), first);
+                assignDayIcon(condList.get(10), first);
                 assignDayIcon(condList.get(11), second);
                 assignDayIcon(condList.get(12), third);
                 assignDayIcon(condList.get(13), fourth);
-                assignNightIcon(condList.get(14), fifth);
+                assignDayIcon(condList.get(14), fifth);
                 assignNightIcon(condList.get(15), sixth);
                 assignNightIcon(condList.get(8), seventh);
                 assignNightIcon(condList.get(9), eighth);
@@ -772,11 +772,11 @@ public class MainActivity extends AppCompatActivity implements InAppUpdateManage
                 assignDayIcon(condList.get(11), first);
                 assignDayIcon(condList.get(12), second);
                 assignDayIcon(condList.get(13), third);
-                assignNightIcon(condList.get(14), fourth);
+                assignDayIcon(condList.get(14), fourth);
                 assignNightIcon(condList.get(15), fifth);
                 assignNightIcon(condList.get(8), sixth);
                 assignNightIcon(condList.get(9), seventh);
-                assignNightIcon(condList.get(10), eighth);
+                assignDayIcon(condList.get(10), eighth);
                 break;
             case 10:
             case 12:
@@ -784,11 +784,11 @@ public class MainActivity extends AppCompatActivity implements InAppUpdateManage
                 assignDayIcon(condList.get(12), first);
                 assignDayIcon(condList.get(13), second);
                 System.out.println("condlist13: " + condList.get(13));
-                assignNightIcon(condList.get(14), third);
+                assignDayIcon(condList.get(14), third);
                 assignNightIcon(condList.get(15), fourth);
                 assignNightIcon(condList.get(8), fifth);
                 assignNightIcon(condList.get(9), sixth);
-                assignNightIcon(condList.get(10), seventh);
+                assignDayIcon(condList.get(10), seventh);
                 System.out.println("condlist10: " + condList.get(9));
                 assignDayIcon(condList.get(11), eighth);
                 break;
@@ -796,22 +796,22 @@ public class MainActivity extends AppCompatActivity implements InAppUpdateManage
             case 15:
             case 14:
                 assignDayIcon(condList.get(13), first);
-                assignNightIcon(condList.get(14), second);
+                assignDayIcon(condList.get(14), second);
                 assignNightIcon(condList.get(15), third);
                 assignNightIcon(condList.get(8), fourth);
                 assignNightIcon(condList.get(9), fifth);
-                assignNightIcon(condList.get(10), sixth);
+                assignDayIcon(condList.get(10), sixth);
                 assignDayIcon(condList.get(11), seventh);
                 assignDayIcon(condList.get(12), eighth);
                 break;
             case 16:
             case 18:
             case 17:
-                assignNightIcon(condList.get(14), first);
+                assignDayIcon(condList.get(14), first);
                 assignNightIcon(condList.get(15), second);
                 assignNightIcon(condList.get(8), third);
                 assignNightIcon(condList.get(9), fourth);
-                assignNightIcon(condList.get(10), fifth);
+                assignDayIcon(condList.get(10), fifth);
                 assignDayIcon(condList.get(11), sixth);
                 assignDayIcon(condList.get(12), seventh);
                 assignDayIcon(condList.get(13), eighth);
@@ -822,11 +822,11 @@ public class MainActivity extends AppCompatActivity implements InAppUpdateManage
                 assignNightIcon(condList.get(15), first);
                 assignNightIcon(condList.get(8), second);
                 assignNightIcon(condList.get(9), third);
-                assignNightIcon(condList.get(10), fourth);
+                assignDayIcon(condList.get(10), fourth);
                 assignDayIcon(condList.get(11), fifth);
                 assignDayIcon(condList.get(12), sixth);
                 assignDayIcon(condList.get(13), seventh);
-                assignNightIcon(condList.get(14), eighth);
+                assignDayIcon(condList.get(14), eighth);
                 break;
         }
     }
@@ -1664,6 +1664,8 @@ public class MainActivity extends AppCompatActivity implements InAppUpdateManage
                 image.setImageResource(R.drawable.chance_of_showers);
                 return;
             case "Sunny":
+            case "Fresh Snow":
+            case "Chilly":
                 image.setImageResource(R.drawable.sunny);
                 return;
             case "Snowing":
@@ -1687,6 +1689,9 @@ public class MainActivity extends AppCompatActivity implements InAppUpdateManage
                 return;
             case "Windy":
                 image.setImageResource(R.drawable.windy);
+                return;
+            case "A Mix Of Sun And Snow":
+                image.setImageResource(R.drawable.chance_of_flurries);
                 return;
         }
         if (hour >= 8 && hour < 16) {

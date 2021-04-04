@@ -187,10 +187,12 @@ public class Seymour extends AppCompatActivity {
                 imageView319.setImageResource(R.drawable.chance_of_showers);
                 return;
             case "Snowing":
-            case "Fresh snow":
+           // case "Fresh snow":
                 imageView319.setImageResource(R.drawable.snow);
                 return;
             case "Sunny":
+            case "Fresh Snow":
+            case "Chilly":
                 imageView319.setImageResource(R.drawable.sunny);
                 return;
             case "Clear":
@@ -210,6 +212,9 @@ public class Seymour extends AppCompatActivity {
                 return;
             case "Windy":
                 imageView319.setImageResource(R.drawable.windy);
+                return;
+            case "A Mix Of Sun And Snow":
+                imageView319.setImageResource(R.drawable.chance_of_flurries);
                 return;
         }
             if (hour >= 6 && hour < 21) {
