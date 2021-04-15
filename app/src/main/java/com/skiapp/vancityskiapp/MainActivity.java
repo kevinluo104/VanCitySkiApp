@@ -19,7 +19,10 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.play.core.appupdate.AppUpdateInfo;
 import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
+import com.google.android.play.core.install.InstallState;
+import com.google.android.play.core.install.InstallStateUpdatedListener;
 import com.google.android.play.core.install.model.AppUpdateType;
+import com.google.android.play.core.install.model.InstallStatus;
 import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.play.core.tasks.OnSuccessListener;
 import com.google.android.play.core.tasks.Task;
@@ -37,7 +40,7 @@ import eu.dkaratzas.android.inapp.update.Constants;
 import eu.dkaratzas.android.inapp.update.InAppUpdateManager;
 import eu.dkaratzas.android.inapp.update.InAppUpdateStatus;
 
-public class MainActivity extends AppCompatActivity implements InAppUpdateManager.InAppUpdateHandler {
+public class MainActivity extends AppCompatActivity {
 
     private InAppUpdateManager inAppUpdateManager;
     private Document vanWeather;
@@ -55,21 +58,41 @@ public class MainActivity extends AppCompatActivity implements InAppUpdateManage
     private SeymourSingleton seymourSingleton;
     private int timeInMillis = 6000;
     private int REQUEST_CODE = 11;
-
+    private AppUpdateManager mappUpdateManager;
+    private static final int RC_APP_UPDATE = 100;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        inAppUpdateManager = InAppUpdateManager.Builder(this, 101)
-                .resumeUpdates(true)
-                .mode(Constants.UpdateMode.IMMEDIATE)
-                .snackBarMessage("An update has just been downloaded")
-                .snackBarAction("RESTART")
-                .handler(this);
+        mappUpdateManager = AppUpdateManagerFactory.create(this);
+        mappUpdateManager.getAppUpdateInfo().addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
+            @Override
+            public void onSuccess(AppUpdateInfo result) {
+                if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && result.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+                    try {
+                        mappUpdateManager.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, MainActivity.this, RC_APP_UPDATE);
+                    } catch (IntentSender.SendIntentException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+      //  mappUpdateManager.registerListener(installStateUpdatedListener);
 
-        inAppUpdateManager.checkForAppUpdate();
+
+
+
+
+//        inAppUpdateManager = InAppUpdateManager.Builder(this, 101)
+//                .resumeUpdates(true)
+//                .mode(Constants.UpdateMode.IMMEDIATE)
+//                .snackBarMessage("An update has just been downloaded")
+//                .snackBarAction("RESTART")
+//                .handler(this);
+//
+//        inAppUpdateManager.checkForAppUpdate();
 
 
         /*final AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(MainActivity.this);
@@ -99,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements InAppUpdateManage
         }, timeInMillis);
 
         final TextView textView234 = findViewById(R.id.textView234);
-        textView234.setText("Welcome! Check out the FAQ section on the bottom of the main (Vancouver) page");
+        textView234.setText("Welcome! Please check for updates in the app store when available!");
         textView234.setVisibility(View.VISIBLE);
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -336,37 +359,85 @@ public class MainActivity extends AppCompatActivity implements InAppUpdateManage
         }.start();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE) {
-            Toast.makeText(this, "Start Download", Toast.LENGTH_SHORT).show();
-            if (resultCode != RESULT_OK) {
-                Log.d("mmm", "Update flow failed" + resultCode);
+    private InstallStateUpdatedListener installStateUpdatedListener = new InstallStateUpdatedListener() {
+        @Override
+        public void onStateUpdate(InstallState state) {
+            if (state.installStatus() == InstallStatus.DOWNLOADED) {
+                showCompletedUpdate();
             }
         }
-    }
+    };
 
     @Override
-    public void onInAppUpdateError(int code, Throwable error) {
-
+    protected void onStop() {
+     //   if (mappUpdateManager != null) {
+      //      mappUpdateManager.unregisterListener(installStateUpdatedListener);
+     //   }
+        super.onStop();
     }
 
+    private void showCompletedUpdate() {
+        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "New app update is ready!", Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction("Install", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mappUpdateManager.completeUpdate();
+            }
+        });
+        snackbar.show();
+    }
     @Override
-    public void onInAppUpdateStatus(InAppUpdateStatus status) {
-        if (status.isDownloaded()) {
-            View rootView = getWindow().getDecorView().findViewById(android.R.id.content);
-
-            Snackbar snackbar = Snackbar.make(rootView, "An update has just been downloaded.", Snackbar.LENGTH_INDEFINITE);
-            snackbar.setAction("Restart", new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    inAppUpdateManager.completeUpdate();
-                }
-            });
-            snackbar.show();
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == RC_APP_UPDATE && resultCode != RESULT_OK) {
+            Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show();
         }
+        super.onActivityResult(requestCode, resultCode, data);
+
+//        if (requestCode == REQUEST_CODE) {
+//            Toast.makeText(this, "Start Download", Toast.LENGTH_SHORT).show();
+//            if (resultCode != RESULT_OK) {
+//                Log.d("mmm", "Update flow failed" + resultCode);
+//            }
+//        }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mappUpdateManager.getAppUpdateInfo().addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
+            @Override
+            public void onSuccess(AppUpdateInfo result) {
+                if (result.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
+                    try {
+                        mappUpdateManager.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, MainActivity.this, RC_APP_UPDATE);
+                    } catch (IntentSender.SendIntentException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+
+    //    @Override
+//    public void onInAppUpdateError(int code, Throwable error) {
+//
+//    }
+//
+//    @Override
+//    public void onInAppUpdateStatus(InAppUpdateStatus status) {
+//        if (status.isDownloaded()) {
+//            View rootView = getWindow().getDecorView().findViewById(android.R.id.content);
+//
+//            Snackbar snackbar = Snackbar.make(rootView, "An update has just been downloaded.", Snackbar.LENGTH_INDEFINITE);
+//            snackbar.setAction("Restart", new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    inAppUpdateManager.completeUpdate();
+//                }
+//            });
+//            snackbar.show();
+//        }
+//    }
     public void vancouverWeather(String text, ImageView image) {
         if (text.equals("https://weather.gc.ca/weathericons/12.gif")) {   // LIGHT RAIN
             image.setImageResource(R.drawable.chance_of_showers);

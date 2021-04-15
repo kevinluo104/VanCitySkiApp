@@ -255,9 +255,15 @@ public class GrouseSingleton extends AppCompatActivity {
                 Element dcm2 = status.select("span.closed").get(0);
                 terrainPark = "closed";
             } catch (IndexOutOfBoundsException e2) {
-                Element dcm4 = status.select("span.open").get(0);
-                terrainPark = "open";
-                terrainParksOpen++;
+                try {
+                    Element dcm3 = status.select("span.scheduled.to.open").get(0);
+                    terrainPark = "standby";
+                } catch (IndexOutOfBoundsException e3) {
+                    Element dcm4 = status.select("span.open").get(0);
+                    terrainPark = "open";
+                    terrainParksOpen++;
+                }
+                return terrainPark;
             }
             return terrainPark;
         }

@@ -141,6 +141,7 @@ public class SeymourSingleton extends AppCompatActivity {
                                         .append(arr2[i].substring(1)).append(" ");
                             }
                             snowConditions = "Conditions: " + sb2.toString().trim();
+                            snowConditions = "Conditions: N/A";
 
                             runsOpen = Integer.parseInt(seymourWeather.select("td").get(4).ownText());
                             if (hour > 21 || hour < 8)
