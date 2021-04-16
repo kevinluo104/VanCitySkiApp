@@ -131,16 +131,16 @@ public class SeymourSingleton extends AppCompatActivity {
                             conditions = sb.toString().trim();
                             visibility = seymourWeather.select("td").get(3).ownText();
 
-                            snowConditions = seymourWeather.select("td").get(6).ownText();
-                            System.out.println("seymour snowcodnitons: " + snowConditions);
-                            String[] arr2 = snowConditions.split(" ");
-                            StringBuffer sb2 = new StringBuffer();
-
-                            for (int i = 0; i < arr2.length; i++) {
-                                sb2.append(Character.toUpperCase(arr2[i].charAt(0)))
-                                        .append(arr2[i].substring(1)).append(" ");
-                            }
-                            snowConditions = "Conditions: " + sb2.toString().trim();
+//                            snowConditions = seymourWeather.select("td").get(6).ownText();
+//                            System.out.println("seymour snowcodnitons: " + snowConditions);
+//                            String[] arr2 = snowConditions.split(" ");
+//                            StringBuffer sb2 = new StringBuffer();
+//
+//                            for (int i = 0; i < arr2.length; i++) {
+//                                sb2.append(Character.toUpperCase(arr2[i].charAt(0)))
+//                                        .append(arr2[i].substring(1)).append(" ");
+//                            }
+//                            snowConditions = "Conditions: " + sb2.toString().trim();
                             snowConditions = "Conditions: N/A";
 
                             runsOpen = Integer.parseInt(seymourWeather.select("td").get(4).ownText());
