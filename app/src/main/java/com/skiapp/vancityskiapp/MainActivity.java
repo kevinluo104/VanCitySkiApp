@@ -42,7 +42,7 @@ import eu.dkaratzas.android.inapp.update.InAppUpdateStatus;
 
 public class MainActivity extends AppCompatActivity {
 
-    private InAppUpdateManager inAppUpdateManager;
+    //private InAppUpdateManager inAppUpdateManager;
     private Document vanWeather;
     private Calendar cal = Calendar.getInstance();
     private int hour = cal.get(Calendar.HOUR_OF_DAY);
@@ -58,27 +58,31 @@ public class MainActivity extends AppCompatActivity {
     private SeymourSingleton seymourSingleton;
     private int timeInMillis = 6000;
     private int REQUEST_CODE = 11;
-    private AppUpdateManager mappUpdateManager;
-    private static final int RC_APP_UPDATE = 100;
+    private String TAG = "unsuccessful";
+   // private AppUpdateManager mappUpdateManager;
+  //  private static final int RC_APP_UPDATE = 100;
+
+    private AppUpdateManager mAppUpdateManager;
+    private static final int RC_APP_UPDATE = 11;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mappUpdateManager = AppUpdateManagerFactory.create(this);
-        mappUpdateManager.getAppUpdateInfo().addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
-            @Override
-            public void onSuccess(AppUpdateInfo result) {
-                if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && result.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
-                    try {
-                        mappUpdateManager.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, MainActivity.this, RC_APP_UPDATE);
-                    } catch (IntentSender.SendIntentException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
+//        mappUpdateManager = AppUpdateManagerFactory.create(this);
+//        mappUpdateManager.getAppUpdateInfo().addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
+//            @Override
+//            public void onSuccess(AppUpdateInfo result) {
+//                if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && result.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+//                    try {
+//                        mappUpdateManager.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, MainActivity.this, RC_APP_UPDATE);
+//                    } catch (IntentSender.SendIntentException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        });
       //  mappUpdateManager.registerListener(installStateUpdatedListener);
 
 
@@ -271,7 +275,8 @@ public class MainActivity extends AppCompatActivity {
                                                 break;
                                         }
                                         TextView textView36 = findViewById(R.id.textView36);
-                                        textView36.setText("New Snow: " + grouseSingleton.overnightSnow);
+                                      //  textView36.setText("New Snow: " + grouseSingleton.overnightSnow);
+                                        textView36.setText("New Snow: 0cm");
                                         TextView tv32 = findViewById(R.id.textView32);
                                         tv32.setText(grouseSingleton.weather);
                                         TextView textView313 = findViewById(R.id.textView313);
@@ -359,64 +364,64 @@ public class MainActivity extends AppCompatActivity {
         }.start();
     }
 
-    private InstallStateUpdatedListener installStateUpdatedListener = new InstallStateUpdatedListener() {
-        @Override
-        public void onStateUpdate(InstallState state) {
-            if (state.installStatus() == InstallStatus.DOWNLOADED) {
-                showCompletedUpdate();
-            }
-        }
-    };
-
-    @Override
-    protected void onStop() {
-     //   if (mappUpdateManager != null) {
-      //      mappUpdateManager.unregisterListener(installStateUpdatedListener);
-     //   }
-        super.onStop();
-    }
-
-    private void showCompletedUpdate() {
-        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "New app update is ready!", Snackbar.LENGTH_INDEFINITE);
-        snackbar.setAction("Install", new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mappUpdateManager.completeUpdate();
-            }
-        });
-        snackbar.show();
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == RC_APP_UPDATE && resultCode != RESULT_OK) {
-            Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show();
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-
-//        if (requestCode == REQUEST_CODE) {
-//            Toast.makeText(this, "Start Download", Toast.LENGTH_SHORT).show();
-//            if (resultCode != RESULT_OK) {
-//                Log.d("mmm", "Update flow failed" + resultCode);
+//    private InstallStateUpdatedListener installStateUpdatedListener = new InstallStateUpdatedListener() {
+//        @Override
+//        public void onStateUpdate(InstallState state) {
+//            if (state.installStatus() == InstallStatus.DOWNLOADED) {
+//                showCompletedUpdate();
 //            }
 //        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mappUpdateManager.getAppUpdateInfo().addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
-            @Override
-            public void onSuccess(AppUpdateInfo result) {
-                if (result.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
-                    try {
-                        mappUpdateManager.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, MainActivity.this, RC_APP_UPDATE);
-                    } catch (IntentSender.SendIntentException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-    }
+//    };
+//
+//    @Override
+//    protected void onStop() {
+//     //   if (mappUpdateManager != null) {
+//      //      mappUpdateManager.unregisterListener(installStateUpdatedListener);
+//     //   }
+//        super.onStop();
+//    }
+//
+//    private void showCompletedUpdate() {
+//        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "New app update is ready!", Snackbar.LENGTH_INDEFINITE);
+//        snackbar.setAction("Install", new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                mappUpdateManager.completeUpdate();
+//            }
+//        });
+//        snackbar.show();
+//    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        if (requestCode == RC_APP_UPDATE && resultCode != RESULT_OK) {
+//            Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show();
+//        }
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+////        if (requestCode == REQUEST_CODE) {
+////            Toast.makeText(this, "Start Download", Toast.LENGTH_SHORT).show();
+////            if (resultCode != RESULT_OK) {
+////                Log.d("mmm", "Update flow failed" + resultCode);
+////            }
+////        }
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        mappUpdateManager.getAppUpdateInfo().addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
+//            @Override
+//            public void onSuccess(AppUpdateInfo result) {
+//                if (result.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
+//                    try {
+//                        mappUpdateManager.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, MainActivity.this, RC_APP_UPDATE);
+//                    } catch (IntentSender.SendIntentException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        });
+//    }
 
     //    @Override
 //    public void onInAppUpdateError(int code, Throwable error) {
@@ -438,6 +443,90 @@ public class MainActivity extends AppCompatActivity {
 //            snackbar.show();
 //        }
 //    }
+
+    InstallStateUpdatedListener installStateUpdatedListener = new
+            InstallStateUpdatedListener() {
+                @Override
+                public void onStateUpdate(InstallState state) {
+                    if (state.installStatus() == InstallStatus.DOWNLOADED){
+                        popupSnackbarForCompleteUpdate();
+                    } else if (state.installStatus() == InstallStatus.INSTALLED){
+                        if (mAppUpdateManager != null){
+                            mAppUpdateManager.unregisterListener(installStateUpdatedListener);
+                        }
+
+                    } else {
+                        Log.i(TAG, "InstallStateUpdatedListener: state: " + state.installStatus());
+                    }
+                }
+            };
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAppUpdateManager = AppUpdateManagerFactory.create(this);
+
+        mAppUpdateManager.registerListener(installStateUpdatedListener);
+
+        mAppUpdateManager.getAppUpdateInfo().addOnSuccessListener(appUpdateInfo -> {
+
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                    && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+
+                try {
+                    mAppUpdateManager.startUpdateFlowForResult(
+                            appUpdateInfo, AppUpdateType.IMMEDIATE, MainActivity.this, RC_APP_UPDATE);
+
+                } catch (IntentSender.SendIntentException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Log.e(TAG, "checkForAppUpdateAvailability: something else");
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RC_APP_UPDATE) {
+            if (resultCode != RESULT_OK) {
+                Log.e(TAG, "onActivityResult: app download failed");
+            }
+        }
+    }
+
+
+    private void popupSnackbarForCompleteUpdate() {
+
+        Snackbar snackbar =
+                Snackbar.make(
+                        findViewById(R.id.mainConstraintLayout),
+                        "New app is ready!",
+                        Snackbar.LENGTH_INDEFINITE);
+
+
+
+        snackbar.setAction("Install", view -> {
+            if (mAppUpdateManager != null){
+                mAppUpdateManager.completeUpdate();
+            }
+        });
+
+
+        snackbar.setActionTextColor(getResources().getColor(R.color.colorAccent));
+        snackbar.show();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mAppUpdateManager != null) {
+            mAppUpdateManager.unregisterListener(installStateUpdatedListener);
+        }
+    }
+
     public void vancouverWeather(String text, ImageView image) {
         if (text.equals("https://weather.gc.ca/weathericons/12.gif")) {   // LIGHT RAIN
             image.setImageResource(R.drawable.chance_of_showers);
@@ -481,6 +570,10 @@ public class MainActivity extends AppCompatActivity {
         }
         if (text.equals("https://weather.gc.ca/weathericons/28.gif")) {  // LIGHT DRIZZLE
             image.setImageResource(R.drawable.light_drizzle);
+            return;
+        }
+        if (text.equals("https://weather.gc.ca/weathericons/06.gif")) {  // LIGHT RAINSHOWER
+            image.setImageResource(R.drawable.chance_of_showers_day);
             return;
         }
         if (hour >= 6 && hour < 19) {
