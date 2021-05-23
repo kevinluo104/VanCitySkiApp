@@ -59,60 +59,29 @@ public class MainActivity extends AppCompatActivity {
     private int timeInMillis = 6000;
     private int REQUEST_CODE = 11;
     private String TAG = "unsuccessful";
-   // private AppUpdateManager mappUpdateManager;
-  //  private static final int RC_APP_UPDATE = 100;
+
 
     private AppUpdateManager mAppUpdateManager;
-    private static final int RC_APP_UPDATE = 11;
+
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        mappUpdateManager = AppUpdateManagerFactory.create(this);
-//        mappUpdateManager.getAppUpdateInfo().addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
-//            @Override
-//            public void onSuccess(AppUpdateInfo result) {
-//                if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && result.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
-//                    try {
-//                        mappUpdateManager.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, MainActivity.this, RC_APP_UPDATE);
-//                    } catch (IntentSender.SendIntentException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        });
-      //  mappUpdateManager.registerListener(installStateUpdatedListener);
-
-
-
-
-
-//        inAppUpdateManager = InAppUpdateManager.Builder(this, 101)
-//                .resumeUpdates(true)
-//                .mode(Constants.UpdateMode.IMMEDIATE)
-//                .snackBarMessage("An update has just been downloaded")
-//                .snackBarAction("RESTART")
-//                .handler(this);
-//
-//        inAppUpdateManager.checkForAppUpdate();
-
-
-        /*final AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(MainActivity.this);
+        AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(MainActivity.this);
         Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
-        appUpdateInfoTask.addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
-            @Override
-            public void onSuccess(AppUpdateInfo result) {
-                if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && result.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
-                    try {
-                        appUpdateManager.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, MainActivity.this, REQUEST_CODE);
-                    } catch (IntentSender.SendIntentException e) {
-                        e.printStackTrace();
-                    }
+        appUpdateInfoTask.addOnSuccessListener(result -> {
+            if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && result.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+                try {
+                    appUpdateManager.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, MainActivity.this, REQUEST_CODE);
+                } catch (IntentSender.SendIntentException e) {
+                    e.printStackTrace();
                 }
             }
-        });*/
+        });
+
+
 
         final long startTime = System.currentTimeMillis();
         final TextView textView233 = findViewById(R.id.textView233);
@@ -364,167 +333,30 @@ public class MainActivity extends AppCompatActivity {
         }.start();
     }
 
-//    private InstallStateUpdatedListener installStateUpdatedListener = new InstallStateUpdatedListener() {
-//        @Override
-//        public void onStateUpdate(InstallState state) {
-//            if (state.installStatus() == InstallStatus.DOWNLOADED) {
-//                showCompletedUpdate();
-//            }
-//        }
-//    };
-//
-//    @Override
-//    protected void onStop() {
-//     //   if (mappUpdateManager != null) {
-//      //      mappUpdateManager.unregisterListener(installStateUpdatedListener);
-//     //   }
-//        super.onStop();
-//    }
-//
-//    private void showCompletedUpdate() {
-//        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "New app update is ready!", Snackbar.LENGTH_INDEFINITE);
-//        snackbar.setAction("Install", new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                mappUpdateManager.completeUpdate();
-//            }
-//        });
-//        snackbar.show();
-//    }
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        if (requestCode == RC_APP_UPDATE && resultCode != RESULT_OK) {
-//            Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show();
-//        }
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-////        if (requestCode == REQUEST_CODE) {
-////            Toast.makeText(this, "Start Download", Toast.LENGTH_SHORT).show();
-////            if (resultCode != RESULT_OK) {
-////                Log.d("mmm", "Update flow failed" + resultCode);
-////            }
-////        }
-//    }
-//
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        mappUpdateManager.getAppUpdateInfo().addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
-//            @Override
-//            public void onSuccess(AppUpdateInfo result) {
-//                if (result.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
-//                    try {
-//                        mappUpdateManager.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, MainActivity.this, RC_APP_UPDATE);
-//                    } catch (IntentSender.SendIntentException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        });
-//    }
 
-    //    @Override
-//    public void onInAppUpdateError(int code, Throwable error) {
-//
-//    }
-//
-//    @Override
-//    public void onInAppUpdateStatus(InAppUpdateStatus status) {
-//        if (status.isDownloaded()) {
-//            View rootView = getWindow().getDecorView().findViewById(android.R.id.content);
-//
-//            Snackbar snackbar = Snackbar.make(rootView, "An update has just been downloaded.", Snackbar.LENGTH_INDEFINITE);
-//            snackbar.setAction("Restart", new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    inAppUpdateManager.completeUpdate();
-//                }
-//            });
-//            snackbar.show();
-//        }
-//    }
 
-    InstallStateUpdatedListener installStateUpdatedListener = new
-            InstallStateUpdatedListener() {
-                @Override
-                public void onStateUpdate(InstallState state) {
-                    if (state.installStatus() == InstallStatus.DOWNLOADED){
-                        popupSnackbarForCompleteUpdate();
-                    } else if (state.installStatus() == InstallStatus.INSTALLED){
-                        if (mAppUpdateManager != null){
-                            mAppUpdateManager.unregisterListener(installStateUpdatedListener);
-                        }
 
-                    } else {
-                        Log.i(TAG, "InstallStateUpdatedListener: state: " + state.installStatus());
-                    }
-                }
-            };
 
     @Override
     protected void onStart() {
         super.onStart();
-        mAppUpdateManager = AppUpdateManagerFactory.create(this);
-
-        mAppUpdateManager.registerListener(installStateUpdatedListener);
-
-        mAppUpdateManager.getAppUpdateInfo().addOnSuccessListener(appUpdateInfo -> {
-
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-                    && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
-
-                try {
-                    mAppUpdateManager.startUpdateFlowForResult(
-                            appUpdateInfo, AppUpdateType.IMMEDIATE, MainActivity.this, RC_APP_UPDATE);
-
-                } catch (IntentSender.SendIntentException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                Log.e(TAG, "checkForAppUpdateAvailability: something else");
-            }
-        });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RC_APP_UPDATE) {
+        if (requestCode == REQUEST_CODE) {
+            Toast.makeText(this, "Start Download", Toast.LENGTH_SHORT).show();
             if (resultCode != RESULT_OK) {
-                Log.e(TAG, "onActivityResult: app download failed");
+                Log.d("Fail", "Update flow failed" + resultCode);
             }
         }
     }
 
-
-    private void popupSnackbarForCompleteUpdate() {
-
-        Snackbar snackbar =
-                Snackbar.make(
-                        findViewById(R.id.mainConstraintLayout),
-                        "New app is ready!",
-                        Snackbar.LENGTH_INDEFINITE);
-
-
-
-        snackbar.setAction("Install", view -> {
-            if (mAppUpdateManager != null){
-                mAppUpdateManager.completeUpdate();
-            }
-        });
-
-
-        snackbar.setActionTextColor(getResources().getColor(R.color.colorAccent));
-        snackbar.show();
-    }
 
     @Override
     protected void onStop() {
         super.onStop();
-        if (mAppUpdateManager != null) {
-            mAppUpdateManager.unregisterListener(installStateUpdatedListener);
-        }
     }
 
     public void vancouverWeather(String text, ImageView image) {

@@ -103,7 +103,7 @@ public class GrouseSingleton extends AppCompatActivity {
                             public void run()
                             {
                                 temperature = grouseWeather.select("h3.metric").first().text();
-                                weather = grouseWeather.select("p").get(6).text();
+                                weather = grouseWeather.select("p").get(5).text();
                                 String[] arr = weather.split(" ");
                                 StringBuffer sb = new StringBuffer();
 
@@ -167,7 +167,7 @@ public class GrouseSingleton extends AppCompatActivity {
 //                                    snowshoeGrind = setOpenClosedSnowshoe(3);
 //                                    thunderbirdRidge = setOpenClosedSnowshoe(4);
 //                                    lightWalk = setOpenClosedSnowshoe(1);
-                                    picture = grouseWeather.select("p").get(6).text();
+                                    picture = grouseWeather.select("p").get(5).text();
                                 }
                                 counter++;
                                 listener.onResultFetched();
