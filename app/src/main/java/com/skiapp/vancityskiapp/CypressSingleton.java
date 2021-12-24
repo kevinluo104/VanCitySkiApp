@@ -166,26 +166,25 @@ public class CypressSingleton extends AppCompatActivity {
 
                             try {
                                 temperature = cypressWeather.select("span.js-measurement").first().text();
-                              //  fortyEightHrSnow = cypressWeather.select("span.js-measurement").get(8).text() + "cm";
-                                fortyEightHrSnow = "N/A";
                                 twentyFourHrSnow = cypressWeather.select("span.js-measurement").get(8).text() + "cm";
-                                sevenDaySnow = cypressWeather.select("span.js-measurement").get(9).text() + "cm";
-                                seasonSnow = cypressWeather.select("span.js-measurement").get(10).text() + "cm";
+                                fortyEightHrSnow = cypressWeather.select("span.js-measurement").get(9).text() + "cm";
+                                sevenDaySnow = cypressWeather.select("span.js-measurement").get(10).text() + "cm";
+                                seasonSnow = cypressWeather.select("span.js-measurement").get(11).text() + "cm";
 
                              //   Element firstCondition = cypressWeather.select("span.text.text_24.text_30Md.mix-text_bold.mix-text_spaceBreak.mix-text_color1.mix-text_alignCenter.mix-text_alignLeftMd.mix-text_lessStrict").first();
                             //    Element secondCondition = cypressWeather.select("span.text.text_24.text_30Md.mix-text_bold.mix-text_spaceBreak.mix-text_color1.mix-text_alignCenter.mix-text_alignLeftMd.mix-text_lessStrict").get(1);
                             //    snowConditions = firstCondition.ownText() + " " + secondCondition.ownText();
-                                snowConditions = "N/A";
+                             //   snowConditions = "N/A";
 
                                 if (counter == 0) {
                                     eagleExpress = setChairliftStatus(eagleExpress, 0);
                                     lionsExpress = setChairliftStatus(lionsExpress, 1);
-                                    ravenRidge = setChairliftStatus(ravenRidge, 3);
                                     easyRider = setChairliftStatus(easyRider, 2);
-                                    skyChair = setChairliftStatus(skyChair, 4);
-                                    midwayChair = setChairliftStatus(midwayChair, 5);
+                                    skyChair = setChairliftStatus(skyChair, 3);
+                                    midwayChair = setChairliftStatus(midwayChair, 4);
+                                    ravenRidge = setChairliftStatus(ravenRidge, 5);
 
-                                   panorama = setRunStatusEagleExpress(panorama, 0);
+                                    panorama = setRunStatusEagleExpress(panorama, 0);
                                     windjammer = setRunStatusEagleExpress(windjammer, 1);
                                     upperFork = setRunStatusEagleExpress(upperFork, 2);
                                     lowerFork = setRunStatusEagleExpress(lowerFork, 3);

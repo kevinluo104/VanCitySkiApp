@@ -160,8 +160,8 @@ public class Grouse extends AppCompatActivity {
                                     setStatus(iv106, grouseSingleton.cutPark);
                                     ImageView iv107 = findViewById(R.id.imageView107);
                                     setStatus(iv107, grouseSingleton.lightWalk);
-                                    ImageView iv108 = findViewById(R.id.imageView108);
-                                    setStatus(iv108, grouseSingleton.grousePark);
+//                                    ImageView iv108 = findViewById(R.id.imageView108);
+//                                    setStatus(iv108, grouseSingleton.grousePark);
 
                                     ImageView iv122 = findViewById(R.id.imageView122);
                                     setStatus(iv122, grouseSingleton.blueGrouseLoop);
@@ -177,7 +177,7 @@ public class Grouse extends AppCompatActivity {
                                     TextView tv50 = findViewById(R.id.textView50);
                                     tv50.setText("Lifts Open: " + grouseSingleton.liftsOpen + "/5");
                                     TextView textView114 = findViewById(R.id.textView114);
-                                    textView114.setText("Terrain Parks Open: " + grouseSingleton.terrainParksOpen + "/5");
+                                    textView114.setText("Terrain Parks Open: " + grouseSingleton.terrainParksOpen + "/4");
                                     TextView textView227 = findViewById(R.id.textView227);
                                     textView227.setText("Snowshoe Trails Open: " + grouseSingleton.snowshoeTrailsOpen + "/5");
 

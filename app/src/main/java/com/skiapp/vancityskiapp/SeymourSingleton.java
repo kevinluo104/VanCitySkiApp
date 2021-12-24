@@ -120,36 +120,38 @@ public class SeymourSingleton extends AppCompatActivity {
                                 System.out.println("seymou temp:" + temperature);
                             }
 
-                            conditions = seymourWeather.select("td").get(1).ownText();
+                            conditions = seymourWeather.select("td").get(2).ownText();
+                            System.out.println("ARR: " + conditions);
                             String[] arr = conditions.split(" ");
                             StringBuffer sb = new StringBuffer();
+
 
                             for (int i = 0; i < arr.length; i++) {
                                 sb.append(Character.toUpperCase(arr[i].charAt(0)))
                                         .append(arr[i].substring(1)).append(" ");
                             }
                             conditions = sb.toString().trim();
-                            visibility = seymourWeather.select("td").get(3).ownText();
+                            visibility = seymourWeather.select("td").get(4).ownText();
 
-//                            snowConditions = seymourWeather.select("td").get(6).ownText();
-//                            System.out.println("seymour snowcodnitons: " + snowConditions);
-//                            String[] arr2 = snowConditions.split(" ");
-//                            StringBuffer sb2 = new StringBuffer();
-//
-//                            for (int i = 0; i < arr2.length; i++) {
-//                                sb2.append(Character.toUpperCase(arr2[i].charAt(0)))
-//                                        .append(arr2[i].substring(1)).append(" ");
-//                            }
-//                            snowConditions = "Conditions: " + sb2.toString().trim();
-                            snowConditions = "Conditions: N/A";
+                            snowConditions = seymourWeather.select("td").get(7).ownText();
+                            System.out.println("seymour snowcodnitons: " + snowConditions);
+                            String[] arr2 = snowConditions.split(" ");
+                            StringBuffer sb2 = new StringBuffer();
 
-                            runsOpen = Integer.parseInt(seymourWeather.select("td").get(4).ownText());
+                            for (int i = 0; i < arr2.length; i++) {
+                                sb2.append(Character.toUpperCase(arr2[i].charAt(0)))
+                                        .append(arr2[i].substring(1)).append(" ");
+                            }
+                            snowConditions = "Conditions: " + sb2.toString().trim();
+                            // snowConditions = "Conditions: N/A";
+
+                            runsOpen = Integer.parseInt(seymourWeather.select("td").get(5).ownText());
                             if (hour > 21 || hour < 8)
                                 runsOpen = 0;
-                            fortyEightHrSnow = seymourWeather.select("td").get(8).ownText();
-                            twentyFourHrSnow = seymourWeather.select("td").get(7).ownText();
-                            sevenDaySnow = seymourWeather.select("td").get(9).ownText();
-                            seasonSnow = seymourWeather.select("td").get(13).ownText();
+                            fortyEightHrSnow = seymourWeather.select("td").get(9).ownText();
+                            twentyFourHrSnow = seymourWeather.select("td").get(8).ownText();
+                            sevenDaySnow = seymourWeather.select("td").get(10).ownText();
+                            seasonSnow = seymourWeather.select("td").get(14).ownText();
                             discoverySnowshoeTrails = setSnowshoeTrailStatus();
                             snowshoeTrailsStatus = setSnowshoeTrailStatus();
                            /* if (seymourWeather.select("td.rtecenter").get(34).ownText().equals("Open")) {
@@ -212,54 +214,60 @@ public class SeymourSingleton extends AppCompatActivity {
         // System.out.println("this is ss " + ss);
         String lift = "closed";
         switch (first) {
-            case "8:30 AM - 9:30 PM":
-                if (hour >= 8 && hour < 22) {
-                    lift = "open";
-                    liftsOpen++;
-                }
-                return lift;
-            case "9:30 AM - 4:00 PM":
-                if (hour >= 9 && hour < 16) {
-                    lift = "open";
-                    liftsOpen++;
-                }
-                return lift;
             case "8:30 AM - 9:00 PM":
                 if (hour >= 8 && hour < 21) {
                     lift = "open";
                     liftsOpen++;
                 }
-                return lift;
-            case "10:30 AM - 4:00 PM":
-                if (hour >= 10 && hour < 16) {
+                break;
+            case "8:30 AM - 9:30 PM":
+                if (hour >= 8 && hour < 22) {
                     lift = "open";
                     liftsOpen++;
                 }
-                return lift;
-            case "9:30 AM - 9:30 PM":
-                if (hour >= 9 && hour < 22) {
+                break;
+            case "9:30 AM - 4:00 PM":
+                if (hour >= 9 && hour < 16) {
                     lift = "open";
                     liftsOpen++;
                 }
-                return lift;
+                break;
             case "9:30 AM - 9:00 PM":
                 if (hour >= 9 && hour < 21) {
                     lift = "open";
                     liftsOpen++;
                 }
-                return lift;
+                break;
+            case "9:30 AM - 9:30 PM":
+                if (hour >= 9 && hour < 22) {
+                    lift = "open";
+                    liftsOpen++;
+                }
+                break;
+            case "10:00 AM - 9:30 PM":
+                if (hour >= 10 && hour < 22) {
+                    lift = "open";
+                    liftsOpen++;
+                }
+                break;
+            case "10:30 AM - 4:00 PM":
+                if (hour >= 10 && hour < 16) {
+                    lift = "open";
+                    liftsOpen++;
+                }
+                break;
             case "11:30 AM - 9:30 PM":
                 if (hour >= 11 && hour < 22) {
                     lift = "open";
                     liftsOpen++;
                 }
-                return lift;
+                break;
             case "12:30 PM - 4:00 PM":
                 if (hour >= 12 && hour < 16) {
                     lift = "open";
                     liftsOpen++;
                 }
-                return lift;
+                break;
         }
         return lift;
     }

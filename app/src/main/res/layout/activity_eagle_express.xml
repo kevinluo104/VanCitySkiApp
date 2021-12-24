@@ -395,16 +395,6 @@
                 app:srcCompat="@drawable/nightrun" />
 
             <ImageView
-                android:id="@+id/imageView138"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="31dp"
-                app:layout_constraintStart_toEndOf="@+id/imageView137"
-                app:layout_constraintTop_toBottomOf="@+id/view8"
-                app:srcCompat="@drawable/groomed_run" />
-
-            <ImageView
                 android:id="@+id/imageView139"
                 android:layout_width="23dp"
                 android:layout_height="27dp"
@@ -602,16 +592,6 @@
                 android:layout_marginTop="239dp"
                 app:layout_constraintStart_toEndOf="@+id/imageView153"
                 app:layout_constraintTop_toBottomOf="@+id/view8"
-                app:srcCompat="@drawable/groomed_run" />
-
-            <ImageView
-                android:id="@+id/imageView121"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="36dp"
-                app:layout_constraintStart_toEndOf="@+id/imageView154"
-                app:layout_constraintTop_toBottomOf="@+id/imageView159"
                 app:srcCompat="@drawable/groomed_run" />
 
             <ImageView

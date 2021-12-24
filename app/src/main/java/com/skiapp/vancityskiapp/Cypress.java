@@ -104,8 +104,8 @@ public class Cypress extends AppCompatActivity {
                                     tv122.setText(cypressSingleton.sevenDaySnow);
                                     TextView tv124 = findViewById(R.id.textView124);
                                     tv124.setText(cypressSingleton.seasonSnow);
-                                    TextView tv273 = findViewById(R.id.textView273);
-                                    tv273.setText("Conditions: " + cypressSingleton.snowConditions);
+                                   // TextView tv273 = findViewById(R.id.textView273);
+                                   // tv273.setText("Conditions: " + cypressSingleton.snowConditions);
                                     ImageView imageView128 = findViewById(R.id.imageView128);
                                     setChairliftStatus(imageView128, cypressSingleton.eagleExpress);
                                     ImageView imageView129 = findViewById(R.id.imageView129);
