@@ -162,29 +162,29 @@ public class SeymourSingleton extends AppCompatActivity {
                                 snowshoeTrailsStatus = "Closed";
                             }*/
                             if (counter == 0) {
-                                brocktonChair = setChairliftStatus(22);
+                                brocktonChair = setChairliftStatus(16);
                                 if (brocktonChair.equals("closed"))
                                     brocktonChairRunsOpen = "0";
-                                lodgeChair = setChairliftStatus(20);
+                                lodgeChair = setChairliftStatus(14);
                                 if (lodgeChair.equals("closed"))
                                     lodgeChairRunsOpen = "0";
-                                mysteryPeakExpress = setChairliftStatus(21);
+                                mysteryPeakExpress = setChairliftStatus(15);
                                 if (mysteryPeakExpress.equals("closed"))
                                     mysteryPeakExpressRunsOpen = "0";
-                                goldieMagicCarpet = setChairliftStatus(23);
+                                goldieMagicCarpet = setChairliftStatus(17);
                                 if (goldieMagicCarpet.equals("closed"))
                                     goldieMagicCarpetRunsOpen = "0";
 
-                                enquistSnowTubePark = setTubeParkStatus(29);
-                                tobagganArea = setTubeParkStatus(30);
+                                enquistSnowTubePark = setTubeParkStatus(23);
+                                tobagganArea = setTubeParkStatus(24);
 
-                                northlands = setTerrainParkMysteryPeakExpressStatus(northlands, 24);
-                                nuthouse = setTerrainParkMysteryPeakExpressStatus(nuthouse, 27);
+                                northlands = setTerrainParkMysteryPeakExpressStatus(northlands, 18);
+                                nuthouse = setTerrainParkMysteryPeakExpressStatus(nuthouse, 21);
                                 System.out.println("nuthouse: " + nuthouse);
-                                theRockstarEnergyPit = setTerrainParkMysteryPeakExpressStatus(theRockstarEnergyPit, 25);
+                                theRockstarEnergyPit = setTerrainParkMysteryPeakExpressStatus(theRockstarEnergyPit, 19);
 
-                                mushroom = setTerrainParkLodgeChairStatus(28);
-                                rookies = setTerrainParkLodgeChairStatus(26);
+                                mushroom = setTerrainParkLodgeChairStatus(22);
+                                rookies = setTerrainParkLodgeChairStatus(20);
                             }
                             setBrocktonChairRuns();
                             setLodgeChairRuns();
@@ -316,11 +316,17 @@ public class SeymourSingleton extends AppCompatActivity {
     }
 
     public String setSnowshoeTrailStatus() {
-        String first = seymourWeather.select("td.rtecenter").get(31).ownText();
+        String first = seymourWeather.select("td.rtecenter").get(14).ownText();
         String snowShoe = "closed";
         switch(first) {
             case "9:30 AM - 4:00 PM":
                 if (hour > 9 && hour < 16) {
+                    snowShoe = "open";
+                    snowshoeTrailsStatus = "open";
+                    return snowShoe;
+                }
+            case "8:30 AM - 4:00 PM":
+                if (hour > 8 && hour < 16) {
                     snowShoe = "open";
                     snowshoeTrailsStatus = "open";
                     return snowShoe;
