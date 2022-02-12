@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         }, timeInMillis);
 
         final TextView textView234 = findViewById(R.id.textView234);
-        textView234.setText("Happy Holidays! Please check for updates in the app store when available!");
+        textView234.setText("Happy New Year! Please check for updates in the app store when available!");
         textView234.setVisibility(View.VISIBLE);
         new Handler().postDelayed(new Runnable() {
             @Override

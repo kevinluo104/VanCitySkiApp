@@ -120,7 +120,7 @@ public class SeymourSingleton extends AppCompatActivity {
                                 System.out.println("seymou temp:" + temperature);
                             }
 
-                            conditions = seymourWeather.select("td").get(2).ownText();
+                            conditions = seymourWeather.select("td").get(1).ownText();
                             System.out.println("ARR: " + conditions);
                             String[] arr = conditions.split(" ");
                             StringBuffer sb = new StringBuffer();
@@ -131,11 +131,16 @@ public class SeymourSingleton extends AppCompatActivity {
                                         .append(arr[i].substring(1)).append(" ");
                             }
                             conditions = sb.toString().trim();
-                            visibility = seymourWeather.select("td").get(4).ownText();
+                            visibility = seymourWeather.select("td").get(3).ownText();
+                            System.out.println("VISISIBIR" + visibility);
 
-                            snowConditions = seymourWeather.select("td").get(7).ownText();
+                            snowConditions = seymourWeather.select("td").get(6).ownText();
                             System.out.println("seymour snowcodnitons: " + snowConditions);
                             String[] arr2 = snowConditions.split(" ");
+                            for (String i: arr2) {
+                                System.out.println("ARR2: " + i);
+                            }
+
                             StringBuffer sb2 = new StringBuffer();
 
                             for (int i = 0; i < arr2.length; i++) {
@@ -145,13 +150,14 @@ public class SeymourSingleton extends AppCompatActivity {
                             snowConditions = "Conditions: " + sb2.toString().trim();
                             // snowConditions = "Conditions: N/A";
 
-                            runsOpen = Integer.parseInt(seymourWeather.select("td").get(5).ownText());
+                            runsOpen = Integer.parseInt(seymourWeather.select("td").get(4).ownText());
+                            System.out.println("RUNS OPEN" + runsOpen);
                             if (hour > 21 || hour < 8)
                                 runsOpen = 0;
-                            fortyEightHrSnow = seymourWeather.select("td").get(9).ownText();
-                            twentyFourHrSnow = seymourWeather.select("td").get(8).ownText();
-                            sevenDaySnow = seymourWeather.select("td").get(10).ownText();
-                            seasonSnow = seymourWeather.select("td").get(14).ownText();
+                            fortyEightHrSnow = seymourWeather.select("td").get(8).ownText();
+                            twentyFourHrSnow = seymourWeather.select("td").get(7).ownText();
+                            sevenDaySnow = seymourWeather.select("td").get(9).ownText();
+                            seasonSnow = seymourWeather.select("td").get(13).ownText();
                             discoverySnowshoeTrails = setSnowshoeTrailStatus();
                             snowshoeTrailsStatus = setSnowshoeTrailStatus();
                            /* if (seymourWeather.select("td.rtecenter").get(34).ownText().equals("Open")) {
