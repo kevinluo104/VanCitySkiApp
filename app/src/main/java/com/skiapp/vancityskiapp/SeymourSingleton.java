@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import java.io.IOException;
+import java.time.DayOfWeek;
 import java.util.Calendar;
 
 public class SeymourSingleton extends AppCompatActivity {
@@ -120,7 +121,7 @@ public class SeymourSingleton extends AppCompatActivity {
                                 System.out.println("seymou temp:" + temperature);
                             }
 
-                            conditions = seymourWeather.select("td").get(1).ownText();
+                            conditions = seymourWeather.select("td").get(2).ownText();
                             System.out.println("ARR: " + conditions);
                             String[] arr = conditions.split(" ");
                             StringBuffer sb = new StringBuffer();
@@ -131,10 +132,10 @@ public class SeymourSingleton extends AppCompatActivity {
                                         .append(arr[i].substring(1)).append(" ");
                             }
                             conditions = sb.toString().trim();
-                            visibility = seymourWeather.select("td").get(3).ownText();
+                            visibility = seymourWeather.select("td").get(4).ownText();
                             System.out.println("VISISIBIR" + visibility);
 
-                            snowConditions = seymourWeather.select("td").get(6).ownText();
+                            snowConditions = seymourWeather.select("td").get(7).ownText();
                             System.out.println("seymour snowcodnitons: " + snowConditions);
                             String[] arr2 = snowConditions.split(" ");
                             for (String i: arr2) {
@@ -150,7 +151,7 @@ public class SeymourSingleton extends AppCompatActivity {
                             snowConditions = "Conditions: " + sb2.toString().trim();
                             // snowConditions = "Conditions: N/A";
 
-                            runsOpen = Integer.parseInt(seymourWeather.select("td").get(4).ownText());
+                            runsOpen = Integer.parseInt(seymourWeather.select("td").get(5).ownText());
                             System.out.println("RUNS OPEN" + runsOpen);
                             if (hour > 21 || hour < 8)
                                 runsOpen = 0;
@@ -171,6 +172,12 @@ public class SeymourSingleton extends AppCompatActivity {
                                 brocktonChair = setChairliftStatus(16);
                                 if (brocktonChair.equals("closed"))
                                     brocktonChairRunsOpen = "0";
+                                int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+                                if (day == Calendar.MONDAY || day == Calendar.TUESDAY) {
+                                    brocktonChair = "closed";
+                                    brocktonChairRunsOpen = "0";
+                                }
+
                                 lodgeChair = setChairliftStatus(14);
                                 if (lodgeChair.equals("closed"))
                                     lodgeChairRunsOpen = "0";
