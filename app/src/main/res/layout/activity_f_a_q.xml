@@ -117,7 +117,7 @@
                 android:id="@+id/textView250"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="A: It was last updated on Mar 12, 2022."
+                android:text="A: It was last updated on Apr 11, 2022."
                 android:textSize="16sp" />
 
             <Button

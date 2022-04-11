@@ -329,7 +329,7 @@ public class SeymourSingleton extends AppCompatActivity {
     }
 
     public String setSnowshoeTrailStatus() {
-        String first = seymourWeather.select("td.rtecenter").get(25).ownText();
+        String first = seymourWeather.select("td.rtecenter").get(21).ownText();
         String snowShoe = "closed";
         switch(first) {
             case "9:30 AM - 4:00 PM":
