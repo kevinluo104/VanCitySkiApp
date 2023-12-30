@@ -25,8 +25,8 @@ public class Grouse extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grouse);
 
-        Button button22 = findViewById(R.id.button22);
-        button22.setOnClickListener(new View.OnClickListener() {
+        Button refresh = findViewById(R.id.button22);
+        refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 refresh();
@@ -43,146 +43,145 @@ public class Grouse extends AppCompatActivity {
 
                                 @Override
                                 public void onResultFetched() {
-                                    TextView tv45 = findViewById(R.id.textView45);
-                                    tv45.setText(grouseSingleton.temperature);
-                                    TextView tv46 = findViewById(R.id.textView46);
-                                    tv46.setText(grouseSingleton.weather);
-                                    TextView tv47 = findViewById(R.id.textView47);
+                                    TextView temperature = findViewById(R.id.textView45);
+                                    temperature.setText(grouseSingleton.temperature);
+                                    TextView conditions = findViewById(R.id.textView46);
+                                    conditions.setText(grouseSingleton.weather);
+                                    TextView visibility = findViewById(R.id.textView47);
                                     switch (grouseSingleton.visibility) {
                                         case "Limited Visibility":
-                                            tv47.setText("Visibility: Limited");
+                                            visibility.setText("Visibility: Limited");
                                             break;
                                         case "Variable Visibility":
-                                            tv47.setText("Visibility: Variable");
+                                            visibility.setText("Visibility: Variable");
                                             break;
                                         case "Unlimited Visibility":
-                                            tv47.setText("Visibility: Unlimited");
+                                            visibility.setText("Visibility: Unlimited");
                                             break;
                                     }
-                                    TextView tv52 = findViewById(R.id.textView52);
-                                    tv52.setText(grouseSingleton.twelveHrSnow);
-                                    TextView tv54 = findViewById(R.id.textView54);
-                                    tv54.setText(grouseSingleton.overnightSnow);
-                                    TextView tv56 = findViewById(R.id.textView56);
-                                    tv56.setText(grouseSingleton.twentyFourHrSnow);
-                                    TextView tv58 = findViewById(R.id.textView58);
-                                    tv58.setText(grouseSingleton.fortyEightHrSnow);
-                                    ImageView iv16 = findViewById(R.id.imageView16);
+                                    TextView twelveHrSnow = findViewById(R.id.textView52);
+                                    twelveHrSnow.setText(grouseSingleton.twelveHrSnow);
+                                    TextView overnightSnow = findViewById(R.id.textView54);
+                                    overnightSnow.setText(grouseSingleton.overnightSnow);
+                                    TextView twentyFourHrSnow = findViewById(R.id.textView56);
+                                    twentyFourHrSnow.setText(grouseSingleton.twentyFourHrSnow);
+                                    TextView fortyEightHrSnow = findViewById(R.id.textView58);
+                                    fortyEightHrSnow.setText(grouseSingleton.fortyEightHrSnow);
+                                    ImageView greenwayChair = findViewById(R.id.imageView16);
 
-                                    setStatus(iv16, grouseSingleton.greenwayChair);
-                                    ImageView iv17 = findViewById(R.id.imageView17);
-                                    setStatus(iv17, grouseSingleton.olympicExpressChair);
-                                    ImageView iv18 = findViewById(R.id.imageView18);
-                                    setStatus(iv18, grouseSingleton.screamingEagleChair);
-                                    ImageView iv19 = findViewById(R.id.imageView19);
-                                    setStatus(iv19, grouseSingleton.peakChair);
-                                    ImageView iv20 = findViewById(R.id.imageView20);
-                                    setStatus(iv20, grouseSingleton.magicCarpet);
+                                    setStatus(greenwayChair, grouseSingleton.greenwayChair);
+                                    ImageView olympicExpressChair = findViewById(R.id.imageView17);
+                                    setStatus(olympicExpressChair, grouseSingleton.olympicExpressChair);
+                                    ImageView screamingEagleChair = findViewById(R.id.imageView18);
+                                    setStatus(screamingEagleChair, grouseSingleton.screamingEagleChair);
+                                    ImageView peakChair = findViewById(R.id.imageView19);
+                                    setStatus(peakChair, grouseSingleton.peakChair);
+                                    ImageView magicCarpet = findViewById(R.id.imageView20);
+                                    setStatus(magicCarpet, grouseSingleton.magicCarpet);
 
-                                    ImageView iv21 = findViewById(R.id.imageView21);
-                                    setStatus(iv21, grouseSingleton.chaletRoad);
+                                    ImageView chaletRoad = findViewById(R.id.imageView21);
+                                    setStatus(chaletRoad, grouseSingleton.chaletRoad);
 
 
-                                    ImageView iv22 = findViewById(R.id.imageView22);
-                                    setStatus(iv22, grouseSingleton.skiWee);
-                                    ImageView iv23 = findViewById(R.id.imageView23);
-                                    setStatus(iv23, grouseSingleton.blueFace);
-                                    ImageView iv24 = findViewById(R.id.imageView24);
-                                    setStatus(iv24, grouseSingleton.coolasCorner);
-                                    ImageView iv25 = findViewById(R.id.imageView25);
-                                    setStatus(iv25, grouseSingleton.dogleg);
-                                    ImageView iv26 = findViewById(R.id.imageView26);
-                                    setStatus(iv26, grouseSingleton.grinderTracks);
-                                    ImageView iv27 = findViewById(R.id.imageView27); // LOWER BUCKHORN
-                                    setStatus(iv27, grouseSingleton.lowerBuckhorn);
-                                    ImageView iv28 = findViewById(R.id.imageView28);
-                                    setStatus(iv28, grouseSingleton.mountainHighway);
-                                    ImageView iv29 = findViewById(R.id.imageView29); // SIDE CUT
-                                    setStatus(iv29, grouseSingleton.sideCut);
-                                    ImageView iv30 = findViewById(R.id.imageView30);
-                                    setStatus(iv30, grouseSingleton.tyeeChute);
-                                    ImageView iv31 = findViewById(R.id.imageView31);
-                                    setStatus(iv31, grouseSingleton.blazes);
-                                    ImageView iv32 = findViewById(R.id.imageView32);  // COFFIN
-                                    setStatus(iv32, grouseSingleton.coffin);
-                                    ImageView iv33 = findViewById(R.id.imageView33);
-                                    setStatus(iv33, grouseSingleton.hades);
-                                    ImageView iv34 = findViewById(R.id.imageView34);
-                                    setStatus(iv34, grouseSingleton.lowerPeak);
-                                    ImageView iv35 = findViewById(R.id.imageView35);
-                                    setStatus(iv35, grouseSingleton.peak);
-                                    ImageView iv36 = findViewById(R.id.imageView36);
-                                    setStatus(iv36, grouseSingleton.devilsAdvocate);
-                                    ImageView iv37 = findViewById(R.id.imageView37);  // DEVIL'S ADVOCATE
-                                    setStatus(iv37, grouseSingleton.purgatory);
-                                    ImageView iv38 = findViewById(R.id.imageView38);  // PARADISE
-                                    setStatus(iv38, grouseSingleton.paradise);
-                                    ImageView iv39 = findViewById(R.id.imageView39);
-                                    setStatus(iv39, grouseSingleton.theCut);
-                                    ImageView iv40 = findViewById(R.id.imageView40);
-                                    setStatus(iv40, grouseSingleton.centennial);
-                                    ImageView iv41 = findViewById(R.id.imageView41);
-                                    setStatus(iv41, grouseSingleton.deliverance);
-                                    ImageView iv42 = findViewById(R.id.imageView42);
-                                    setStatus(iv42, grouseSingleton.expo);
-                                    ImageView iv43 = findViewById(R.id.imageView43);  // HEAVEN'S SAKE
-                                    setStatus(iv43, grouseSingleton.heavensSake);
-                                    ImageView iv44 = findViewById(R.id.imageView44);
-                                    setStatus(iv44, grouseSingleton.lowerSideCut);
-                                    ImageView iv45 = findViewById(R.id.imageView45);
-                                    setStatus(iv45, grouseSingleton.paperTrail);
-                                    ImageView iv46 = findViewById(R.id.imageView46);  // SKYLINE
-                                    setStatus(iv46, grouseSingleton.skyline);
-                                    ImageView iv47 = findViewById(R.id.imageView47);
-                                    setStatus(iv47, grouseSingleton.upperBuckhorn);
-                                    ImageView iv48 = findViewById(R.id.imageView48); // CHIMNEY
-                                    setStatus(iv48, grouseSingleton.chimney);
-                                    ImageView iv49 = findViewById(R.id.imageView49);
-                                    setStatus(iv49, grouseSingleton.expoGlades);
-                                    ImageView iv50 = findViewById(R.id.imageView50);
-                                    setStatus(iv50, grouseSingleton.inferno);
-                                    ImageView iv51 = findViewById(R.id.imageView51);
-                                    setStatus(iv51, grouseSingleton.outerLimits);
-                                    ImageView iv52 = findViewById(R.id.imageView52);
-                                    setStatus(iv52, grouseSingleton.upperBlazes);
-                                    ImageView iv53 = findViewById(R.id.imageView53);
-                                    setStatus(iv53, grouseSingleton.peakGlades);
+                                    ImageView skiWee = findViewById(R.id.imageView22);
+                                    setStatus(skiWee, grouseSingleton.skiWee);
+                                    ImageView blueFace = findViewById(R.id.imageView23);
+                                    setStatus(blueFace, grouseSingleton.blueFace);
+                                    ImageView coolasCorner = findViewById(R.id.imageView24);
+                                    setStatus(coolasCorner, grouseSingleton.coolasCorner);
+                                    ImageView dogleg = findViewById(R.id.imageView25);
+                                    setStatus(dogleg, grouseSingleton.dogleg);
+                                    ImageView grinderTracks = findViewById(R.id.imageView26);
+                                    setStatus(grinderTracks, grouseSingleton.grinderTracks);
+                                    ImageView lowerBuckhorn = findViewById(R.id.imageView27);
+                                    setStatus(lowerBuckhorn, grouseSingleton.lowerBuckhorn);
+                                    ImageView mountainHighway = findViewById(R.id.imageView28);
+                                    setStatus(mountainHighway, grouseSingleton.mountainHighway);
+                                    ImageView sideCut = findViewById(R.id.imageView29);
+                                    setStatus(sideCut, grouseSingleton.sideCut);
+                                    ImageView tyeeChute = findViewById(R.id.imageView30);
+                                    setStatus(tyeeChute, grouseSingleton.tyeeChute);
+                                    ImageView blazes = findViewById(R.id.imageView31);
+                                    setStatus(blazes, grouseSingleton.blazes);
+                                    ImageView coffin = findViewById(R.id.imageView32);
+                                    setStatus(coffin, grouseSingleton.coffin);
+                                    ImageView hades = findViewById(R.id.imageView33);
+                                    setStatus(hades, grouseSingleton.hades);
+                                    ImageView lowerPeak = findViewById(R.id.imageView34);
+                                    setStatus(lowerPeak, grouseSingleton.lowerPeak);
+                                    ImageView peak = findViewById(R.id.imageView35);
+                                    setStatus(peak, grouseSingleton.peak);
+                                    ImageView devilsAdvocate = findViewById(R.id.imageView36);
+                                    setStatus(devilsAdvocate, grouseSingleton.devilsAdvocate);
+                                    ImageView purgatory = findViewById(R.id.imageView37);
+                                    setStatus(purgatory, grouseSingleton.purgatory);
+                                    ImageView paradise = findViewById(R.id.imageView38);
+                                    setStatus(paradise, grouseSingleton.paradise);
+                                    ImageView theCut = findViewById(R.id.imageView39);
+                                    setStatus(theCut, grouseSingleton.theCut);
+                                    ImageView centennial = findViewById(R.id.imageView40);
+                                    setStatus(centennial, grouseSingleton.centennial);
+                                    ImageView deliverance = findViewById(R.id.imageView41);
+                                    setStatus(deliverance, grouseSingleton.deliverance);
+                                    ImageView expo = findViewById(R.id.imageView42);
+                                    setStatus(expo, grouseSingleton.expo);
+                                    ImageView heavensSake = findViewById(R.id.imageView43);
+                                    setStatus(heavensSake, grouseSingleton.heavensSake);
+                                    ImageView lowerSideCut = findViewById(R.id.imageView44);
+                                    setStatus(lowerSideCut, grouseSingleton.lowerSideCut);
+                                    ImageView paperTrail = findViewById(R.id.imageView45);
+                                    setStatus(paperTrail, grouseSingleton.paperTrail);
+                                    ImageView skyline = findViewById(R.id.imageView46);
+                                    setStatus(skyline, grouseSingleton.skyline);
+                                    ImageView upperBuckhorn = findViewById(R.id.imageView47);
+                                    setStatus(upperBuckhorn, grouseSingleton.upperBuckhorn);
+                                    ImageView chimney = findViewById(R.id.imageView48);
+                                    setStatus(chimney, grouseSingleton.chimney);
+                                    ImageView expoGlades = findViewById(R.id.imageView49);
+                                    setStatus(expoGlades, grouseSingleton.expoGlades);
+                                    ImageView inferno = findViewById(R.id.imageView50);
+                                    setStatus(inferno, grouseSingleton.inferno);
+                                    ImageView outerLimits = findViewById(R.id.imageView51);
+                                    setStatus(outerLimits, grouseSingleton.outerLimits);
+                                    ImageView upperBlazes = findViewById(R.id.imageView52);
+                                    setStatus(upperBlazes, grouseSingleton.upperBlazes);
+                                    ImageView peakGlades = findViewById(R.id.imageView53);
+                                    setStatus(peakGlades, grouseSingleton.peakGlades);
 
-                                    ImageView iv103 = findViewById(R.id.imageView103);
-                               //     setStatus(iv103, grouseSingleton.cutJumpLine);
-                                    iv103.setImageResource(R.drawable.redx);
-                                    ImageView iv104 = findViewById(R.id.imageView104);
-                                    setStatus(iv104, grouseSingleton.paradiseJibPark);
-                                    System.out.println(grouseSingleton.terrainParksOpen);
-                                    ImageView iv105 = findViewById(R.id.imageView105);
-                                    setStatus(iv105, grouseSingleton.cutRookiePark);
-                                    ImageView iv106 = findViewById(R.id.imageView106);
-                                    setStatus(iv106, grouseSingleton.cutPark);
-                                    ImageView iv107 = findViewById(R.id.imageView107);
-                                    setStatus(iv107, grouseSingleton.lightWalk);
+                                    ImageView cutJumpLine = findViewById(R.id.imageView103);
+                               //     setStatus(cutJumpLine, grouseSingleton.cutJumpLine);
+                                    cutJumpLine.setImageResource(R.drawable.redx);
+                                    ImageView paradiseJibPark = findViewById(R.id.imageView104);
+                                    setStatus(paradiseJibPark, grouseSingleton.paradiseJibPark);
+                                    ImageView cutRookiePark = findViewById(R.id.imageView105);
+                                    setStatus(cutRookiePark, grouseSingleton.cutRookiePark);
+                                    ImageView cutPark = findViewById(R.id.imageView106);
+                                    setStatus(cutPark, grouseSingleton.cutPark);
+                                    ImageView lightWalk = findViewById(R.id.imageView107);
+                                    setStatus(lightWalk, grouseSingleton.lightWalk);
 //                                    ImageView iv108 = findViewById(R.id.imageView108);
 //                                    setStatus(iv108, grouseSingleton.grousePark);
 
-                                    ImageView iv122 = findViewById(R.id.imageView122);
-                                    setStatus(iv122, grouseSingleton.blueGrouseLoop);
-                                    ImageView iv123 = findViewById(R.id.imageView123);
-                                    setStatus(iv123, grouseSingleton.damMountainLoop);
-                                    ImageView iv124 = findViewById(R.id.imageView124);
-                                    setStatus(iv124, grouseSingleton.snowshoeGrind);
-                                    ImageView iv125 = findViewById(R.id.imageView125);
-                                    setStatus(iv125, grouseSingleton.thunderbirdRidge);
+                                    ImageView blueGrouseLoop = findViewById(R.id.imageView122);
+                                    setStatus(blueGrouseLoop, grouseSingleton.blueGrouseLoop);
+                                    ImageView damMountainLoop = findViewById(R.id.imageView123);
+                                    setStatus(damMountainLoop, grouseSingleton.damMountainLoop);
+                                    ImageView snowshoeGrind = findViewById(R.id.imageView124);
+                                    setStatus(snowshoeGrind, grouseSingleton.snowshoeGrind);
+                                    ImageView thunderbirdRidge = findViewById(R.id.imageView125);
+                                    setStatus(thunderbirdRidge, grouseSingleton.thunderbirdRidge);
 
-                                    TextView tv48 = findViewById(R.id.textView48);
-                                    tv48.setText("Runs Open: " + grouseSingleton.runsOpen + "/33");
-                                    TextView tv50 = findViewById(R.id.textView50);
-                                    tv50.setText("Lifts Open: " + grouseSingleton.liftsOpen + "/5");
-                                    TextView textView114 = findViewById(R.id.textView114);
-                                    textView114.setText("Terrain Parks Open: " + grouseSingleton.terrainParksOpen + "/4");
-                                    TextView textView227 = findViewById(R.id.textView227);
-                                    textView227.setText("Snowshoe Trails Open: " + grouseSingleton.snowshoeTrailsOpen + "/5");
+                                    TextView runsOpen = findViewById(R.id.textView48);
+                                    runsOpen.setText("Runs Open: " + grouseSingleton.runsOpen + "/33");
+                                    TextView liftsOpen = findViewById(R.id.textView50);
+                                    liftsOpen.setText("Lifts Open: " + grouseSingleton.liftsOpen + "/5");
+                                    TextView terrainParksOpen = findViewById(R.id.textView114);
+                                    terrainParksOpen.setText("Terrain Parks Open: " + grouseSingleton.terrainParksOpen + "/4");
+                                    TextView snowshoeTrailsOpen = findViewById(R.id.textView227);
+                                    snowshoeTrailsOpen.setText("Snowshoe Trails Open: " + grouseSingleton.snowshoeTrailsOpen + "/5");
 
-                                    ImageView imageView14 = findViewById(R.id.imageView14);
-                                    setGrousePic(grouseSingleton.picture, imageView14);
+                                    ImageView grousePic = findViewById(R.id.imageView14);
+                                    setGrousePic(grouseSingleton.picture, grousePic);
                                 }
                             }, getApplicationContext());
                             grouseSingleton.startThread();
@@ -190,8 +189,8 @@ public class Grouse extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         System.out.println(grouseSingleton.greenwayChair);
-                        Button button4 = findViewById(R.id.button4);
-                        button4.setOnClickListener(new View.OnClickListener() {
+                        Button forecast = findViewById(R.id.button4);
+                        forecast.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.snow-forecast.com/resorts/Grouse-Mountain/6day/mid"));
@@ -204,67 +203,67 @@ public class Grouse extends AppCompatActivity {
         }.start();
     }
 
-    public void setGrousePic(String text, ImageView image) {
-        String[] arr = text.split(" ");
+    public void setGrousePic(String condition, ImageView image) {
+        String[] arr = condition.split(" ");
         StringBuffer sb = new StringBuffer();
 
         for (int i = 0; i < arr.length; i++) {
             sb.append(Character.toUpperCase(arr[i].charAt(0)))
                     .append(arr[i].substring(1)).append(" ");
         }
-        text = sb.toString().trim();
+        condition = sb.toString().trim();
 
-        if (text.equals("High Overcast Skies")) {
+        if (condition.equals("High Overcast Skies")) {
             image.setImageResource(R.drawable.cloudy);
             return;
         }
-        if (text.equals("Low Overcast Skies")) {
+        if (condition.equals("Low Overcast Skies")) {
             image.setImageResource(R.drawable.cloudy);
             return;
         }
-        if (text.equals("Clear Skies")) {
+        if (condition.equals("Clear Skies")) {
             image.setImageResource(R.drawable.clear_night);
             return;
         }
-        if (text.equals("Sunny Skies") || text.equals("Blue Bird Skies!")) {
+        if (condition.equals("Sunny Skies") || condition.equals("Blue Bird Skies!")) {
             image.setImageResource(R.drawable.sunny);
             return;
         }
-        if (text.equals("Raining Skies")) {
+        if (condition.equals("Raining Skies")) {
             image.setImageResource(R.drawable.chance_of_showers);
             return;
         }
-        if (text.equals("Mix of Snow & Rain")) {
+        if (condition.equals("Mix of Snow & Rain")) {
             image.setImageResource(R.drawable.wet_snow_mixed_with_rain);
             return;
         }
-        if (text.equals("Snowing Heavily")) {
+        if (condition.equals("Snowing Heavily")) {
             image.setImageResource(R.drawable.snow);
             return;
         }
-        if (text.equals("Lightly Snowing Skies")) {
+        if (condition.equals("Lightly Snowing Skies")) {
             image.setImageResource(R.drawable.light_snow);
             return;
         }
-        if (text.equals("Snowy Skies")) {
+        if (condition.equals("Snowy Skies")) {
             image.setImageResource(R.drawable.snow);
             return;
         }
-        if (text.equals("Flurries")) {
+        if (condition.equals("Flurries")) {
             image.setImageResource(R.drawable.light_snow);
             return;
         }
-        if (text.equals("Mix Of Sun & Cloud")) {
+        if (condition.equals("Mix Of Sun & Cloud")) {
             image.setImageResource(R.drawable.mainly_sunny);
             return;
         }
-        if (text.equals("Lightly Raining Skies")) {
+        if (condition.equals("Lightly Raining Skies")) {
             image.setImageResource(R.drawable.chance_of_showers);
             return;
         }
 
         if (hour >= 6 && hour < 21) {
-            switch (text) {
+            switch (condition) {
                 case "Mainly Cloudy Skies":
                     image.setImageResource(R.drawable.mainly_cloudy_day);
                     return;
@@ -273,7 +272,7 @@ public class Grouse extends AppCompatActivity {
                     return;
             }
         } else {
-            switch (text) {
+            switch (condition) {
                 case "Mainly Cloudy Skies":
                     image.setImageResource(R.drawable.mainly_cloudy_night);
                     return;

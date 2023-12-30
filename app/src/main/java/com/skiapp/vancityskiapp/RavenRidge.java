@@ -22,46 +22,46 @@ public class RavenRidge extends AppCompatActivity {
                             cypressSingleton = CypressSingleton.getInstance(new ResultListener() {
                                 @Override
                                 public void onResultFetched() {
-                                    ImageView imageView245 = findViewById(R.id.imageView245);
+                                    ImageView status = findViewById(R.id.imageView245);
                                     switch(cypressSingleton.ravenRidge) {
                                         case "open":
-                                            imageView245.setImageResource(R.drawable.greencheck);
+                                            status.setImageResource(R.drawable.greencheck);
                                             break;
                                         case "closed":
-                                            imageView245.setImageResource(R.drawable.redx);
+                                            status.setImageResource(R.drawable.redx);
                                             break;
                                         case "standby":
-                                            imageView245.setImageResource(R.drawable.triangle);
+                                            status.setImageResource(R.drawable.triangle);
                                             break;
                                     }
-                                    ImageView imageView246 = findViewById(R.id.imageView246);
-                                    ImageView imageView265 = findViewById(R.id.imageView265);
-                                    ImageView imageView266 = findViewById(R.id.imageView266);
-                                    ImageView imageView267 = findViewById(R.id.imageView267);
-                                    ImageView imageView268 = findViewById(R.id.imageView268);
-                                    ImageView imageView269 = findViewById(R.id.imageView269);
-                                    ImageView imageView270 = findViewById(R.id.imageView270);
-                                    ImageView imageView271 = findViewById(R.id.imageView271);
-                                    ImageView imageView272 = findViewById(R.id.imageView272);
-                                    ImageView imageView273 = findViewById(R.id.imageView273);
-                                    ImageView imageView274 = findViewById(R.id.imageView274);
-                                    ImageView imageView275 = findViewById(R.id.imageView275);
-                                    ImageView imageView276 = findViewById(R.id.imageView276);
-                                    setStatus(imageView246, cypressSingleton.threeBears);
-                                    setStatus(imageView265, cypressSingleton.bennys);
-                                    setStatus(imageView266, cypressSingleton.crazyRaven);
-                                    setStatus(imageView267, cypressSingleton.lowerCoyote7);
-                                    setStatus(imageView268, cypressSingleton.rideout);
-                                    setStatus(imageView269, cypressSingleton.bilodeau);
-                                    setStatus(imageView270, cypressSingleton.firstSun);
-                                    setStatus(imageView271, cypressSingleton.shoreGlades);
-                                    setStatus(imageView272, cypressSingleton.shoreLine);
-                                    setStatus(imageView273, cypressSingleton.upperCoyote7);
-                                    setStatus(imageView274, cypressSingleton.blackFly);
-                                    setStatus(imageView275, cypressSingleton.backOnBlack);
-                                    setStatus(imageView276, cypressSingleton.meteor);
-                                    TextView textView185 = findViewById(R.id.textView185);
-                                    textView185.setText("Runs Open: " + cypressSingleton.runsOpenRavenRidge + "/13");
+                                    ImageView threeBears = findViewById(R.id.imageView246);
+                                    ImageView bennys = findViewById(R.id.imageView265);
+                                    ImageView crazyRaven = findViewById(R.id.imageView266);
+                                    ImageView lowerCoyote7 = findViewById(R.id.imageView267);
+                                    ImageView rideout = findViewById(R.id.imageView268);
+                                    ImageView bilodeau = findViewById(R.id.imageView269);
+                                    ImageView firstSun = findViewById(R.id.imageView270);
+                                    ImageView shoreGlades = findViewById(R.id.imageView271);
+                                    ImageView shoreLine = findViewById(R.id.imageView272);
+                                    ImageView upperCoyote7 = findViewById(R.id.imageView273);
+                                    ImageView blackFly = findViewById(R.id.imageView274);
+                                    ImageView backOnBlack = findViewById(R.id.imageView275);
+                                    ImageView meteor = findViewById(R.id.imageView276);
+                                    setStatus(threeBears, cypressSingleton.threeBears);
+                                    setStatus(bennys, cypressSingleton.bennys);
+                                    setStatus(crazyRaven, cypressSingleton.crazyRaven);
+                                    setStatus(lowerCoyote7, cypressSingleton.lowerCoyote7);
+                                    setStatus(rideout, cypressSingleton.rideout);
+                                    setStatus(bilodeau, cypressSingleton.bilodeau);
+                                    setStatus(firstSun, cypressSingleton.firstSun);
+                                    setStatus(shoreGlades, cypressSingleton.shoreGlades);
+                                    setStatus(shoreLine, cypressSingleton.shoreLine);
+                                    setStatus(upperCoyote7, cypressSingleton.upperCoyote7);
+                                    setStatus(blackFly, cypressSingleton.blackFly);
+                                    setStatus(backOnBlack, cypressSingleton.backOnBlack);
+                                    setStatus(meteor, cypressSingleton.meteor);
+                                    TextView runsOpen = findViewById(R.id.textView185);
+                                    runsOpen.setText("Runs Open: " + cypressSingleton.runsOpenRavenRidge + "/13");
                                 }
                             }, getApplicationContext());
                             cypressSingleton.startThread();

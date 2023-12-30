@@ -14,8 +14,8 @@ public class FAQ extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_f_a_q);
 
-        Button button20 = findViewById(R.id.button20);
-        button20.setOnClickListener(new View.OnClickListener() {
+        Button openFAQ2 = findViewById(R.id.button20);
+        openFAQ2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openFAQ2();

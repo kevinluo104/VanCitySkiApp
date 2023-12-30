@@ -24,42 +24,42 @@ public class BrocktonChair extends AppCompatActivity {
                             seymourSingleton = SeymourSingleton.getInstance(new ResultListener() {
                                 @Override
                                 public void onResultFetched() {
-                                    ImageView imageView328 = findViewById(R.id.imageView328);
+                                    ImageView brocktonChair = findViewById(R.id.imageView328);
                                     switch(seymourSingleton.brocktonChair) {
                                         case "open":
-                                            imageView328.setImageResource(R.drawable.greencheck);
+                                            brocktonChair.setImageResource(R.drawable.greencheck);
                                             break;
                                         case "closed":
-                                            imageView328.setImageResource(R.drawable.redx);
+                                            brocktonChair.setImageResource(R.drawable.redx);
                                             break;
                                         case "standby":
-                                            imageView328.setImageResource(R.drawable.triangle);
+                                            brocktonChair.setImageResource(R.drawable.triangle);
                                             break;
                                     }
-                                    TextView textView352 = findViewById(R.id.textView352);
-                                    textView352.setText("Runs Open: " + seymourSingleton.brocktonChairRunsOpen + "/11");
-                                    ImageView imageView329 = findViewById(R.id.imageView329);
-                                    setStatus(imageView329, seymourSingleton.brocktonGully);
-                                    ImageView imageView341 = findViewById(R.id.imageView341);
-                                    setStatus(imageView341, seymourSingleton.backdoor);
-                                    ImageView imageView342 =  findViewById(R.id.imageView342);
-                                    setStatus(imageView342, seymourSingleton.exit22);
-                                    ImageView imageView343 = findViewById(R.id.imageView343);
-                                    setStatus(imageView343, seymourSingleton.hangTen);
-                                    ImageView imageView344 = findViewById(R.id.imageView344);
-                                    setStatus(imageView344, seymourSingleton.maverick);
-                                    ImageView imageView345 = findViewById(R.id.imageView345);
-                                    setStatus(imageView345, seymourSingleton.sammyJ);
-                                    ImageView imageView346 = findViewById(R.id.imageView346);
-                                    setStatus(imageView346, seymourSingleton.sammysExpress);
-                                    ImageView imageView347 = findViewById(R.id.imageView347);
-                                    setStatus(imageView347, seymourSingleton.cliffHouse);
-                                    ImageView imageView348 = findViewById(R.id.imageView348);
-                                    setStatus(imageView348, seymourSingleton.scooter);
-                                    ImageView imageView349 = findViewById(R.id.imageView349);
-                                    setStatus(imageView349, seymourSingleton.sternsStairway);
-                                    ImageView imageView350 = findViewById(R.id.imageView350);
-                                    setStatus(imageView350, seymourSingleton.sunshineRidge);
+                                    TextView runsOpen = findViewById(R.id.textView352);
+                                    runsOpen.setText("Runs Open: " + seymourSingleton.brocktonChairRunsOpen + "/11");
+                                    ImageView brocktonGully = findViewById(R.id.imageView329);
+                                    setStatus(brocktonGully, seymourSingleton.brocktonGully);
+                                    ImageView backdoor = findViewById(R.id.imageView341);
+                                    setStatus(backdoor, seymourSingleton.backdoor);
+                                    ImageView exit22 =  findViewById(R.id.imageView342);
+                                    setStatus(exit22, seymourSingleton.exit22);
+                                    ImageView hangTen = findViewById(R.id.imageView343);
+                                    setStatus(hangTen, seymourSingleton.hangTen);
+                                    ImageView maverick = findViewById(R.id.imageView344);
+                                    setStatus(maverick, seymourSingleton.maverick);
+                                    ImageView sammyJ = findViewById(R.id.imageView345);
+                                    setStatus(sammyJ, seymourSingleton.sammyJ);
+                                    ImageView sammysExpress = findViewById(R.id.imageView346);
+                                    setStatus(sammysExpress, seymourSingleton.sammysExpress);
+                                    ImageView cliffHouse = findViewById(R.id.imageView347);
+                                    setStatus(cliffHouse, seymourSingleton.cliffHouse);
+                                    ImageView scooter = findViewById(R.id.imageView348);
+                                    setStatus(scooter, seymourSingleton.scooter);
+                                    ImageView sternsStairway = findViewById(R.id.imageView349);
+                                    setStatus(sternsStairway, seymourSingleton.sternsStairway);
+                                    ImageView sunshineRidge = findViewById(R.id.imageView350);
+                                    setStatus(sunshineRidge, seymourSingleton.sunshineRidge);
                                 }
                             }, getApplicationContext());
                             seymourSingleton.startThread();

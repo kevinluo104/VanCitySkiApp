@@ -144,20 +144,22 @@ public class CypressSingleton extends AppCompatActivity {
         new Thread() {
             public void run() {
                 try {
-                    cypressWeather = Jsoup.connect("https://cypressmountain.com/downhill-conditions-and-cams").userAgent("Mozilla").get();
+                    cypressWeather = Jsoup.connect("https://cypressmountain.com/downhill-conditions-and-cams").get();
                     runOnUiThread(new Runnable() {
                         public void run() {
                             try {
-                                conditions = cypressWeather.select(("span.text.text_14.mix-text_color7.mix-text_alignCenter.mix-text_alignLeftMd.mix-text_regular.mix-text_capitalize")).first().text();
+                                conditions = cypressWeather.select(("#conditions_current_e62ddfa83ed0c6d03d9e2b03ad704a26 > div > div > div > ul > li:nth-child(2) > div > ul > li:nth-child(1) > ul > li:nth-child(2) > span")).get(0).ownText();
+
                                 String[] arr = conditions.split(" ");
                                 StringBuffer sb = new StringBuffer();
-                                System.out.println("arr: " + Arrays.toString(arr));
+
 
                                 for (int i = 0; i < arr.length; i++) {
                                     sb.append(Character.toUpperCase(arr[i].charAt(0)))
                                             .append(arr[i].substring(1)).append(" ");
                                 }
                                 conditions = sb.toString().trim();
+                                System.out.println("arr22222: " + conditions);
                                 if (conditions.equals("Rain/snow"))
                                     conditions = "Rain/Snow";
                             } catch (Exception ignored) {
@@ -165,24 +167,27 @@ public class CypressSingleton extends AppCompatActivity {
                             }
 
                             try {
-                                temperature = cypressWeather.select("span.js-measurement").first().text();
-                                twentyFourHrSnow = cypressWeather.select("span.js-measurement").get(8).text() + "cm";
-                                fortyEightHrSnow = cypressWeather.select("span.js-measurement").get(9).text() + "cm";
-                                sevenDaySnow = cypressWeather.select("span.js-measurement").get(10).text() + "cm";
-                                seasonSnow = cypressWeather.select("span.js-measurement").get(11).text() + "cm";
+                                temperature = cypressWeather.select("span.js-measurement").get(0).ownText();
+                                System.out.println("TEMPRAUTE" + temperature);
+                                twentyFourHrSnow = cypressWeather.select("span.js-measurement").get(1).ownText() + "cm";
+                                fortyEightHrSnow = cypressWeather.select("span.js-measurement").get(2).ownText() + "cm";
+                                sevenDaySnow = cypressWeather.select("span.js-measurement").get(3).ownText()+ "cm";
+                                seasonSnow = cypressWeather.select("span.js-measurement").get(4).ownText() + "cm";
+                                System.out.println("SEAOSN" + seasonSnow);
 
                              //   Element firstCondition = cypressWeather.select("span.text.text_24.text_30Md.mix-text_bold.mix-text_spaceBreak.mix-text_color1.mix-text_alignCenter.mix-text_alignLeftMd.mix-text_lessStrict").first();
                             //    Element secondCondition = cypressWeather.select("span.text.text_24.text_30Md.mix-text_bold.mix-text_spaceBreak.mix-text_color1.mix-text_alignCenter.mix-text_alignLeftMd.mix-text_lessStrict").get(1);
                             //    snowConditions = firstCondition.ownText() + " " + secondCondition.ownText();
-                             //   snowConditions = "N/A";
 
                                 if (counter == 0) {
+
                                     eagleExpress = setChairliftStatus(eagleExpress, 0);
                                     lionsExpress = setChairliftStatus(lionsExpress, 1);
-                                    easyRider = setChairliftStatus(easyRider, 2);
-                                    skyChair = setChairliftStatus(skyChair, 3);
-                                    midwayChair = setChairliftStatus(midwayChair, 4);
-                                    ravenRidge = setChairliftStatus(ravenRidge, 5);
+                                    ravenRidge = setChairliftStatus(ravenRidge, 2);
+                                    easyRider = setChairliftStatus(easyRider, 3);
+                                    skyChair = setChairliftStatus(skyChair, 4);
+                                    midwayChair = setChairliftStatus(midwayChair, 5);
+
 
                                     panorama = setRunStatusEagleExpress(panorama, 0);
                                     windjammer = setRunStatusEagleExpress(windjammer, 1);
@@ -197,6 +202,7 @@ public class CypressSingleton extends AppCompatActivity {
                                     bHip = setRunStatusEagleExpress(bHip, 10);
                                     blowBy = setRunStatusEagleExpress(blowBy, 11);
                                     detentionGlades = setRunStatusEagleExpress(detentionGlades, 12);
+                                    System.out.println("DSGSDG" + lowerFork);
 
                                     skatePark = setTerrainParkStatusEagleExpress(skatePark, 13);
                                     district = setTerrainParkStatusEagleExpress(district, 14);
@@ -283,56 +289,62 @@ public class CypressSingleton extends AppCompatActivity {
     }
 
     public String setChairliftStatus(String lift, int rowNum) {
-      // Element first = cypressWeather.select("li").get(rowNum);
-        Element first = cypressWeather.select("div.icon.icon_12.mix-icon_leader.mix-icon_alignTop.mix-icon_marginTop").get(rowNum);
-        switch (first.select("img").first().absUrl("src")) {
-            case "https://cypressmountain.com/images/Cypress/icons/green-check.png":
+
+       Element first = cypressWeather.select("div.liftStatus-lift-icon img").get(rowNum);
+       // Element first = cypressWeather.select(".liftStatus-lift-icon").get(rowNum);
+//        switch (first.select("img").first().absUrl("src")) {
+        switch (first.attr("src")) {
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/green-check.png":
                 lift = "open";
                 liftsOpen++;
                 return lift;
-            case "https://cypressmountain.com/images/Cypress/icons/red-x.png":
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/red-x.png":
                 lift = "closed";
                 return lift;
-            case "https://cypressmountain.com/images/Cypress/icons/yellow-caution.png":
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/yellow-caution.png":
                 lift = "standby";
                 return lift;
         }
+        System.out.println("LIFT@@" + lift);
         return lift;
     }
 
 
     public String setRunStatusEagleExpress(String run, int rowNum) {
-       // Element first = cypressWeather.select("li").get(rowNum);
-        Element first = cypressWeather.select("span.icon.icon_12.mix-icon_leaderClose.mix-icon_alignCenter").get(rowNum);
-        switch (first.select("img").first().absUrl("src")) {
-            case "https://cypressmountain.com/images/Cypress/icons/green-check.png":
+
+        Element first = cypressWeather.select("div.trailStatus-status img").get(rowNum);
+
+       // Element first = cypressWeather.select(".trailStatus-status").get(rowNum);
+        switch (first.attr("src")) {
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/green-check.png":
                 run = "open";
                 runsOpenEagleExpress++;
                 runsOpen++;
                 return run;
-            case "https://cypressmountain.com/images/Cypress/icons/red-x.png":
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/red-x.png":
                 run = "closed";
                 return run;
-            case "https://cypressmountain.com/images/Cypress/icons/yellow-caution.png":
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/yellow-caution.png":
                 run = "standby";
                 return run;
         }
+        System.out.println("RUN1111" + run);
         return run;
     }
 
     public String setTerrainParkStatusEagleExpress(String run, int rowNum) {
-        // Element first = cypressWeather.select("li").get(rowNum);
-        Element first = cypressWeather.select("span.icon.icon_12.mix-icon_leaderClose.mix-icon_alignCenter").get(rowNum);
-        switch (first.select("img").first().absUrl("src")) {
-            case "https://cypressmountain.com/images/Cypress/icons/green-check.png":
+        Element first = cypressWeather.select("div.trailStatus-status img").get(rowNum);
+        //Element first = cypressWeather.select(".trailStatus-status").get(rowNum);
+        switch (first.attr("src")) {
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/green-check.png":
                 run = "open";
                 terrainParksOpenEagleExpress++;
                 terrainParksOpen++;
                 return run;
-            case "https://cypressmountain.com/images/Cypress/icons/red-x.png":
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/red-x.png":
                 run = "closed";
                 return run;
-            case "https://cypressmountain.com/images/Cypress/icons/yellow-caution.png":
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/yellow-caution.png":
                 run = "standby";
                 return run;
         }
@@ -340,18 +352,18 @@ public class CypressSingleton extends AppCompatActivity {
     }
 
     public String setRunStatusLionsExpress(String run, int rowNum) {
-        // Element first = cypressWeather.select("li").get(rowNum);
-        Element first = cypressWeather.select("span.icon.icon_12.mix-icon_leaderClose.mix-icon_alignCenter").get(rowNum);
-        switch (first.select("img").first().absUrl("src")) {
-            case "https://cypressmountain.com/images/Cypress/icons/green-check.png":
+        Element first = cypressWeather.select("div.trailStatus-status img").get(rowNum);
+       // Element first = cypressWeather.select(".trailStatus-status").get(rowNum);
+        switch (first.attr("src")) {
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/green-check.png":
                 run = "open";
                 runsOpenLionsExpress++;
                 runsOpen++;
                 return run;
-            case "https://cypressmountain.com/images/Cypress/icons/red-x.png":
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/red-x.png":
                 run = "closed";
                 return run;
-            case "https://cypressmountain.com/images/Cypress/icons/yellow-caution.png":
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/yellow-caution.png":
                 run = "standby";
                 return run;
         }
@@ -359,18 +371,18 @@ public class CypressSingleton extends AppCompatActivity {
     }
 
     public String setTerrainParkStatusLionsExpress(String run, int rowNum) {
-        // Element first = cypressWeather.select("li").get(rowNum);
-        Element first = cypressWeather.select("span.icon.icon_12.mix-icon_leaderClose.mix-icon_alignCenter").get(rowNum);
-        switch (first.select("img").first().absUrl("src")) {
-            case "https://cypressmountain.com/images/Cypress/icons/green-check.png":
+        Element first = cypressWeather.select("div.trailStatus-status img").get(rowNum);
+       // Element first = cypressWeather.select(".trailStatus-status").get(rowNum);
+        switch (first.attr("src")) {
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/green-check.png":
                 run = "open";
                 terrainParksOpenLionsExpress++;
                 terrainParksOpen++;
                 return run;
-            case "https://cypressmountain.com/images/Cypress/icons/red-x.png":
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/red-x.png":
                 run = "closed";
                 return run;
-            case "https://cypressmountain.com/images/Cypress/icons/yellow-caution.png":
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/yellow-caution.png":
                 run = "standby";
                 return run;
         }
@@ -379,18 +391,18 @@ public class CypressSingleton extends AppCompatActivity {
 
 
     public String setRunStatusRavenRidge(String run, int rowNum) {
-        // Element first = cypressWeather.select("li").get(rowNum);
-        Element first = cypressWeather.select("span.icon.icon_12.mix-icon_leaderClose.mix-icon_alignCenter").get(rowNum);
-        switch (first.select("img").first().absUrl("src")) {
-            case "https://cypressmountain.com/images/Cypress/icons/green-check.png":
+        Element first = cypressWeather.select("div.trailStatus-status img").get(rowNum);
+       // Element first = cypressWeather.select(".trailStatus-status").get(rowNum);
+        switch (first.attr("src")) {
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/green-check.png":
                 run = "open";
                 runsOpenRavenRidge++;
                 runsOpen++;
                 return run;
-            case "https://cypressmountain.com/images/Cypress/icons/red-x.png":
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/red-x.png":
                 run = "closed";
                 return run;
-            case "https://cypressmountain.com/images/Cypress/icons/yellow-caution.png":
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/yellow-caution.png":
                 run = "standby";
                 return run;
         }
@@ -398,18 +410,18 @@ public class CypressSingleton extends AppCompatActivity {
     }
 
     public String setRunStatusEasyRider(String run, int rowNum) {
-        // Element first = cypressWeather.select("li").get(rowNum);
-        Element first = cypressWeather.select("span.icon.icon_12.mix-icon_leaderClose.mix-icon_alignCenter").get(rowNum);
-        switch (first.select("img").first().absUrl("src")) {
-            case "https://cypressmountain.com/images/Cypress/icons/green-check.png":
+        Element first = cypressWeather.select("div.trailStatus-status img").get(rowNum);
+        //Element first = cypressWeather.select(".trailStatus-status").get(rowNum);
+        switch (first.attr("src")) {
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/green-check.png":
                 run = "open";
                 runsOpenEasyRider++;
                 runsOpen++;
                 return run;
-            case "https://cypressmountain.com/images/Cypress/icons/red-x.png":
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/red-x.png":
                 run = "closed";
                 return run;
-            case "https://cypressmountain.com/images/Cypress/icons/yellow-caution.png":
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/yellow-caution.png":
                 run = "standby";
                 return run;
         }
@@ -418,17 +430,17 @@ public class CypressSingleton extends AppCompatActivity {
 
     public String setTerrainParkStatusEasyRider(String run, int rowNum) {
         // Element first = cypressWeather.select("li").get(rowNum);
-        Element first = cypressWeather.select("span.icon.icon_12.mix-icon_leaderClose.mix-icon_alignCenter").get(rowNum);
-        switch (first.select("img").first().absUrl("src")) {
-            case "https://cypressmountain.com/images/Cypress/icons/green-check.png":
+        Element first = cypressWeather.select("div.trailStatus-status img").get(rowNum);
+        switch (first.attr("src")) {
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/green-check.png":
                 run = "open";
                 terrainParksOpenEasyRider++;
                 terrainParksOpen++;
                 return run;
-            case "https://cypressmountain.com/images/Cypress/icons/red-x.png":
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/red-x.png":
                 run = "closed";
                 return run;
-            case "https://cypressmountain.com/images/Cypress/icons/yellow-caution.png":
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/yellow-caution.png":
                 run = "standby";
                 return run;
         }
@@ -437,17 +449,17 @@ public class CypressSingleton extends AppCompatActivity {
 
     public String setRunStatusSkyChair(String run, int rowNum) {
         // Element first = cypressWeather.select("li").get(rowNum);
-        Element first = cypressWeather.select("span.icon.icon_12.mix-icon_leaderClose.mix-icon_alignCenter").get(rowNum);
-        switch (first.select("img").first().absUrl("src")) {
-            case "https://cypressmountain.com/images/Cypress/icons/green-check.png":
+        Element first = cypressWeather.select("div.trailStatus-status img").get(rowNum);
+        switch (first.attr("src")) {
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/green-check.png":
                 run = "open";
                 runsOpenSkyChair++;
                 runsOpen++;
                 return run;
-            case "https://cypressmountain.com/images/Cypress/icons/red-x.png":
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/red-x.png":
                 run = "closed";
                 return run;
-            case "https://cypressmountain.com/images/Cypress/icons/yellow-caution.png":
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/yellow-caution.png":
                 run = "standby";
                 return run;
         }
@@ -456,17 +468,17 @@ public class CypressSingleton extends AppCompatActivity {
 
     public String setRunStatusMidwayChair(String run, int rowNum) {
         // Element first = cypressWeather.select("li").get(rowNum);
-        Element first = cypressWeather.select("span.icon.icon_12.mix-icon_leaderClose.mix-icon_alignCenter").get(rowNum);
-        switch (first.select("img").first().absUrl("src")) {
-            case "https://cypressmountain.com/images/Cypress/icons/green-check.png":
+        Element first = cypressWeather.select("div.trailStatus-status img").get(rowNum);
+        switch (first.attr("src")) {
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/green-check.png":
                 run = "open";
                 runsOpenMidwayChair++;
                 runsOpen++;
                 return run;
-            case "https://cypressmountain.com/images/Cypress/icons/red-x.png":
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/red-x.png":
                 run = "closed";
                 return run;
-            case "https://cypressmountain.com/images/Cypress/icons/yellow-caution.png":
+            case "https://cypressmountaincdn.azureedge.net/Images/Cypress/Icons/yellow-caution.png":
                 run = "standby";
                 return run;
         }

@@ -22,32 +22,32 @@ public class SkyChair extends AppCompatActivity {
                             cypressSingleton = CypressSingleton.getInstance(new ResultListener() {
                                 @Override
                                 public void onResultFetched() {
-                                    ImageView imageView288 = findViewById(R.id.imageView288);
+                                    ImageView status = findViewById(R.id.imageView288);
                                     switch(cypressSingleton.skyChair) {
                                         case "open":
-                                            imageView288.setImageResource(R.drawable.greencheck);
+                                            status.setImageResource(R.drawable.greencheck);
                                             break;
                                         case "closed":
-                                            imageView288.setImageResource(R.drawable.redx);
+                                            status.setImageResource(R.drawable.redx);
                                             break;
                                         case "standby":
-                                            imageView288.setImageResource(R.drawable.triangle);
+                                            status.setImageResource(R.drawable.triangle);
                                             break;
                                     }
-                                    ImageView imageView289 = findViewById(R.id.imageView289);
-                                    ImageView imageView299 = findViewById(R.id.imageView299);
-                                    ImageView imageView300 = findViewById(R.id.imageView300);
-                                    ImageView imageView301 = findViewById(R.id.imageView301);
-                                    ImageView imageView302 = findViewById(R.id.imageView302);
-                                    ImageView imageView303 = findViewById(R.id.imageView303);
-                                    setStatus(imageView289, cypressSingleton.horseflyCanyon);
-                                    setStatus(imageView299, cypressSingleton.T33);
-                                    setStatus(imageView300, cypressSingleton.glades);
-                                    setStatus(imageView301, cypressSingleton.ripcord);
-                                    setStatus(imageView302, cypressSingleton.tomcat);
-                                    setStatus(imageView303, cypressSingleton.topGun);
-                                    TextView textView210 = findViewById(R.id.textView210);
-                                    textView210.setText("Runs Open: " + cypressSingleton.runsOpenSkyChair + "/6");
+                                    ImageView horseflyCanyon = findViewById(R.id.imageView289);
+                                    ImageView T33 = findViewById(R.id.imageView299);
+                                    ImageView glades = findViewById(R.id.imageView300);
+                                    ImageView ripcord = findViewById(R.id.imageView301);
+                                    ImageView tomcat = findViewById(R.id.imageView302);
+                                    ImageView topGun = findViewById(R.id.imageView303);
+                                    setStatus(horseflyCanyon, cypressSingleton.horseflyCanyon);
+                                    setStatus(T33, cypressSingleton.T33);
+                                    setStatus(glades, cypressSingleton.glades);
+                                    setStatus(ripcord, cypressSingleton.ripcord);
+                                    setStatus(tomcat, cypressSingleton.tomcat);
+                                    setStatus(topGun, cypressSingleton.topGun);
+                                    TextView runsOpen = findViewById(R.id.textView210);
+                                    runsOpen.setText("Runs Open: " + cypressSingleton.runsOpenSkyChair + "/6");
                                 }
                             }, getApplicationContext());
                             cypressSingleton.startThread();

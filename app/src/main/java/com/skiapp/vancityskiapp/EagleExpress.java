@@ -33,46 +33,46 @@ public class EagleExpress extends AppCompatActivity {
                                             imageView54.setImageResource(R.drawable.triangle);
                                             break;
                                     }
-                                    ImageView imageView135 = findViewById(R.id.imageView135);
-                                    ImageView imageView161 = findViewById(R.id.imageView161);
-                                    ImageView imageView162 = findViewById(R.id.imageView162);
-                                    ImageView imageView163 = findViewById(R.id.imageView163);
-                                    ImageView imageView164 = findViewById(R.id.imageView164);
-                                    ImageView imageView165 = findViewById(R.id.imageView165);
-                                    ImageView imageView166 = findViewById(R.id.imageView166);
-                                    ImageView imageView167 = findViewById(R.id.imageView167);
-                                    ImageView imageView168 = findViewById(R.id.imageView168);
-                                    ImageView imageView169 = findViewById(R.id.imageView169);
-                                    ImageView imageView170 = findViewById(R.id.imageView170);
-                                    ImageView imageView171 = findViewById(R.id.imageView171);
-                                    ImageView imageView172 = findViewById(R.id.imageView172);
+                                    ImageView panorama = findViewById(R.id.imageView135);
+                                    ImageView windjammer = findViewById(R.id.imageView161);
+                                    ImageView jaseyJay = findViewById(R.id.imageView162);
+                                    ImageView lowerFork = findViewById(R.id.imageView163);
+                                    ImageView mcIvors = findViewById(R.id.imageView164);
+                                    ImageView unrun = findViewById(R.id.imageView165);
+                                    ImageView upperFork = findViewById(R.id.imageView166);
+                                    ImageView bHip = findViewById(R.id.imageView167);
+                                    ImageView blowBy = findViewById(R.id.imageView168);
+                                    ImageView hoseSide = findViewById(R.id.imageView169);
+                                    ImageView lowerTrumpeter = findViewById(R.id.imageView170);
+                                    ImageView trumpeter = findViewById(R.id.imageView171);
+                                    ImageView detentionGlades = findViewById(R.id.imageView172);
 
-                                    setStatus(imageView135, cypressSingleton.panorama);
-                                    setStatus(imageView161, cypressSingleton.windjammer);
-                                    setStatus(imageView162, cypressSingleton.jaseyJay);
-                                    setStatus(imageView163, cypressSingleton.lowerFork);
-                                    setStatus(imageView164, cypressSingleton.mcIvors);
-                                    setStatus(imageView165, cypressSingleton.unrun);
-                                    setStatus(imageView166, cypressSingleton.upperFork);
-                                    setStatus(imageView167, cypressSingleton.bHip);
-                                    setStatus(imageView168, cypressSingleton.blowBy);
-                                    setStatus(imageView169, cypressSingleton.hoseSide);
-                                    setStatus(imageView170, cypressSingleton.lowerTrumpeter);
-                                    setStatus(imageView171, cypressSingleton.trumpeter);
-                                    setStatus(imageView172, cypressSingleton.detentionGlades);
+                                    setStatus(panorama, cypressSingleton.panorama);
+                                    setStatus(windjammer, cypressSingleton.windjammer);
+                                    setStatus(jaseyJay, cypressSingleton.jaseyJay);
+                                    setStatus(lowerFork, cypressSingleton.lowerFork);
+                                    setStatus(mcIvors, cypressSingleton.mcIvors);
+                                    setStatus(unrun, cypressSingleton.unrun);
+                                    setStatus(upperFork, cypressSingleton.upperFork);
+                                    setStatus(bHip, cypressSingleton.bHip);
+                                    setStatus(blowBy, cypressSingleton.blowBy);
+                                    setStatus(hoseSide, cypressSingleton.hoseSide);
+                                    setStatus(lowerTrumpeter, cypressSingleton.lowerTrumpeter);
+                                    setStatus(trumpeter, cypressSingleton.trumpeter);
+                                    setStatus(detentionGlades, cypressSingleton.detentionGlades);
 
 
-                                    ImageView imageView176 = findViewById(R.id.imageView176);
-                                    ImageView imageView177 = findViewById(R.id.imageView177);
-                                    ImageView imageView178 = findViewById(R.id.imageView178);
-                                    setStatus(imageView176, cypressSingleton.skatePark);
-                                    setStatus(imageView177, cypressSingleton.stompingGrounds);
-                                    setStatus(imageView178, cypressSingleton.district);
+                                    ImageView skatePark = findViewById(R.id.imageView176);
+                                    ImageView stompingGrounds = findViewById(R.id.imageView177);
+                                    ImageView district = findViewById(R.id.imageView178);
+                                    setStatus(skatePark, cypressSingleton.skatePark);
+                                    setStatus(stompingGrounds, cypressSingleton.stompingGrounds);
+                                    setStatus(district, cypressSingleton.district);
 
-                                    TextView textView134 = findViewById(R.id.textView134);
-                                    textView134.setText("Runs Open: " + cypressSingleton.runsOpenEagleExpress + "/13");
-                                    TextView textView417 = findViewById(R.id.textView417);
-                                    textView417.setText("Terrain Parks Open: " + cypressSingleton.terrainParksOpenEagleExpress + "/3");
+                                    TextView runsOpen = findViewById(R.id.textView134);
+                                    runsOpen.setText("Runs Open: " + cypressSingleton.runsOpenEagleExpress + "/13");
+                                    TextView terrainParksOpen = findViewById(R.id.textView417);
+                                    terrainParksOpen.setText("Terrain Parks Open: " + cypressSingleton.terrainParksOpenEagleExpress + "/3");
                                 }
 
                             }, getApplicationContext());

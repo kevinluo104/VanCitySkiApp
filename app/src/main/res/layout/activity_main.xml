@@ -321,7 +321,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_begin="20dp"
+                    app:layout_constraintGuide_begin="410dp"
                     app:layout_constraintGuide_percent="1.0" />
 
                 <TextView
@@ -764,11 +764,12 @@
                 android:id="@+id/textView"
                 android:layout_width="184dp"
                 android:layout_height="110dp"
+                android:layout_marginStart="35dp"
                 android:text="Temperature"
                 android:textColor="#FFFFFF"
                 android:textSize="56dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline16"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.059"
                 app:layout_constraintStart_toStartOf="@+id/guideline10"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -777,7 +778,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="26dp"
-                android:layout_marginEnd="42dp"
+                android:layout_marginEnd="25dp"
                 android:text="Vancouver Conditions"
 
                 android:textColor="#FFFFFF"
@@ -795,6 +796,7 @@
                 android:layout_height="41dp"
 
 
+                android:layout_marginStart="70dp"
                 android:layout_marginTop="18dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline11"
                 app:layout_constraintHorizontal_bias="0.818"

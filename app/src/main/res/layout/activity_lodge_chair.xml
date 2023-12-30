@@ -181,7 +181,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="184dp"
+                android:layout_marginTop="182dp"
                 android:text="Run Status"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -300,11 +300,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="59dp"
-                android:layout_marginTop="607dp"
-                android:text="Trapper John's"
+                android:layout_marginTop="596dp"
+                android:text="Lower Trapper John"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline162"
-                app:layout_constraintHorizontal_bias="0.38"
+                app:layout_constraintHorizontal_bias="0.027"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view21" />
+
+            <TextView
+                android:id="@+id/textView105"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="59dp"
+                android:layout_marginTop="658dp"
+                android:text="Upper Trapper John"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline162"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view21" />
 
@@ -363,11 +376,20 @@
                 android:id="@+id/imageView358"
                 android:layout_width="26dp"
                 android:layout_height="23dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="606dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="596dp"
                 app:layout_constraintStart_toEndOf="@+id/textView377"
                 app:layout_constraintTop_toBottomOf="@+id/view21"
                 app:srcCompat="@drawable/nightrun" />
+
+            <ImageView
+                android:id="@+id/imageView117"
+                android:layout_width="26dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="12dp"
+                app:layout_constraintStart_toEndOf="@+id/textView105"
+                app:srcCompat="@drawable/nightrun"
+                tools:layout_editor_absoluteY="873dp" />
 
             <ImageView
                 android:id="@+id/imageView359"
@@ -455,11 +477,20 @@
                 android:id="@+id/imageView367"
                 android:layout_width="27dp"
                 android:layout_height="31dp"
-                android:layout_marginTop="602dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginTop="594dp"
+                android:layout_marginEnd="18dp"
                 app:layout_constraintEnd_toStartOf="@+id/textView377"
                 app:layout_constraintTop_toBottomOf="@+id/view21"
                 app:srcCompat="@drawable/bluerun" />
+
+            <ImageView
+                android:id="@+id/imageView108"
+                android:layout_width="27dp"
+                android:layout_height="31dp"
+                android:layout_marginEnd="19dp"
+                app:layout_constraintEnd_toStartOf="@+id/textView105"
+                app:srcCompat="@drawable/bluerun"
+                tools:layout_editor_absoluteY="871dp" />
 
             <ImageView
                 android:id="@+id/imageView368"
@@ -553,9 +584,20 @@
                 android:id="@+id/imageView376"
                 android:layout_width="38dp"
                 android:layout_height="55dp"
-                android:layout_marginTop="592dp"
+                android:layout_marginTop="580dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.85"
+                app:layout_constraintHorizontal_bias="0.849"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view21"
+                app:srcCompat="@drawable/ic_launcher_foreground" />
+
+            <ImageView
+                android:id="@+id/imageView120"
+                android:layout_width="38dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="644dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.849"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view21"
                 app:srcCompat="@drawable/ic_launcher_foreground" />

@@ -22,44 +22,44 @@ public class Seymour extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seymour);
 
-        Button button11 = findViewById(R.id.button11);
-        button11.setOnClickListener(new View.OnClickListener() {
+        Button openBrocktonChair = findViewById(R.id.button11);
+        openBrocktonChair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openBrocktonChair();
             }
         });
-        Button button12 = findViewById(R.id.button12);
-        button12.setOnClickListener(new View.OnClickListener() {
+        Button openLodgeChair = findViewById(R.id.button12);
+        openLodgeChair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openLodgeChair();
             }
         });
-        Button button13 = findViewById(R.id.button13);
-        button13.setOnClickListener(new View.OnClickListener() {
+        Button openMysteryPeakExpress = findViewById(R.id.button13);
+        openMysteryPeakExpress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openMysteryPeakExpress();
             }
         });
-        Button button14 = findViewById(R.id.button14);
-        button14.setOnClickListener(new View.OnClickListener() {
+        Button openMagicCarpet = findViewById(R.id.button14);
+        openMagicCarpet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openMagicCarpet();
             }
         });
-        Button button16 = findViewById(R.id.button16);
-        button16.setOnClickListener(new View.OnClickListener() {
+        Button forecast = findViewById(R.id.button16);
+        forecast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.snow-forecast.com/resorts/Mount-Seymour/6day/mid"));
                 startActivity(browserIntent);
             }
         });
-        Button button23 = findViewById(R.id.button23);
-        button23.setOnClickListener(new View.OnClickListener() {
+        Button refresh = findViewById(R.id.button23);
+        refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 refresh();
@@ -76,68 +76,68 @@ public class Seymour extends AppCompatActivity {
                             seymourSingleton = SeymourSingleton.getInstance(new ResultListener() {
                                 @Override
                                 public void onResultFetched() {
-                                    TextView textView323 = findViewById(R.id.textView323);
-                                    textView323.setText(seymourSingleton.conditions);
-                                    TextView textView322 = findViewById(R.id.textView322);
-                                    textView322.setText(seymourSingleton.temperature);
-                                    TextView textView324 = findViewById(R.id.textView324);
-                                    textView324.setText("Visibility: " + seymourSingleton.visibility);
-                                    TextView textView325 = findViewById(R.id.textView325);
-                                    textView325.setText(seymourSingleton.snowConditions);
-                                    TextView textView326 = findViewById(R.id.textView326);
-                                    textView326.setText("Runs Open: " + seymourSingleton.runsOpen + "/41");
-                                    TextView textView228 = findViewById(R.id.textView228);
-                                    textView228.setText("Lifts Open: " + seymourSingleton.liftsOpen + "/4");
-                                    TextView textView229 = findViewById(R.id.textView229);
-                                    textView229.setText("Terrain Parks Open: " + seymourSingleton.terrainParksOpen + "/5");
-                                    TextView textView230 = findViewById(R.id.textView230);
-                                    textView230.setText("Tube Parks Open: " + seymourSingleton.tubeParksOpen + "/2");
-                                    TextView textView231 = findViewById(R.id.textView231);
+                                    TextView conditions = findViewById(R.id.textView323);
+                                    conditions.setText(seymourSingleton.conditions);
+                                    TextView temperature = findViewById(R.id.textView322);
+                                    temperature.setText(seymourSingleton.temperature);
+                                    TextView visibility = findViewById(R.id.textView324);
+                                    visibility.setText("Visibility: " + seymourSingleton.visibility);
+                                    TextView snowConditions = findViewById(R.id.textView325);
+                                    snowConditions.setText(seymourSingleton.snowConditions);
+                                    TextView runsOpen = findViewById(R.id.textView326);
+                                    runsOpen.setText("Runs Open: " + seymourSingleton.runsOpen + "/42");
+                                    TextView liftsOpen = findViewById(R.id.textView228);
+                                    liftsOpen.setText("Lifts Open: " + seymourSingleton.liftsOpen + "/4");
+                                    TextView terrainParksOpen = findViewById(R.id.textView229);
+                                    terrainParksOpen.setText("Terrain Parks Open: " + seymourSingleton.terrainParksOpen + "/4");
+                                    TextView tubeParksOpen = findViewById(R.id.textView230);
+                                    tubeParksOpen.setText("Tube Parks Open: " + seymourSingleton.tubeParksOpen + "/2");
+                                    TextView snowshoeTrailStatus = findViewById(R.id.textView231);
                                     String snowshoeTrialStatus = seymourSingleton.snowshoeTrailsStatus.substring(0, 1).toUpperCase() + seymourSingleton.snowshoeTrailsStatus.substring(1);
-                                    textView231.setText("Snowshoe Trails Status: " + snowshoeTrialStatus);
+                                    snowshoeTrailStatus.setText("Snowshoe Trails Status: " + snowshoeTrialStatus);
                                     setWeatherIcon(seymourSingleton.conditions);
-                                    TextView textView328 = findViewById(R.id.textView328);
-                                    textView328.setText(seymourSingleton.fortyEightHrSnow);
-                                    TextView textView330 = findViewById(R.id.textView330);
-                                    textView330.setText(seymourSingleton.twentyFourHrSnow);
-                                    TextView textView332 = findViewById(R.id.textView332);
-                                    textView332.setText(seymourSingleton.sevenDaySnow);
-                                    TextView textView334 = findViewById(R.id.textView334);
-                                    textView334.setText(seymourSingleton.seasonSnow);
+                                    TextView fortyEightHrSnow = findViewById(R.id.textView328);
+                                    fortyEightHrSnow.setText(seymourSingleton.fortyEightHrSnow);
+                                    TextView twentyFourHrSnow = findViewById(R.id.textView330);
+                                    twentyFourHrSnow.setText(seymourSingleton.twentyFourHrSnow);
+                                    TextView sevenDaySnow = findViewById(R.id.textView332);
+                                    sevenDaySnow.setText(seymourSingleton.sevenDaySnow);
+                                    TextView seasonSnow = findViewById(R.id.textView334);
+                                    seasonSnow.setText(seymourSingleton.seasonSnow);
 
-                                    ImageView imageView320 = findViewById(R.id.imageView320);
-                                    setStatus(imageView320, seymourSingleton.brocktonChair);
-                                    ImageView imageView321 = findViewById(R.id.imageView321);
-                                    setStatus(imageView321, seymourSingleton.lodgeChair);
-                                    ImageView imageView322 = findViewById(R.id.imageView322);
-                                    setStatus(imageView322, seymourSingleton.mysteryPeakExpress);
-                                    ImageView imageView323 = findViewById(R.id.imageView323);
-                                    setStatus(imageView323, seymourSingleton.goldieMagicCarpet);
+                                    ImageView brocktonChair = findViewById(R.id.imageView320);
+                                    setStatus(brocktonChair, seymourSingleton.brocktonChair);
+                                    ImageView lodgeChair = findViewById(R.id.imageView321);
+                                    setStatus(lodgeChair, seymourSingleton.lodgeChair);
+                                    ImageView mysteryPeakExpress = findViewById(R.id.imageView322);
+                                    setStatus(mysteryPeakExpress, seymourSingleton.mysteryPeakExpress);
+                                    ImageView goldieMagicCarpet = findViewById(R.id.imageView323);
+                                    setStatus(goldieMagicCarpet, seymourSingleton.goldieMagicCarpet);
 
-                                    ImageView imageView324 = findViewById(R.id.imageView324);
-                                    setStatus(imageView324, seymourSingleton.enquistSnowTubePark);
-                                    ImageView imageView325 = findViewById(R.id.imageView325);
-                                    setStatus(imageView325, seymourSingleton.tobagganArea);
-                                    ImageView imageView326 = findViewById(R.id.imageView326);
-                                    setStatus(imageView326, seymourSingleton.discoverySnowshoeTrails);
-                                    TextView textView341 = findViewById(R.id.textView341);
-                                    textView341.setText("Runs Open: " + seymourSingleton.brocktonChairRunsOpen + "/11");
-                                    TextView textView342 = findViewById(R.id.textView342);
-                                    textView342.setText("Runs Open: " + seymourSingleton.lodgeChairRunsOpen + "/9");
-                                    TextView textView423 = findViewById(R.id.textView423);
-                                    textView423.setText("Terrain Parks Open: " + seymourSingleton.lodgeChairTerrainParksOpen + "/2");
-                                    TextView textView343 = findViewById(R.id.textView343);
-                                    textView343.setText("Runs Open: " + seymourSingleton.mysteryPeakExpressRunsOpen+ "/19");
-                                    TextView textView424 = findViewById(R.id.textView424);
-                                    textView424.setText("Terrain Parks Open: " + seymourSingleton.mysteryPeakExpressTerrainParksOpen + "/3");
-                                    TextView textView344 = findViewById(R.id.textView344);
-                                    textView344.setText("Runs Open: " + seymourSingleton.goldieMagicCarpetRunsOpen + "/3");
+                                    ImageView enquistSnowTubePark = findViewById(R.id.imageView324);
+                                    setStatus(enquistSnowTubePark, seymourSingleton.enquistSnowTubePark);
+                                    ImageView tobogganArea = findViewById(R.id.imageView325);
+                                    setStatus(tobogganArea, seymourSingleton.tobagganArea);
+                                    ImageView discoverySnowshoeTrails = findViewById(R.id.imageView326);
+                                    setStatus(discoverySnowshoeTrails, seymourSingleton.discoverySnowshoeTrails);
+                                    TextView brocktonChairRunsOpen = findViewById(R.id.textView341);
+                                    brocktonChairRunsOpen.setText("Runs Open: " + seymourSingleton.brocktonChairRunsOpen + "/10");
+                                    TextView lodgeChairRunsOpen = findViewById(R.id.textView342);
+                                    lodgeChairRunsOpen.setText("Runs Open: " + seymourSingleton.lodgeChairRunsOpen + "/9");
+                                   // TextView textView423 = findViewById(R.id.textView423);
+                                  //  textView423.setText("Terrain Parks Open: " + seymourSingleton.lodgeChairTerrainParksOpen + "/2");
+                                    TextView mysteryPeakRunsOpen = findViewById(R.id.textView343);
+                                    mysteryPeakRunsOpen.setText("Runs Open: " + seymourSingleton.mysteryPeakExpressRunsOpen+ "/20");
+                               //     TextView textView424 = findViewById(R.id.textView424);
+                                //    textView424.setText("Terrain Parks Open: " + seymourSingleton.mysteryPeakExpressTerrainParksOpen + "/3");
+                                    TextView magicCarpetRunsOpen = findViewById(R.id.textView344);
+                                    magicCarpetRunsOpen.setText("Runs Open: " + seymourSingleton.goldieMagicCarpetRunsOpen + "/3");
                                     TextView textView425 = findViewById(R.id.textView425);
-                                    if (seymourSingleton.mushroom.equals("open")) {
-                                        textView425.setText("Terrain Parks Open: 1/1");
-                                    } else {
-                                        textView425.setText("Terrain Parks Open: 0/1");
-                                    }
+//                                    if (seymourSingleton.mushroom.equals("open")) {
+//                                        textView425.setText("Terrain Parks Open: 1/1");
+//                                    } else {
+//                                        textView425.setText("Terrain Parks Open: 0/1");
+//                                    }
                                 }
 
                             }, getApplicationContext());
@@ -171,18 +171,18 @@ public class Seymour extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void setWeatherIcon(String text) {
+    public void setWeatherIcon(String conditions) {
         ImageView imageView319 = findViewById(R.id.imageView319);
-        String[] arr = text.split(" ");
+        String[] arr = conditions.split(" ");
         StringBuffer sb = new StringBuffer();
 
         for (int i = 0; i < arr.length; i++) {
             sb.append(Character.toUpperCase(arr[i].charAt(0)))
                     .append(arr[i].substring(1)).append(" ");
         }
-        text = sb.toString().trim();
+        conditions = sb.toString().trim();
 
-        switch (text) {
+        switch (conditions) {
             case "Light Rain":
                 imageView319.setImageResource(R.drawable.chance_of_showers);
                 return;
@@ -218,10 +218,10 @@ public class Seymour extends AppCompatActivity {
                 return;
         }
             if (hour >= 6 && hour < 21) {
-                switch (text) {
+                switch (conditions) {
                 }
             } else {
-                switch (text) {
+                switch (conditions) {
                 }
 
             }
@@ -229,7 +229,7 @@ public class Seymour extends AppCompatActivity {
 
 
     public void setStatus(ImageView image, String status) {
-        switch (status) {
+        switch (status.toLowerCase()) {
             case "open":
                 image.setImageResource(R.drawable.greencheck);
                 return;

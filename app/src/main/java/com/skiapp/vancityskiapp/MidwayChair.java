@@ -22,30 +22,30 @@ public class MidwayChair extends AppCompatActivity {
                             cypressSingleton = CypressSingleton.getInstance(new ResultListener() {
                                 @Override
                                 public void onResultFetched() {
-                                    ImageView imageView305 = findViewById(R.id.imageView305);
+                                    ImageView status = findViewById(R.id.imageView305);
                                     switch(cypressSingleton.midwayChair) {
                                         case "open":
-                                            imageView305.setImageResource(R.drawable.greencheck);
+                                            status.setImageResource(R.drawable.greencheck);
                                             break;
                                         case "closed":
-                                            imageView305.setImageResource(R.drawable.redx);
+                                            status.setImageResource(R.drawable.redx);
                                             break;
                                         case "standby":
-                                            imageView305.setImageResource(R.drawable.triangle);
+                                            status.setImageResource(R.drawable.triangle);
                                             break;
                                     }
 
-                                    ImageView imageView306 = findViewById(R.id.imageView306);
-                                    ImageView imageView315 = findViewById(R.id.imageView315);
-                                    ImageView imageView316 = findViewById(R.id.imageView316);
-                                    ImageView imageView317 = findViewById(R.id.imageView317);
-                                    setStatus(imageView306, cypressSingleton.shuttle);
-                                    setStatus(imageView315, cypressSingleton.blaster);
-                                    setStatus(imageView316, cypressSingleton.hutRun);
-                                    setStatus(imageView317, cypressSingleton.webbSite);
+                                    ImageView shuttle = findViewById(R.id.imageView306);
+                                    ImageView blaster = findViewById(R.id.imageView315);
+                                    ImageView hutRun = findViewById(R.id.imageView316);
+                                    ImageView webbSite = findViewById(R.id.imageView317);
+                                    setStatus(shuttle, cypressSingleton.shuttle);
+                                    setStatus(blaster, cypressSingleton.blaster);
+                                    setStatus(hutRun, cypressSingleton.hutRun);
+                                    setStatus(webbSite, cypressSingleton.webbSite);
 
-                                    TextView textView315 = findViewById(R.id.textView315);
-                                    textView315.setText("Runs Open: " + cypressSingleton.runsOpenMidwayChair + "/4");
+                                    TextView runsOpen = findViewById(R.id.textView315);
+                                    runsOpen.setText("Runs Open: " + cypressSingleton.runsOpenMidwayChair + "/4");
                                 }
                             }, getApplicationContext());
                             cypressSingleton.startThread();

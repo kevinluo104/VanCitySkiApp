@@ -69,7 +69,11 @@ public class SeymourSingleton extends AppCompatActivity {
     public String lowerUnicorn = "Closed";
     public String mistletoe = "Closed";
     public String seymour16s = "Closed";
-    public String trapperJohns = "Closed";
+    //public String trapperJohns = "Closed";
+
+    public String lowerTrapperJohn = "Closed";
+
+    public String upperTrapperJohn = "Closed";
 
     public String manning = "Closed";
     public String boomerang = "Closed";
@@ -93,6 +97,10 @@ public class SeymourSingleton extends AppCompatActivity {
 
     public String flowerBasin = "Closed";
 
+    public String goldieMeadows = "Closed";
+
+
+
     private SeymourSingleton() {
         startThread();
     }
@@ -111,18 +119,18 @@ public class SeymourSingleton extends AppCompatActivity {
         new Thread() {
             public void run() {
                 try {
-                    seymourWeather = Jsoup.connect("https://mtseymour.ca/today").get();
+                    seymourWeather = Jsoup.connect("https://mtseymour.ca/the-mountain/todays-conditions-hours").get();
                     runOnUiThread(new Runnable() {
                         public void run() {
-                            temperature = seymourWeather.select("span.currentConditionsTemperature").first().text();
-                            int index = temperature.indexOf(".");
-                            if (index > 0) {
-                                temperature = temperature.substring(0, temperature.lastIndexOf(".")) + "°C";
-                                System.out.println("seymou temp:" + temperature);
-                            }
+                            temperature = seymourWeather.select("#block-conditions > div > div > ul > li:nth-child(2) > div.gradient.border-radius-full.t-c-green.f-size-30.lh-1.value > div > div").first().text();
+                          //  int index = temperature.indexOf(".");
+                          //  if (index > 0) {
+                         //       temperature = temperature.substring(0, temperature.lastIndexOf(".")) + "°C";
+                               // System.out.println("seymou temp:" + temperature);
+                          //  }
 
-                            conditions = seymourWeather.select("td").get(2).ownText();
-                            System.out.println("ARR: " + conditions);
+                            conditions = seymourWeather.select("#block-conditions > div > div > ul > li:nth-child(1) > div.t-micetype.lh-3.t-t-uppercase.f-w-medium.label").first().text();
+                            System.out.println("ARR3333: " + conditions);
                             String[] arr = conditions.split(" ");
                             StringBuffer sb = new StringBuffer();
 
@@ -132,7 +140,7 @@ public class SeymourSingleton extends AppCompatActivity {
                                         .append(arr[i].substring(1)).append(" ");
                             }
                             conditions = sb.toString().trim();
-                            visibility = seymourWeather.select("td").get(4).ownText();
+                            visibility = seymourWeather.select("td").get(0).ownText();
                             System.out.println("VISISIBIR" + visibility);
 
                             snowConditions = seymourWeather.select("td").get(7).ownText();
@@ -142,23 +150,23 @@ public class SeymourSingleton extends AppCompatActivity {
                                 System.out.println("ARR2: " + i);
                             }
 
-                            StringBuffer sb2 = new StringBuffer();
+//                            StringBuffer sb2 = new StringBuffer();
+//
+//                            for (int i = 0; i < arr2.length; i++) {
+//                                sb2.append(Character.toUpperCase(arr2[i].charAt(0)))
+//                                        .append(arr2[i].substring(1)).append(" ");
+//                            }
+                     //       snowConditions = "Conditions: " + sb2.toString().trim();
+                             snowConditions = "Conditions: N/A";
 
-                            for (int i = 0; i < arr2.length; i++) {
-                                sb2.append(Character.toUpperCase(arr2[i].charAt(0)))
-                                        .append(arr2[i].substring(1)).append(" ");
-                            }
-                            snowConditions = "Conditions: " + sb2.toString().trim();
-                            // snowConditions = "Conditions: N/A";
-
-                            runsOpen = Integer.parseInt(seymourWeather.select("td").get(5).ownText());
+                            runsOpen = Integer.parseInt(seymourWeather.select("#block-conditions > div > div > ul > li:nth-child(3) > div.gradient.border-radius-full.t-c-green.f-size-30.lh-1.value > div > div").first().text());
                             System.out.println("RUNS OPEN" + runsOpen);
                             if (hour > 21 || hour < 8)
                                 runsOpen = 0;
-                            fortyEightHrSnow = seymourWeather.select("td").get(9).ownText();
-                            twentyFourHrSnow = seymourWeather.select("td").get(8).ownText();
-                            sevenDaySnow = seymourWeather.select("td").get(10).ownText();
-                            seasonSnow = seymourWeather.select("td").get(14).ownText();
+                            twentyFourHrSnow = seymourWeather.select("#block-conditions > div > div > div:nth-child(4) > div > ul > li:nth-child(1) > div.gradient.border-radius-full.t-c-green.f-size-30.lh-1.value > div > div.f-size-30.f-w-xbold.value").get(0).ownText() + "cm";
+                            fortyEightHrSnow = seymourWeather.select("#block-conditions > div > div > div:nth-child(4) > div > ul > li:nth-child(2) > div.gradient.border-radius-full.t-c-green.f-size-30.lh-1.value > div > div.f-size-30.f-w-xbold.value").get(0).ownText() + "cm";
+                            sevenDaySnow = seymourWeather.select("#block-conditions > div > div > div:nth-child(4) > div > ul > li:nth-child(3) > div.gradient.border-radius-full.t-c-green.f-size-30.lh-1.value > div > div.f-size-30.f-w-xbold.value").get(0).ownText() + "cm";
+                            seasonSnow = seymourWeather.select("#block-conditions > div > div > div:nth-child(4) > div > ul > li:nth-child(6) > div.gradient.border-radius-full.t-c-green.f-size-30.lh-1.value > div > div.f-size-30.f-w-xbold.value").get(0).ownText() + "cm";
                             discoverySnowshoeTrails = setSnowshoeTrailStatus();
                             snowshoeTrailsStatus = setSnowshoeTrailStatus();
                            /* if (seymourWeather.select("td.rtecenter").get(34).ownText().equals("Open")) {
@@ -169,7 +177,7 @@ public class SeymourSingleton extends AppCompatActivity {
                                 snowshoeTrailsStatus = "Closed";
                             }*/
                             if (counter == 0) {
-                                brocktonChair = setChairliftStatus(16);
+                                brocktonChair = setChairliftStatus("Brockton");
                                 if (brocktonChair.equals("closed"))
                                     brocktonChairRunsOpen = "0";
                                 int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
@@ -178,26 +186,28 @@ public class SeymourSingleton extends AppCompatActivity {
                                     brocktonChairRunsOpen = "0";
                                 }
 
-                                lodgeChair = setChairliftStatus(14);
+                                lodgeChair = setChairliftStatus("Lodge");
                                 if (lodgeChair.equals("closed"))
                                     lodgeChairRunsOpen = "0";
-                                mysteryPeakExpress = setChairliftStatus(15);
+                                mysteryPeakExpress = setChairliftStatus("Mystery");
                                 if (mysteryPeakExpress.equals("closed"))
                                     mysteryPeakExpressRunsOpen = "0";
-                                goldieMagicCarpet = setChairliftStatus(17);
+                                goldieMagicCarpet = setChairliftStatus("Goldie");
                                 if (goldieMagicCarpet.equals("closed"))
                                     goldieMagicCarpetRunsOpen = "0";
 
-                                enquistSnowTubePark = setTubeParkStatus(23);
-                                tobagganArea = setTubeParkStatus(24);
+                                enquistSnowTubePark = setTubeParkStatus("Enquist");
+                                tobagganArea = setTubeParkStatus("Toboggan");
 
-                                northlands = setTerrainParkMysteryPeakExpressStatus(northlands, 18);
-                                nuthouse = setTerrainParkMysteryPeakExpressStatus(nuthouse, 21);
-                                System.out.println("nuthouse: " + nuthouse);
-                                theRockstarEnergyPit = setTerrainParkMysteryPeakExpressStatus(theRockstarEnergyPit, 19);
 
-                                mushroom = setTerrainParkLodgeChairStatus(22);
-                                rookies = setTerrainParkLodgeChairStatus(20);
+
+                                northlands = setTerrainParkStatus("Northlands");
+                                nuthouse = setTerrainParkStatus("Nuthouse");
+                                //System.out.println("nuthouse: " + nuthouse);
+                                theRockstarEnergyPit = setTerrainParkStatus("Pit");
+
+                                mushroom = setTerrainParkStatus("Mushroom");
+                                rookies = setTerrainParkStatus("Rookies");
                             }
                             setBrocktonChairRuns();
                             setLodgeChairRuns();
@@ -219,14 +229,31 @@ public class SeymourSingleton extends AppCompatActivity {
 
     }
 
-    public String setChairliftStatus(int rowNum) {
-        String first = seymourWeather.select("td.rtecenter").get(rowNum).ownText();
-        System.out.println(rowNum + "" + first);
+    public String setChairliftStatus(String liftName) {
+       // System.out.println("HERE" + rowNum);
+        String status = null;
+        switch (liftName) {
+            case "Lodge":
+                status = seymourWeather.select(".field--name-field-lodge-status").get(0).ownText();
+                //System.out.println("HI" + status);
+                break;
+            case "Mystery":
+                status = seymourWeather.select(".field--name-field-mystery-status").get(0).ownText();
+                break;
+            case "Brockton":
+                status = seymourWeather.select(".field--name-field-brockton-status").get(0).ownText();
+                break;
+            case "Goldie":
+                status = seymourWeather.select(".field--name-field-goldie-status").get(0).ownText();
+
+        }
+        String first = seymourWeather.select(".field--name-field-lodge-status").get(0).ownText();
+      //  System.out.println(rowNum + "" + first);
 
         // String ss = seymourWeather.select("td.rtecenter").get(22).ownText();
         // System.out.println("this is ss " + ss);
         String lift = "closed";
-        switch (first) {
+        switch (status) {
             case "8:30 AM - 9:00 PM":
                 if (hour >= 8 && hour < 21) {
                     lift = "open";
@@ -299,16 +326,28 @@ public class SeymourSingleton extends AppCompatActivity {
         return lift;
     }*/
 
-    public String setTubeParkStatus(int rowNum) {
-        String first = seymourWeather.select("td.rtecenter").get(rowNum).ownText();
-        String tubePark = "closed";
-        switch (first) {
-            case "10:00 AM - 4:00 PM":
-                if (hour >= 10 && hour < 16) {
-                    tubePark = "open";
-                    tubeParksOpen++;
-                    return tubePark;
-                }
+    public String setTubeParkStatus(String parkName) {
+        String status = null;
+        switch (parkName) {
+            case "Enquist":
+                status = seymourWeather.select(".field--name-field-tube-status").get(0).ownText();
+                //System.out.println("HI" + status);
+                break;
+            case "Toboggan":
+                status = seymourWeather.select(".field--name-field-toboggan-status").get(0).ownText();
+                break;
+
+
+        }
+       // String first = seymourWeather.select("td.rtecenter").get(rowNum).ownText();
+       // String tubePark = "closed";
+//        switch (status) {
+//            case "10:00 AM - 4:00 PM":
+//                if (hour >= 10 && hour < 16) {
+//                    tubePark = "open";
+//                    tubeParksOpen++;
+//                    return tubePark;
+//                }
 
        /* return lift;
         switch (first) {
@@ -324,12 +363,12 @@ public class SeymourSingleton extends AppCompatActivity {
                 return tubePark;
         }
         return tubePark;*/
-        }
-        return tubePark;
+      //  }
+        return status;
     }
 
     public String setSnowshoeTrailStatus() {
-        String first = seymourWeather.select("td.rtecenter").get(21).ownText();
+        String first = seymourWeather.select("#block-conditions > div > div > ul > li:nth-child(2) > div.gradient.border-radius-full.t-c-green.f-size-30.lh-1.value > div > div").first().text();
         String snowShoe = "closed";
         switch(first) {
             case "9:30 AM - 4:00 PM":
@@ -384,32 +423,73 @@ public class SeymourSingleton extends AppCompatActivity {
         return terrainPark;*/
     }
 
-    public String setTerrainParkMysteryPeakExpressStatus(String terrainPark, int rowNum) {
-        String first = seymourWeather.select("td.rtecenter").get(rowNum).ownText();
-        switch (first) {
-            case "Open":
-                terrainPark = "open";
-                terrainParksOpen++;
-                mysteryPeakExpressTerrainParksOpen++;
-                return terrainPark;
-            case "10:30 AM - 9:00 PM":
-                if (hour > 10 && hour < 21) {
-                    terrainPark = "open";
-                    terrainParksOpen++;
-                    mysteryPeakExpressTerrainParksOpen++;
-                    return terrainPark;
-                }
-            case "Closed":
-                terrainPark = "closed";
-                return terrainPark;
-            case "Standby":               // USED BY SEYMOUR??
-                terrainPark = "standby";
-                return terrainPark;
+//    public String setTerrainParkMysteryPeakExpressStatus(String terrainPark, int rowNum) {
+//        String first = seymourWeather.select("td.rtecenter").get(rowNum).ownText();
+//        switch (first) {
+//            case "Open":
+//                terrainPark = "open";
+//                terrainParksOpen++;
+//                mysteryPeakExpressTerrainParksOpen++;
+//                return terrainPark;
+//            case "10:30 AM - 9:00 PM":
+//                if (hour > 10 && hour < 21) {
+//                    terrainPark = "open";
+//                    terrainParksOpen++;
+//                    mysteryPeakExpressTerrainParksOpen++;
+//                    return terrainPark;
+//                }
+//            case "Closed":
+//                terrainPark = "closed";
+//                return terrainPark;
+//            case "Standby":               // USED BY SEYMOUR??
+//                terrainPark = "standby";
+//                return terrainPark;
+//        }
+//        return terrainPark;
+//    }
+
+    public String setTerrainParkStatus(String terrainPark) {
+       // String first = seymourWeather.select("td.rtecenter").get(rowNum).ownText();
+        String status = null;
+        switch (terrainPark) {
+            case "Northlands":
+                status = seymourWeather.select(".field--name-field-northlands-status").get(0).ownText();
+                //System.out.println("HI" + status);
+                break;
+            case "Pit":
+                status = seymourWeather.select(".field--name-field-pit-status").get(0).ownText();
+                break;
+            case "Rookies":
+                status = seymourWeather.select(".field--name-field-rookies-status").get(0).ownText();
+                break;
+            case "Mushroom":
+                status = seymourWeather.select(".field--name-field-mushroom-status").get(0).ownText();
+
         }
-        return terrainPark;
+//        switch (first) {
+//            case "Open":
+//                terrainPark = "open";
+//                terrainParksOpen++;
+//                mysteryPeakExpressTerrainParksOpen++;
+//                return terrainPark;
+//            case "10:30 AM - 9:00 PM":
+//                if (hour > 10 && hour < 21) {
+//                    terrainPark = "open";
+//                    terrainParksOpen++;
+//                    mysteryPeakExpressTerrainParksOpen++;
+//                    return terrainPark;
+//                }
+//            case "Closed":
+//                terrainPark = "closed";
+//                return terrainPark;
+//            case "Standby":               // USED BY SEYMOUR??
+//                terrainPark = "standby";
+//                return terrainPark;
+//        }
+        return status;
     }
 
-    public String setTerrainParkMagicCarpeStatus(int rowNum) {
+    public String setTerrainParkMagicCarpetStatus(int rowNum) {
         String first = seymourWeather.select("td.rtecenter").get(rowNum).ownText();
         String terrainPark = "closed";
         switch (first) {
@@ -469,7 +549,8 @@ public class SeymourSingleton extends AppCompatActivity {
             lowerUnicorn = "?";
             mistletoe = "?";
             seymour16s = "?";
-            trapperJohns = "?";
+            lowerTrapperJohn = "?";
+            upperTrapperJohn = "?";
         }
     }
 
@@ -500,7 +581,7 @@ public class SeymourSingleton extends AppCompatActivity {
         if (!goldieMagicCarpet.equals("closed")) {
             flowerBasin = "?";
             mushroomRun = "?";
-            rookiesRun = "?";
+            goldieMeadows = "?";
         }
     }
 }

@@ -15,30 +15,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.play.core.appupdate.AppUpdateInfo;
 import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
-import com.google.android.play.core.install.InstallState;
-import com.google.android.play.core.install.InstallStateUpdatedListener;
+import com.google.android.play.core.appupdate.AppUpdateOptions;
 import com.google.android.play.core.install.model.AppUpdateType;
-import com.google.android.play.core.install.model.InstallStatus;
 import com.google.android.play.core.install.model.UpdateAvailability;
-import com.google.android.play.core.tasks.OnSuccessListener;
 import com.google.android.play.core.tasks.Task;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import eu.dkaratzas.android.inapp.update.Constants;
-import eu.dkaratzas.android.inapp.update.InAppUpdateManager;
-import eu.dkaratzas.android.inapp.update.InAppUpdateStatus;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,11 +39,11 @@ public class MainActivity extends AppCompatActivity {
     private int hour = cal.get(Calendar.HOUR_OF_DAY);
     private String degreeSymbol = "°C";
     private Document hourlyVan;
-    private Button button;
-    private Button button2;
-    private Button button3;
-    private Button button18;
-    private Button button19;
+    private Button cypressReportButton;
+    private Button grouseReportButton;
+    private Button seymourReportButton;
+    private Button refreshButton;
+    private Button FAQButton;
     private GrouseSingleton grouseSingleton;
     private CypressSingleton cypressSingleton;
     private SeymourSingleton seymourSingleton;
@@ -61,46 +52,42 @@ public class MainActivity extends AppCompatActivity {
     private String TAG = "unsuccessful";
 
 
-    private AppUpdateManager mAppUpdateManager;
-
-
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(MainActivity.this);
-        Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
-        appUpdateInfoTask.addOnSuccessListener(result -> {
-            if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && result.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
-                try {
-                    appUpdateManager.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, MainActivity.this, REQUEST_CODE);
-                } catch (IntentSender.SendIntentException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
 
-
+//        AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(MainActivity.this);
+//        Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
+//        appUpdateInfoTask.addOnSuccessListener(result -> {
+//            if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && result.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+//                try {
+//                    appUpdateManager.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, MainActivity.this, REQUEST_CODE);
+//                } catch (IntentSender.SendIntentException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
 
         final long startTime = System.currentTimeMillis();
-        final TextView textView233 = findViewById(R.id.textView233);
-        textView233.setText("Loading data...");
-        textView233.setVisibility(View.VISIBLE);
+        final TextView loadingDataText = findViewById(R.id.textView233);
+        loadingDataText.setText("Loading data...");
+        loadingDataText.setVisibility(View.VISIBLE);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                textView233.setVisibility(View.INVISIBLE);
+                loadingDataText.setVisibility(View.INVISIBLE);
             }
         }, timeInMillis);
 
-        final TextView textView234 = findViewById(R.id.textView234);
-        textView234.setText("Welcome! Please check for updates in the app store when available!");
-        textView234.setVisibility(View.VISIBLE);
+        final TextView welcomeText = findViewById(R.id.textView234);
+        welcomeText.setText("Welcome! Please check for updates in the app store when available!");
+        welcomeText.setVisibility(View.VISIBLE);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                textView234.setVisibility(View.INVISIBLE);
+                welcomeText.setVisibility(View.INVISIBLE);
             }
         }, timeInMillis);
 
@@ -148,38 +135,38 @@ public class MainActivity extends AppCompatActivity {
         new Thread() {
             public void run() {
                 try {
-                    TextView textView257 = findViewById(R.id.textView257);
-                    textView257.setText("");
-                    button = findViewById(R.id.button);
-                    button2 = findViewById(R.id.button2);
-                    button3 = findViewById(R.id.button3);
-                    button.setOnClickListener(new View.OnClickListener() {
+                    TextView errorText = findViewById(R.id.textView257);
+                    errorText.setText("");
+                    cypressReportButton = findViewById(R.id.button);
+                    grouseReportButton = findViewById(R.id.button2);
+                    seymourReportButton = findViewById(R.id.button3);
+                    cypressReportButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             openCypress();
                         }
                     });
-                    button2.setOnClickListener(new View.OnClickListener() {
+                    grouseReportButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             openGrouse();
                         }
                     });
-                    button3.setOnClickListener(new View.OnClickListener() {
+                    seymourReportButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             openSeymour();
                         }
                     });
-                    button18 = findViewById(R.id.button18);
-                    button18.setOnClickListener(new View.OnClickListener() {
+                    refreshButton = findViewById(R.id.button18);
+                    refreshButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             refresh();
                         }
                     });
-                    button19 = findViewById(R.id.button19);
-                    button19.setOnClickListener(new View.OnClickListener() {
+                    FAQButton = findViewById(R.id.button19);
+                    FAQButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             openFAQ();
@@ -192,9 +179,9 @@ public class MainActivity extends AppCompatActivity {
                             ImageView image = findViewById(R.id.imageView);
                             vancouverWeather(vanWeather.select("img.center-block.mrgn-tp-md").first().absUrl("src"), image);
                             TextView vanTemp = findViewById(R.id.textView);
-                            vanTemp.setText(vanWeather.select("span.wxo-metric-hide").first().text());
+                            vanTemp.setText(vanWeather.select("p[data-v-79d110ba] > span[data-v-79d110ba]").first().text());
                             TextView vanConditions = findViewById(R.id.textView10);
-                            vanConditions.setText(vanWeather.select("p.visible-xs.text-center").first().text());
+                            vanConditions.setText(vanWeather.select("#mainContent > details.panel.panel-default.wxo-obs.hidden-details-print-close > div.hidden-xs.row.no-gutters > div.col-sm-10.text-center.currcond-height.hidden-print > div:nth-child(2) > dl > dd:nth-child(2) > span").first().text());
                             ArrayList<String> tempList = setHourlyTemp(hourlyVan, hour);
                             TextView van6amTemp = findViewById(R.id.textView23);
                             TextView van9amTemp = findViewById(R.id.textView24);
@@ -213,15 +200,18 @@ public class MainActivity extends AppCompatActivity {
                             ImageView twelveAmPic = findViewById(R.id.imageView12);
                             ImageView threeAmPic = findViewById(R.id.imageView13);
 
-                            TextView tv11 = findViewById(R.id.textView11);
-                            TextView tv12 = findViewById(R.id.textView12);
-                            TextView tv13 = findViewById(R.id.textView13);
-                            TextView tv14 = findViewById(R.id.textView14);
-                            TextView tv15 = findViewById(R.id.textView15);
-                            TextView tv16 = findViewById(R.id.textView16);
-                            TextView tv17 = findViewById(R.id.textView17);
-                            TextView tv18 = findViewById(R.id.textView18);
-                            setHourlyVanTimeSlot(tv11, tv12, tv13, tv14, tv15, tv16, tv17, tv18);
+                            TextView firstHourSlot = findViewById(R.id.textView11);
+                            TextView secondHourSlot = findViewById(R.id.textView12);
+                            TextView thirdHourSlot = findViewById(R.id.textView13);
+                            TextView fourthHourSlot = findViewById(R.id.textView14);
+                            TextView fifthHourSlot = findViewById(R.id.textView15);
+                            TextView sixthHourSlot = findViewById(R.id.textView16);
+                            TextView seventhHourSlot = findViewById(R.id.textView17);
+                            TextView eighthHourSlot = findViewById(R.id.textView18);
+                            setHourlyVanTimeSlot(firstHourSlot, secondHourSlot, thirdHourSlot, fourthHourSlot, fifthHourSlot, sixthHourSlot, seventhHourSlot, eighthHourSlot);
+                            for (String s: tempList) {
+                                System.out.println("HEREEEEE: " + s);
+                            }
                             setVanTempHourly(tempList, van6amTemp, van9amTemp, van12pmTemp, van3pmTemp, van6pmTemp, van9pmTemp, van12amTemp, van3amTemp);
                             setVanIcon(tempList, sixAmPic, nineAmPic, twelvePmPic, threePmPic, sixPmPic, ninePmPic, twelveAmPic, threeAmPic);
 
@@ -229,32 +219,30 @@ public class MainActivity extends AppCompatActivity {
                                 grouseSingleton = GrouseSingleton.getInstance(new ResultListener() {
                                     @Override
                                     public void onResultFetched() {
-                                        TextView tv5 = findViewById(R.id.textView5);
-                                        tv5.setText(grouseSingleton.temperature);
-                                        TextView textView22 = findViewById(R.id.textView22);
+                                        TextView grouseTemp = findViewById(R.id.textView5);
+                                        grouseTemp.setText(grouseSingleton.temperature);
+                                        TextView grouseVisibility = findViewById(R.id.textView22);
                                         switch (grouseSingleton.visibility) {
                                             case "Limited Visibility":
-                                                textView22.setText("Visibility: Limited");
+                                                grouseVisibility.setText("Visibility: Limited");
                                                 break;
                                             case "Variable Visibility":
-                                                textView22.setText("Visibility: Variable");
+                                                grouseVisibility.setText("Visibility: Variable");
                                                 break;
                                             case "Unlimited Visibility":
-                                                textView22.setText("Visibility: Unlimited");
+                                                grouseVisibility.setText("Visibility: Unlimited");
                                                 break;
                                         }
-                                        TextView textView36 = findViewById(R.id.textView36);
-                                        textView36.setText("New Snow: " + grouseSingleton.overnightSnow);
-                                      //  textView36.setText("New Snow: 0cm");
-                                        TextView tv32 = findViewById(R.id.textView32);
-                                        tv32.setText(grouseSingleton.weather);
-                                        TextView textView313 = findViewById(R.id.textView313);
-                                        textView313.setText("Runs Open: " + grouseSingleton.runsOpen + "/33");
-                                        TextView textView34 = findViewById(R.id.textView34);
-                                        textView34.setText("Lifts Open: " + grouseSingleton.liftsOpen + "/5");
-                                        ImageView imageView4 = findViewById(R.id.imageView4);
-                                        setGrousePic(grouseSingleton.picture, imageView4);
-                                        System.out.println("this is grouse pic" + grouseSingleton.picture);
+                                        TextView grouseOvernightSnow = findViewById(R.id.textView36);
+                                        grouseOvernightSnow.setText("New Snow: " + grouseSingleton.overnightSnow);
+                                        TextView grouseWeather = findViewById(R.id.textView32);
+                                        grouseWeather.setText(grouseSingleton.weather);
+                                        TextView grouseRunsOpen = findViewById(R.id.textView313);
+                                        grouseRunsOpen.setText("Runs Open: " + grouseSingleton.runsOpen + "/33");
+                                        TextView grouseLiftsOpen = findViewById(R.id.textView34);
+                                        grouseLiftsOpen.setText("Lifts Open: " + grouseSingleton.liftsOpen + "/5");
+                                        ImageView grouseCondition = findViewById(R.id.imageView4);
+                                        setGrousePic(grouseSingleton.picture, grouseCondition);
                                     }
                                 }, getApplicationContext());
                                 grouseSingleton.startThread();
@@ -262,58 +250,58 @@ public class MainActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                             try {
-                                final TextView tv255 = findViewById(R.id.textView255);
-                                tv255.setText("Refresh at bottom of screen if conditions don't show up!");
+                                final TextView mainErrorText = findViewById(R.id.textView255);
+                                mainErrorText.setText("Refresh at bottom of screen if conditions don't show up!");
                                 cypressSingleton = CypressSingleton.getInstance(new ResultListener() {
                                     @Override
                                     public void onResultFetched() {
 
-                                        TextView textview31 = findViewById(R.id.textView31);
+                                        TextView cypressConditions = findViewById(R.id.textView31);
                                         String upperS = cypressSingleton.conditions.substring(0, 1).toUpperCase() + cypressSingleton.conditions.substring(1);
-                                        textview31.setText(upperS);
-                                        TextView tv6 = findViewById(R.id.textView6);
-                                        tv6.setText(cypressSingleton.temperature + "°C");
-                                        TextView textView21 = findViewById(R.id.textView21);
-                                        textView21.setText("Runs Open: " + cypressSingleton.runsOpen + "/61");
-                                        TextView textView29 = findViewById(R.id.textView29);
-                                        textView29.setText("Lifts Open: " + cypressSingleton.liftsOpen + "/6");
-                                        TextView textView35 = findViewById(R.id.textView35);
-                                        textView35.setText("New Snow: " + cypressSingleton.twentyFourHrSnow);
-                                        ImageView imageView2 = findViewById(R.id.imageView2);
-                                        setCypressPic(cypressSingleton.conditions, imageView2);
+                                        cypressConditions.setText(upperS);
+                                        TextView cypressTemp = findViewById(R.id.textView6);
+                                        cypressTemp.setText(cypressSingleton.temperature + "°C");
+                                        TextView cypressRunsOpen = findViewById(R.id.textView21);
+                                        cypressRunsOpen.setText("Runs Open: " + cypressSingleton.runsOpen + "/61");
+                                        TextView cypressLiftsOpen = findViewById(R.id.textView29);
+                                        cypressLiftsOpen.setText("Lifts Open: " + cypressSingleton.liftsOpen + "/6");
+                                        TextView cypressNewSnow = findViewById(R.id.textView35);
+                                        cypressNewSnow.setText("New Snow: " + cypressSingleton.twentyFourHrSnow);
+                                        ImageView cypressWeather = findViewById(R.id.imageView2);
+                                        setCypressPic(cypressSingleton.conditions, cypressWeather);
                                       /*  if (cypressSingleton.conditions.equals("Rain/snow"))
                                             cypressSingleton.conditions = "Rain/Snow";*/
 
-                                        //    TextView tv7 = findViewById(R.id.textView7);
+                                        //    TextView tv7 = findViewById(R.id.cypressVisibility);
                                         //  tv7.setText("Refresh at bottom of screen if nothing shows up!");
-                                        tv255.setText("");
+                                        mainErrorText.setText("");
                                     }
                                 }, getApplicationContext());
                                 cypressSingleton.startThread();
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
-                            TextView textView7 = findViewById(R.id.textView7);
-                            textView7.setText("");
+                            TextView cypressVisibility = findViewById(R.id.textView7);
+                            cypressVisibility.setText("");
                             try {
                                 seymourSingleton = SeymourSingleton.getInstance(new ResultListener() {
                                     @Override
                                     public void onResultFetched() {
-                                        TextView textview40 = findViewById(R.id.textView40);
-                                        textview40.setText("Visibility: " + seymourSingleton.visibility);
-                                        TextView textView41 = findViewById(R.id.textView41);
-                                        textView41.setText("Runs Open: " + seymourSingleton.runsOpen + "/41");
-                                        TextView textView42 = findViewById(R.id.textView42);
-                                        textView42.setText("Lifts Open: " + seymourSingleton.liftsOpen + "/4");
-                                        TextView textView43 = findViewById(R.id.textView43);
-                                        textView43.setText("New Snow: " + seymourSingleton.twentyFourHrSnow);
+                                        TextView seymourVisibility = findViewById(R.id.textView40);
+                                        seymourVisibility.setText("Visibility: " + seymourSingleton.visibility);
+                                        TextView seymourRunsOpen = findViewById(R.id.textView41);
+                                        seymourRunsOpen.setText("Runs Open: " + seymourSingleton.runsOpen + "/41");
+                                        TextView seymourLiftsOpen = findViewById(R.id.textView42);
+                                        seymourLiftsOpen.setText("Lifts Open: " + seymourSingleton.liftsOpen + "/4");
+                                        TextView seymour24HrSnow = findViewById(R.id.textView43);
+                                        seymour24HrSnow.setText("New Snow: " + seymourSingleton.twentyFourHrSnow);
 
-                                        ImageView imageView5 = findViewById(R.id.imageView5);
-                                        setSeymourPic(seymourSingleton.conditions, imageView5);
-                                        TextView tv8 = findViewById(R.id.textView8);
-                                        tv8.setText(seymourSingleton.temperature);
-                                        TextView textView33 = findViewById(R.id.textView33);
-                                        textView33.setText(seymourSingleton.conditions);
+                                        ImageView seymourWeather = findViewById(R.id.imageView5);
+                                        setSeymourPic(seymourSingleton.conditions, seymourWeather);
+                                        TextView seymourTemp = findViewById(R.id.textView8);
+                                        seymourTemp.setText(seymourSingleton.temperature);
+                                        TextView seymourConditions = findViewById(R.id.textView33);
+                                        seymourConditions.setText(seymourSingleton.conditions);
                                     }
                                 }, getApplicationContext());
                                 seymourSingleton.startThread();
@@ -342,16 +330,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE) {
-            Toast.makeText(this, "Start Download", Toast.LENGTH_SHORT).show();
-            if (resultCode != RESULT_OK) {
-                Log.d("Fail", "Update flow failed" + resultCode);
-            }
-        }
-    }
+
 
 
     @Override
@@ -359,57 +338,57 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
     }
 
-    public void vancouverWeather(String text, ImageView image) {
-        if (text.equals("https://weather.gc.ca/weathericons/12.gif")) {   // LIGHT RAIN
+    public void vancouverWeather(String condition, ImageView image) {
+        if (condition.equals("https://weather.gc.ca/weathericons/12.gif")) {   // LIGHT RAIN
             image.setImageResource(R.drawable.chance_of_showers);
             return;
         }
-        if (text.equals("https://weather.gc.ca/weathericons/19.gif")) { // THUNDERSTORMS WITH LIGHT RAIN NIGHT    SHOWERS AT TIMES HEAVY. RISK OF THUNDERSTORMS.
+        if (condition.equals("https://weather.gc.ca/weathericons/19.gif")) { // THUNDERSTORMS WITH LIGHT RAIN NIGHT    SHOWERS AT TIMES HEAVY. RISK OF THUNDERSTORMS.
             image.setImageResource(R.drawable.thunderstorm_w_light_rain);
             return;
         }
-        if (text.equals("https://weather.gc.ca/weathericons/23.gif")) { // HAZE
+        if (condition.equals("https://weather.gc.ca/weathericons/23.gif")) { // HAZE
             image.setImageResource(R.drawable.haze);
             return;
         }
-        if (text.equals("https://weather.gc.ca/weathericons/44.gif")) { // SMOKE
+        if (condition.equals("https://weather.gc.ca/weathericons/44.gif")) { // SMOKE
             image.setImageResource(R.drawable.smoke);
             return;
         }
-        if (text.equals("https://weather.gc.ca/weathericons/13.gif")) {  // RAIN
+        if (condition.equals("https://weather.gc.ca/weathericons/13.gif")) {  // RAIN
             image.setImageResource(R.drawable.rain);
             return;
         }
-        if (text.equals("https://weather.gc.ca/weathericons/24.gif")) {  // MIST
+        if (condition.equals("https://weather.gc.ca/weathericons/24.gif")) {  // MIST
             image.setImageResource(R.drawable.mist);
             return;
         }
-        if (text.equals("https://weather.gc.ca/weathericons/10.gif")) {  // OVERCAST
+        if (condition.equals("https://weather.gc.ca/weathericons/10.gif")) {  // OVERCAST
             image.setImageResource(R.drawable.overcast);
             return;
         }
-        if (text.equals("https://weather.gc.ca/weathericons/16.gif")) {  // LIGHT SNOW
+        if (condition.equals("https://weather.gc.ca/weathericons/16.gif")) {  // LIGHT SNOW
             image.setImageResource(R.drawable.light_snow);
             return;
         }
-        if (text.equals("https://weather.gc.ca/weathericons/17.gif")) {  // SNOW
+        if (condition.equals("https://weather.gc.ca/weathericons/17.gif")) {  // SNOW
             image.setImageResource(R.drawable.snow);
             return;
         }
-        if (text.equals("https://weather.gc.ca/weathericons/15.gif")) {  // WET SNOW MIXED WITH RAIN
+        if (condition.equals("https://weather.gc.ca/weathericons/15.gif")) {  // WET SNOW MIXED WITH RAIN
             image.setImageResource(R.drawable.wet_snow_mixed_with_rain);
             return;
         }
-        if (text.equals("https://weather.gc.ca/weathericons/28.gif")) {  // LIGHT DRIZZLE
+        if (condition.equals("https://weather.gc.ca/weathericons/28.gif")) {  // LIGHT DRIZZLE
             image.setImageResource(R.drawable.light_drizzle);
             return;
         }
-        if (text.equals("https://weather.gc.ca/weathericons/06.gif")) {  // LIGHT RAINSHOWER
+        if (condition.equals("https://weather.gc.ca/weathericons/06.gif")) {  // LIGHT RAINSHOWER
             image.setImageResource(R.drawable.chance_of_showers_day);
             return;
         }
         if (hour >= 8 && hour < 16) {
-            switch (text) {
+            switch (condition) {
                 case "https://weather.gc.ca/weathericons/03.gif":  // MOSTLY CLOUDY
                     image.setImageResource(R.drawable.mainly_cloudy_day);
                     return;
@@ -424,7 +403,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
             }
         } else {
-            switch (text) {
+            switch (condition) {
                 case "https://weather.gc.ca/weathericons/33.gif":   //MOSTLY CLOUDY AFTER >= 10PM
                 case "https://weather.gc.ca/weathericons/03.gif":  // MOSTLY CLOUDY
                     image.setImageResource(R.drawable.mainly_cloudy_night);
@@ -670,6 +649,9 @@ public class MainActivity extends AppCompatActivity {
                 eighth.setText(listOfTemp.get(4) + degreeSymbol);
                 break;
             case 15:
+//                for (String s: listOfTemp) {
+//                    System.out.println("HEREEEEE: " + s);
+//                }
                 first.setText(listOfTemp.get(5) + "°C");
                 second.setText(listOfTemp.get(6) + degreeSymbol);
                 third.setText(listOfTemp.get(7) + degreeSymbol);
@@ -731,33 +713,33 @@ public class MainActivity extends AppCompatActivity {
             case 22:
                 assignNightIcon(condList.get(8), first);
                 assignNightIcon(condList.get(9), second);
-                assignDayIcon(condList.get(10), third);
+                assignNightIcon(condList.get(10), third);
                 assignDayIcon(condList.get(11), fourth);
                 assignDayIcon(condList.get(12), fifth);
                 assignDayIcon(condList.get(13), sixth);
-                assignDayIcon(condList.get(14), seventh);
+                assignNightIcon(condList.get(14), seventh);
                 assignNightIcon(condList.get(15), eighth);
                 break;
             case 1:
             case 3:
             case 2:
                 assignNightIcon(condList.get(9), first);
-                assignDayIcon(condList.get(10), second);
+                assignNightIcon(condList.get(10), second);
                 assignDayIcon(condList.get(11), third);
                 assignDayIcon(condList.get(12), fourth);
                 assignDayIcon(condList.get(13), fifth);
-                assignDayIcon(condList.get(14), sixth);
+                assignNightIcon(condList.get(14), sixth);
                 assignNightIcon(condList.get(15), seventh);
                 assignNightIcon(condList.get(8), eighth);
                 break;
             case 4:
             case 6:
             case 5:
-                assignDayIcon(condList.get(10), first);
+                assignNightIcon(condList.get(10), first);
                 assignDayIcon(condList.get(11), second);
                 assignDayIcon(condList.get(12), third);
                 assignDayIcon(condList.get(13), fourth);
-                assignDayIcon(condList.get(14), fifth);
+                assignNightIcon(condList.get(14), fifth);
                 assignNightIcon(condList.get(15), sixth);
                 assignNightIcon(condList.get(8), seventh);
                 assignNightIcon(condList.get(9), eighth);
@@ -768,46 +750,44 @@ public class MainActivity extends AppCompatActivity {
                 assignDayIcon(condList.get(11), first);
                 assignDayIcon(condList.get(12), second);
                 assignDayIcon(condList.get(13), third);
-                assignDayIcon(condList.get(14), fourth);
+                assignNightIcon(condList.get(14), fourth);
                 assignNightIcon(condList.get(15), fifth);
                 assignNightIcon(condList.get(8), sixth);
                 assignNightIcon(condList.get(9), seventh);
-                assignDayIcon(condList.get(10), eighth);
+                assignNightIcon(condList.get(10), eighth);
                 break;
             case 10:
             case 12:
             case 11:
                 assignDayIcon(condList.get(12), first);
                 assignDayIcon(condList.get(13), second);
-                System.out.println("condlist13: " + condList.get(13));
-                assignDayIcon(condList.get(14), third);
+                assignNightIcon(condList.get(14), third);
                 assignNightIcon(condList.get(15), fourth);
                 assignNightIcon(condList.get(8), fifth);
                 assignNightIcon(condList.get(9), sixth);
-                assignDayIcon(condList.get(10), seventh);
-                System.out.println("condlist10: " + condList.get(9));
+                assignNightIcon(condList.get(10), seventh);
                 assignDayIcon(condList.get(11), eighth);
                 break;
             case 13:
             case 15:
             case 14:
                 assignDayIcon(condList.get(13), first);
-                assignDayIcon(condList.get(14), second);
+                assignNightIcon(condList.get(14), second);
                 assignNightIcon(condList.get(15), third);
                 assignNightIcon(condList.get(8), fourth);
                 assignNightIcon(condList.get(9), fifth);
-                assignDayIcon(condList.get(10), sixth);
+                assignNightIcon(condList.get(10), sixth);
                 assignDayIcon(condList.get(11), seventh);
                 assignDayIcon(condList.get(12), eighth);
                 break;
             case 16:
             case 18:
             case 17:
-                assignDayIcon(condList.get(14), first);
+                assignNightIcon(condList.get(14), first);
                 assignNightIcon(condList.get(15), second);
                 assignNightIcon(condList.get(8), third);
                 assignNightIcon(condList.get(9), fourth);
-                assignDayIcon(condList.get(10), fifth);
+                assignNightIcon(condList.get(10), fifth);
                 assignDayIcon(condList.get(11), sixth);
                 assignDayIcon(condList.get(12), seventh);
                 assignDayIcon(condList.get(13), eighth);
@@ -821,18 +801,15 @@ public class MainActivity extends AppCompatActivity {
                 assignDayIcon(condList.get(10), fourth);
                 assignDayIcon(condList.get(11), fifth);
                 assignDayIcon(condList.get(12), sixth);
-                assignDayIcon(condList.get(13), seventh);
-                assignDayIcon(condList.get(14), eighth);
+                assignNightIcon(condList.get(13), seventh);
+                assignNightIcon(condList.get(14), eighth);
                 break;
         }
     }
 
-    public void assignDayIcon(String text, View image) {
+    public void assignDayIcon(String imageLink, View image) {
         ImageView imageView = findViewById(image.getId());
-        switch (text) {
-//            case "https://weather.gc.ca/weathericons/small/02.png": // A MIX OF SUN AND CLOUD
-//                imageView.setImageResource(R.drawable.a_mix_of_sun_and_cloud);
-//                return;
+        switch (imageLink) {
             case "https://weather.gc.ca/weathericons/24.gif": // MIST
                 imageView.setImageResource(R.drawable.mist);
                 return;
@@ -908,9 +885,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-    public void assignNightIcon(String text, View image) {
+    public void assignNightIcon(String imageLink, View image) {
         ImageView imageView = findViewById(image.getId());
-        switch (text) {
+        switch (imageLink) {
             case "https://weather.gc.ca/weathericons/24.gif": // MIST
                 imageView.setImageResource(R.drawable.mist);
                 return;
@@ -1303,7 +1280,9 @@ public class MainActivity extends AppCompatActivity {
                     hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
                     break;
                 case 15:
+                    System.out.println("NOW1111" + elements1.get(2).select("td.text-center").get(1).text());
                     twelveAm = elements1.get(10).select("td.text-center").get(1).text();
+                    System.out.println("ERHEE" + twelveAm);
                     threeAm = elements1.get(13).select("td.text-center").get(1).text();
                     sixAm = elements1.get(16).select("td.text-center").get(1).text();
                     nineAm = elements1.get(19).select("td.text-center").get(1).text();
@@ -1325,6 +1304,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case 16:
                     twelveAm = elements1.get(9).select("td.text-center").get(1).text();
+                    System.out.println("ITS 4" + twelveAm);
                     threeAm = elements1.get(12).select("td.text-center").get(1).text();
                     sixAm = elements1.get(15).select("td.text-center").get(1).text();
                     nineAm = elements1.get(18).select("td.text-center").get(1).text();
@@ -1430,7 +1410,7 @@ public class MainActivity extends AppCompatActivity {
                     twelvePm = elements1.get(16).select("td.text-center").get(1).text();
                     threePm = elements1.get(19).select("td.text-center").get(1).text();
                     sixPm = elements1.get(22).select("td.text-center").get(1).text();
-                    ninePm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    ninePm = elements1.get(25).select("td.text-center").get(1).text();
                     twelveAmCond = elements1.get(4).select("span.pull-left img.media-object").first().absUrl("src");
                     threeAmCond = elements1.get(7).select("span.pull-left img.media-object").first().absUrl("src");
                     sixAmCond = elements1.get(10).select("span.pull-left img.media-object").first().absUrl("src");
@@ -1440,6 +1420,7 @@ public class MainActivity extends AppCompatActivity {
                     sixPmCond = elements1.get(22).select("span.pull-left img.media-object").first().absUrl("src");
                     ninePmCond = vanWeather.select("img.center-block.mrgn-tp-md").first().absUrl("src");
                     hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    System.out.println("GOT TO HERE");
                     break;
                 case 22:
                     twelveAm = elements1.get(3).select("td.text-center").get(1).text();   //DONE
@@ -1480,8 +1461,466 @@ public class MainActivity extends AppCompatActivity {
                     hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
                     break;
             }
-        } catch (Exception ignored) {
-            return hourlyTemps;
+        } catch (IndexOutOfBoundsException e) { // met note exists
+            switch (hour) {
+                case 0:
+                    twelveAm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    threeAm = elements1.get(4).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(7).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(10).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(13).select("td.text-center").get(1).text();
+                    threePm = elements1.get(16).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(19).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(22).select("td.text-center").get(1).text();
+                    twelveAmCond = vanWeather.select("img.center-block.mrgn-tp-md").first().absUrl("src");
+                    threeAmCond = elements1.get(4).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(7).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(10).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(13).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(16).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(19).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(22).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 1:
+                    twelveAm = elements1.get(25).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(3).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(6).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(9).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(12).select("td.text-center").get(1).text();
+                    threePm = elements1.get(15).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(18).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(21).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(25).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(3).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(6).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(9).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(12).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(15).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(18).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(21).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 2:
+                    twelveAm = elements1.get(24).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(2).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(5).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(8).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(11).select("td.text-center").get(1).text();
+                    threePm = elements1.get(14).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(17).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(20).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(25).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(3).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(6).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(9).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(12).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(15).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(18).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(21).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 3:
+                    twelveAm = elements1.get(23).select("td.text-center").get(1).text();
+                    threeAm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    sixAm = elements1.get(4).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(7).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(10).select("td.text-center").get(1).text();
+                    threePm = elements1.get(13).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(16).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(19).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(23).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = vanWeather.select("img.center-block.mrgn-tp-md").first().absUrl("src");
+                    sixAmCond = elements1.get(4).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(7).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(10).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(13).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(16).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(19).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 4:
+                    twelveAm = elements1.get(22).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(25).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(3).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(6).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(9).select("td.text-center").get(1).text();
+                    threePm = elements1.get(12).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(15).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(18).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(22).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(25).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(3).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(6).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(9).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(12).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(15).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(18).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 5:
+                    twelveAm = elements1.get(21).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(24).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(2).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(5).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(8).select("td.text-center").get(1).text();
+                    threePm = elements1.get(11).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(14).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(17).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(21).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(24).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(2).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(5).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(8).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(11).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(14).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(17).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 6:
+                    twelveAm = elements1.get(20).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(23).select("td.text-center").get(1).text();
+                    sixAm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    nineAm = elements1.get(4).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(7).select("td.text-center").get(1).text();
+                    threePm = elements1.get(10).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(13).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(16).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(20).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(23).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = vanWeather.select("img.center-block.mrgn-tp-md").first().absUrl("src");
+                    nineAmCond = elements1.get(4).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(7).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(10).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(13).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(16).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 7:
+                    twelveAm = elements1.get(19).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(22).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(25).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(3).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(6).select("td.text-center").get(1).text();
+                    threePm = elements1.get(9).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(12).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(15).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(19).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(22).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(25).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(3).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(6).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(9).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(12).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(15).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 8:
+                    twelveAm = elements1.get(18).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(21).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(24).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(2).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(5).select("td.text-center").get(1).text();
+                    threePm = elements1.get(8).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(11).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(14).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(18).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(21).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(24).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(2).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(5).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(8).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(11).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(14).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 9:
+                    twelveAm = elements1.get(17).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(20).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(23).select("td.text-center").get(1).text();
+                    nineAm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    twelvePm = elements1.get(4).select("td.text-center").get(1).text();
+                    threePm = elements1.get(7).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(10).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(13).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(17).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(20).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(23).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = vanWeather.select("img.center-block.mrgn-tp-md").first().absUrl("src");
+                    twelvePmCond = elements1.get(4).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(7).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(10).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(13).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 10:
+                    twelveAm = elements1.get(16).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(19).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(22).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(25).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(3).select("td.text-center").get(1).text();
+                    threePm = elements1.get(6).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(9).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(12).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(16).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(19).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(22).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(25).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(3).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(6).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(9).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(12).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 11:
+                    twelveAm = elements1.get(15).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(18).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(21).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(24).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(2).select("td.text-center").get(1).text();
+                    threePm = elements1.get(5).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(8).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(11).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(15).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(18).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(21).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(24).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(2).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(5).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(8).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(11).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 12:
+                    twelveAm = elements1.get(14).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(17).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(20).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(23).select("td.text-center").get(1).text();
+                    twelvePm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    threePm = elements1.get(4).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(7).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(10).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(14).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(17).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(20).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(23).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = vanWeather.select("img.center-block.mrgn-tp-md").first().absUrl("src");
+                    //threePmCond = elements1.get(2).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(4).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(7).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(10).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 13:
+                    twelveAm = elements1.get(13).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(16).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(19).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(22).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(25).select("td.text-center").get(1).text();
+                    threePm = elements1.get(3).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(6).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(9).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(13).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(16).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(19).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(22).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(25).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(3).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(6).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(9).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 14:
+                    twelveAm = elements1.get(12).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(15).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(18).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(21).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(24).select("td.text-center").get(1).text();
+                    threePm = elements1.get(2).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(5).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(8).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(12).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(15).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(18).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(21).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(24).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(2).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(5).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(8).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 15:
+                    twelveAm = elements1.get(11).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(14).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(17).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(20).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(23).select("td.text-center").get(1).text();
+                    threePm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    sixPm = elements1.get(4).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(7).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(11).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(14).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(17).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(20).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(23).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = vanWeather.select("img.center-block.mrgn-tp-md").first().absUrl("src");
+                    sixPmCond = elements1.get(4).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(7).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 16:
+                    twelveAm = elements1.get(10).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(13).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(16).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(19).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(22).select("td.text-center").get(1).text();
+                    threePm = elements1.get(25).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(3).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(6).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(10).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(13).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(16).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(19).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(22).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(25).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(3).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(6).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 17:
+                    twelveAm = elements1.get(9).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(12).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(15).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(18).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(21).select("td.text-center").get(1).text();
+                    threePm = elements1.get(24).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(2).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(5).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(9).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(12).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(15).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(18).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(21).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(24).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(2).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(5).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 18:
+                    twelveAm = elements1.get(8).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(11).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(14).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(17).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(20).select("td.text-center").get(1).text();
+                    threePm = elements1.get(23).select("td.text-center").get(1).text();
+                    sixPm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    ninePm = elements1.get(4).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(8).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(11).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(14).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(17).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(20).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(23).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = vanWeather.select("img.center-block.mrgn-tp-md").first().absUrl("src");
+                    ninePmCond = elements1.get(4).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 19:
+                    twelveAm = elements1.get(7).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(10).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(13).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(16).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(19).select("td.text-center").get(1).text();
+                    threePm = elements1.get(22).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(25).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(3).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(7).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(10).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(13).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(16).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(19).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(22).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(25).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(3).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 20:
+                    twelveAm = elements1.get(6).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(9).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(12).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(15).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(18).select("td.text-center").get(1).text();
+                    threePm = elements1.get(21).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(24).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(2).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(6).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(9).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(12).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(15).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(18).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(21).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(24).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(2).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 21:
+                    twelveAm = elements1.get(5).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(8).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(11).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(14).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(17).select("td.text-center").get(1).text();
+                    threePm = elements1.get(20).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(23).select("td.text-center").get(1).text();
+                    ninePm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    twelveAmCond = elements1.get(5).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(8).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(11).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(14).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(17).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(20).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(23).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = vanWeather.select("img.center-block.mrgn-tp-md").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 22:
+                    twelveAm = elements1.get(4).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(7).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(10).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(13).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(16).select("td.text-center").get(1).text();
+                    threePm = elements1.get(19).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(22).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(25).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(4).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(7).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(10).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(13).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(16).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(19).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(22).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(25).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+                case 23:
+                    twelveAm = elements1.get(3).select("td.text-center").get(1).text();
+                    threeAm = elements1.get(6).select("td.text-center").get(1).text();
+                    sixAm = elements1.get(9).select("td.text-center").get(1).text();
+                    nineAm = elements1.get(12).select("td.text-center").get(1).text();
+                    twelvePm = elements1.get(15).select("td.text-center").get(1).text();
+                    threePm = elements1.get(18).select("td.text-center").get(1).text();
+                    sixPm = elements1.get(21).select("td.text-center").get(1).text();
+                    ninePm = elements1.get(24).select("td.text-center").get(1).text();
+                    twelveAmCond = elements1.get(3).select("span.pull-left img.media-object").first().absUrl("src");
+                    threeAmCond = elements1.get(6).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixAmCond = elements1.get(9).select("span.pull-left img.media-object").first().absUrl("src");
+                    nineAmCond = elements1.get(12).select("span.pull-left img.media-object").first().absUrl("src");
+                    twelvePmCond = elements1.get(15).select("span.pull-left img.media-object").first().absUrl("src");
+                    threePmCond = elements1.get(18).select("span.pull-left img.media-object").first().absUrl("src");
+                    sixPmCond = elements1.get(21).select("span.pull-left img.media-object").first().absUrl("src");
+                    ninePmCond = elements1.get(24).select("span.pull-left img.media-object").first().absUrl("src");
+                    hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
+                    break;
+            }
         }
         return hourlyTemps;
     }

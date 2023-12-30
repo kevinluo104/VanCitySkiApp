@@ -229,7 +229,7 @@
                 android:id="@+id/textView328"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="45dp"
+                android:layout_marginStart="46dp"
                 android:layout_marginTop="32dp"
                 android:text="48hrsnow"
                 android:textSize="16sp"
@@ -307,7 +307,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="30dp"
+                android:layout_marginEnd="28dp"
                 android:text="Seasonsnow"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -504,7 +504,7 @@
                 android:id="@+id/textView342"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="40dp"
                 android:text="Runs Open: 0/9"
                 app:layout_constraintEnd_toStartOf="@+id/guideline143"
                 app:layout_constraintTop_toBottomOf="@+id/button12" />
@@ -522,7 +522,7 @@
                 android:id="@+id/textView344"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="40dp"
                 android:text="Runs Open: 0/3"
                 app:layout_constraintEnd_toStartOf="@+id/guideline143"
                 app:layout_constraintTop_toBottomOf="@+id/button14" />
@@ -705,7 +705,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:text="Terrain Parks Open: 0/2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView342" />
 
@@ -714,7 +713,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:text="Terrain Parks Open: 0/3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView343" />
 
@@ -723,7 +721,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:text="Terrain Parks Open: 0/1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView344" />
 

@@ -35,16 +35,16 @@ public class EasyRider extends AppCompatActivity {
                                             imageView278.setImageResource(R.drawable.triangle);
                                             break;
                                     }
-                                    ImageView imageView279 = findViewById(R.id.imageView279);
-                                    setStatus(imageView279, cypressSingleton.runway);
-                                    ImageView imageView285 = findViewById(R.id.imageView285);
-                                    ImageView imageView286 = findViewById(R.id.imageView286);
-                                    setStatus(imageView285, cypressSingleton.steezyRider);
-                                    setStatus(imageView286, cypressSingleton.gnarlysDen);
-                                    TextView textView202 = findViewById(R.id.textView202);
-                                    TextView textView419 = findViewById(R.id.textView419);
-                                    textView202.setText("Runs Open: " + cypressSingleton.runsOpenEasyRider + "/1");
-                                    textView419.setText("Terrain Parks Open: " + cypressSingleton.terrainParksOpenEasyRider + "/2");
+                                    ImageView runway = findViewById(R.id.imageView279);
+                                    setStatus(runway, cypressSingleton.runway);
+                                    ImageView steezyRider = findViewById(R.id.imageView285);
+                                    ImageView gnarlysDen = findViewById(R.id.imageView286);
+                                    setStatus(steezyRider, cypressSingleton.steezyRider);
+                                    setStatus(gnarlysDen, cypressSingleton.gnarlysDen);
+                                    TextView runsOpen = findViewById(R.id.textView202);
+                                    TextView terrainParksOpen = findViewById(R.id.textView419);
+                                    runsOpen.setText("Runs Open: " + cypressSingleton.runsOpenEasyRider + "/1");
+                                    terrainParksOpen.setText("Terrain Parks Open: " + cypressSingleton.terrainParksOpenEasyRider + "/2");
                                 }
                             }, getApplicationContext());
                             cypressSingleton.startThread();
