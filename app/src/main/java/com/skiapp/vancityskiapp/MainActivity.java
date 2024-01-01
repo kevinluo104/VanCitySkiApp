@@ -140,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
                     cypressReportButton = findViewById(R.id.button);
                     grouseReportButton = findViewById(R.id.button2);
                     seymourReportButton = findViewById(R.id.button3);
+
                     cypressReportButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -174,6 +175,8 @@ public class MainActivity extends AppCompatActivity {
                     });
                     vanWeather = Jsoup.connect("https://weather.gc.ca/city/pages/bc-74_metric_e.html").userAgent("Mozilla").get();  // VANCOUVER WEATHER
                     hourlyVan = Jsoup.connect("https://weather.gc.ca/forecast/hourly/bc-74_metric_e.html").get(); // VANCOUVER HOURLY WEATHER
+                    System.out.println("HIOII22III");
+
                     runOnUiThread(new Runnable() {
                         public void run() {
                             ImageView image = findViewById(R.id.imageView);
@@ -798,7 +801,7 @@ public class MainActivity extends AppCompatActivity {
                 assignNightIcon(condList.get(15), first);
                 assignNightIcon(condList.get(8), second);
                 assignNightIcon(condList.get(9), third);
-                assignDayIcon(condList.get(10), fourth);
+                assignNightIcon(condList.get(10), fourth);
                 assignDayIcon(condList.get(11), fifth);
                 assignDayIcon(condList.get(12), sixth);
                 assignNightIcon(condList.get(13), seventh);
@@ -994,7 +997,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             switch (hour) {
                 case 0:
-                    twelveAm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    twelveAm = vanWeather.select("p[data-v-79d110ba] > span[data-v-79d110ba]").first().text().substring(0, 1);
                     threeAm = elements1.get(3).select("td.text-center").get(1).text();
                     sixAm = elements1.get(6).select("td.text-center").get(1).text();
                     nineAm = elements1.get(9).select("td.text-center").get(1).text();
@@ -1052,7 +1055,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case 3:
                     twelveAm = elements1.get(22).select("td.text-center").get(1).text();
-                    threeAm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    threeAm = vanWeather.select("p[data-v-79d110ba] > span[data-v-79d110ba]").first().text().substring(0, 1);
                     sixAm = elements1.get(3).select("td.text-center").get(1).text();
                     nineAm = elements1.get(6).select("td.text-center").get(1).text();
                     twelvePm = elements1.get(9).select("td.text-center").get(1).text();
@@ -1110,7 +1113,7 @@ public class MainActivity extends AppCompatActivity {
                 case 6:
                     twelveAm = elements1.get(19).select("td.text-center").get(1).text();
                     threeAm = elements1.get(22).select("td.text-center").get(1).text();
-                    sixAm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    sixAm = vanWeather.select("p[data-v-79d110ba] > span[data-v-79d110ba]").first().text().substring(0, 1);
                     nineAm = elements1.get(3).select("td.text-center").get(1).text();
                     twelvePm = elements1.get(6).select("td.text-center").get(1).text();
                     threePm = elements1.get(9).select("td.text-center").get(1).text();
@@ -1168,7 +1171,7 @@ public class MainActivity extends AppCompatActivity {
                     twelveAm = elements1.get(16).select("td.text-center").get(1).text();
                     threeAm = elements1.get(19).select("td.text-center").get(1).text();
                     sixAm = elements1.get(22).select("td.text-center").get(1).text();
-                    nineAm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    nineAm = vanWeather.select("p[data-v-79d110ba] > span[data-v-79d110ba]").first().text().substring(0, 1);
                     twelvePm = elements1.get(3).select("td.text-center").get(1).text();
                     threePm = elements1.get(6).select("td.text-center").get(1).text();
                     sixPm = elements1.get(9).select("td.text-center").get(1).text();
@@ -1226,7 +1229,7 @@ public class MainActivity extends AppCompatActivity {
                     threeAm = elements1.get(16).select("td.text-center").get(1).text();
                     sixAm = elements1.get(19).select("td.text-center").get(1).text();
                     nineAm = elements1.get(22).select("td.text-center").get(1).text();
-                    twelvePm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    twelvePm = vanWeather.select("p[data-v-79d110ba] > span[data-v-79d110ba]").first().text().substring(0, 1);
                     threePm = elements1.get(3).select("td.text-center").get(1).text();
                     sixPm = elements1.get(6).select("td.text-center").get(1).text();
                     ninePm = elements1.get(9).select("td.text-center").get(1).text();
@@ -1280,14 +1283,12 @@ public class MainActivity extends AppCompatActivity {
                     hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
                     break;
                 case 15:
-                    System.out.println("NOW1111" + elements1.get(2).select("td.text-center").get(1).text());
                     twelveAm = elements1.get(10).select("td.text-center").get(1).text();
-                    System.out.println("ERHEE" + twelveAm);
                     threeAm = elements1.get(13).select("td.text-center").get(1).text();
                     sixAm = elements1.get(16).select("td.text-center").get(1).text();
                     nineAm = elements1.get(19).select("td.text-center").get(1).text();
                     twelvePm = elements1.get(22).select("td.text-center").get(1).text();
-                    threePm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    threePm = vanWeather.select("p[data-v-79d110ba] > span[data-v-79d110ba]").first().text().substring(0, 1);
                     sixPm = elements1.get(3).select("td.text-center").get(1).text();
                     ninePm = elements1.get(6).select("td.text-center").get(1).text();
                     twelveAmCond = elements1.get(10).select("span.pull-left img.media-object").first().absUrl("src");
@@ -1304,7 +1305,6 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case 16:
                     twelveAm = elements1.get(9).select("td.text-center").get(1).text();
-                    System.out.println("ITS 4" + twelveAm);
                     threeAm = elements1.get(12).select("td.text-center").get(1).text();
                     sixAm = elements1.get(15).select("td.text-center").get(1).text();
                     nineAm = elements1.get(18).select("td.text-center").get(1).text();
@@ -1350,7 +1350,7 @@ public class MainActivity extends AppCompatActivity {
                     nineAm = elements1.get(16).select("td.text-center").get(1).text();
                     twelvePm = elements1.get(19).select("td.text-center").get(1).text();
                     threePm = elements1.get(22).select("td.text-center").get(1).text();
-                    sixPm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    sixPm = vanWeather.select("p[data-v-79d110ba] > span[data-v-79d110ba]").first().text().substring(0, 1);
                     ninePm = elements1.get(3).select("td.text-center").get(1).text();
                     twelveAmCond = elements1.get(7).select("span.pull-left img.media-object").first().absUrl("src");
                     threeAmCond = elements1.get(10).select("span.pull-left img.media-object").first().absUrl("src");
@@ -1359,8 +1359,6 @@ public class MainActivity extends AppCompatActivity {
                     twelvePmCond = elements1.get(19).select("span.pull-left img.media-object").first().absUrl("src");
                     threePmCond = elements1.get(22).select("span.pull-left img.media-object").first().absUrl("src");
                     sixPmCond = vanWeather.select("img.center-block.mrgn-tp-md").first().absUrl("src");
-                    System.out.println("now");
-                    System.out.println(sixPmCond);
                     ninePmCond = elements1.get(3).select("span.pull-left img.media-object").first().absUrl("src");
                     hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
                     break;
@@ -1410,7 +1408,7 @@ public class MainActivity extends AppCompatActivity {
                     twelvePm = elements1.get(16).select("td.text-center").get(1).text();
                     threePm = elements1.get(19).select("td.text-center").get(1).text();
                     sixPm = elements1.get(22).select("td.text-center").get(1).text();
-                    ninePm = elements1.get(25).select("td.text-center").get(1).text();
+                    ninePm = vanWeather.select("p[data-v-79d110ba] > span[data-v-79d110ba]").first().text().substring(0, 1);
                     twelveAmCond = elements1.get(4).select("span.pull-left img.media-object").first().absUrl("src");
                     threeAmCond = elements1.get(7).select("span.pull-left img.media-object").first().absUrl("src");
                     sixAmCond = elements1.get(10).select("span.pull-left img.media-object").first().absUrl("src");
@@ -1420,7 +1418,6 @@ public class MainActivity extends AppCompatActivity {
                     sixPmCond = elements1.get(22).select("span.pull-left img.media-object").first().absUrl("src");
                     ninePmCond = vanWeather.select("img.center-block.mrgn-tp-md").first().absUrl("src");
                     hourlyTemps = addToList(twelveAm, threeAm, sixAm, nineAm, twelvePm, threePm, sixPm, ninePm, twelveAmCond, threeAmCond, sixAmCond, nineAmCond, twelvePmCond, threePmCond, sixPmCond, ninePmCond);
-                    System.out.println("GOT TO HERE");
                     break;
                 case 22:
                     twelveAm = elements1.get(3).select("td.text-center").get(1).text();   //DONE
@@ -1464,7 +1461,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (IndexOutOfBoundsException e) { // met note exists
             switch (hour) {
                 case 0:
-                    twelveAm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    twelveAm = vanWeather.select("p[data-v-79d110ba] > span[data-v-79d110ba]").first().text().substring(0, 1);
                     threeAm = elements1.get(4).select("td.text-center").get(1).text();
                     sixAm = elements1.get(7).select("td.text-center").get(1).text();
                     nineAm = elements1.get(10).select("td.text-center").get(1).text();
@@ -1522,7 +1519,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case 3:
                     twelveAm = elements1.get(23).select("td.text-center").get(1).text();
-                    threeAm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    threeAm = vanWeather.select("p[data-v-79d110ba] > span[data-v-79d110ba]").first().text().substring(0, 1);
                     sixAm = elements1.get(4).select("td.text-center").get(1).text();
                     nineAm = elements1.get(7).select("td.text-center").get(1).text();
                     twelvePm = elements1.get(10).select("td.text-center").get(1).text();
@@ -1580,7 +1577,7 @@ public class MainActivity extends AppCompatActivity {
                 case 6:
                     twelveAm = elements1.get(20).select("td.text-center").get(1).text();
                     threeAm = elements1.get(23).select("td.text-center").get(1).text();
-                    sixAm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    sixAm = vanWeather.select("p[data-v-79d110ba] > span[data-v-79d110ba]").first().text().substring(0, 1);
                     nineAm = elements1.get(4).select("td.text-center").get(1).text();
                     twelvePm = elements1.get(7).select("td.text-center").get(1).text();
                     threePm = elements1.get(10).select("td.text-center").get(1).text();
@@ -1638,7 +1635,7 @@ public class MainActivity extends AppCompatActivity {
                     twelveAm = elements1.get(17).select("td.text-center").get(1).text();
                     threeAm = elements1.get(20).select("td.text-center").get(1).text();
                     sixAm = elements1.get(23).select("td.text-center").get(1).text();
-                    nineAm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    nineAm = vanWeather.select("p[data-v-79d110ba] > span[data-v-79d110ba]").first().text().substring(0, 1);
                     twelvePm = elements1.get(4).select("td.text-center").get(1).text();
                     threePm = elements1.get(7).select("td.text-center").get(1).text();
                     sixPm = elements1.get(10).select("td.text-center").get(1).text();
@@ -1696,7 +1693,7 @@ public class MainActivity extends AppCompatActivity {
                     threeAm = elements1.get(17).select("td.text-center").get(1).text();
                     sixAm = elements1.get(20).select("td.text-center").get(1).text();
                     nineAm = elements1.get(23).select("td.text-center").get(1).text();
-                    twelvePm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    twelvePm = vanWeather.select("p[data-v-79d110ba] > span[data-v-79d110ba]").first().text().substring(0, 1);
                     threePm = elements1.get(4).select("td.text-center").get(1).text();
                     sixPm = elements1.get(7).select("td.text-center").get(1).text();
                     ninePm = elements1.get(10).select("td.text-center").get(1).text();
@@ -1755,7 +1752,7 @@ public class MainActivity extends AppCompatActivity {
                     sixAm = elements1.get(17).select("td.text-center").get(1).text();
                     nineAm = elements1.get(20).select("td.text-center").get(1).text();
                     twelvePm = elements1.get(23).select("td.text-center").get(1).text();
-                    threePm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    threePm = vanWeather.select("p[data-v-79d110ba] > span[data-v-79d110ba]").first().text().substring(0, 1);
                     sixPm = elements1.get(4).select("td.text-center").get(1).text();
                     ninePm = elements1.get(7).select("td.text-center").get(1).text();
                     twelveAmCond = elements1.get(11).select("span.pull-left img.media-object").first().absUrl("src");
@@ -1813,7 +1810,7 @@ public class MainActivity extends AppCompatActivity {
                     nineAm = elements1.get(17).select("td.text-center").get(1).text();
                     twelvePm = elements1.get(20).select("td.text-center").get(1).text();
                     threePm = elements1.get(23).select("td.text-center").get(1).text();
-                    sixPm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    sixPm = vanWeather.select("p[data-v-79d110ba] > span[data-v-79d110ba]").first().text().substring(0, 1);
                     ninePm = elements1.get(4).select("td.text-center").get(1).text();
                     twelveAmCond = elements1.get(8).select("span.pull-left img.media-object").first().absUrl("src");
                     threeAmCond = elements1.get(11).select("span.pull-left img.media-object").first().absUrl("src");
@@ -1871,7 +1868,7 @@ public class MainActivity extends AppCompatActivity {
                     twelvePm = elements1.get(17).select("td.text-center").get(1).text();
                     threePm = elements1.get(20).select("td.text-center").get(1).text();
                     sixPm = elements1.get(23).select("td.text-center").get(1).text();
-                    ninePm = vanWeather.select("span.wxo-metric-hide").first().text().substring(0, 2);
+                    ninePm = vanWeather.select("p[data-v-79d110ba] > span[data-v-79d110ba]").first().text().substring(0, 1);
                     twelveAmCond = elements1.get(5).select("span.pull-left img.media-object").first().absUrl("src");
                     threeAmCond = elements1.get(8).select("span.pull-left img.media-object").first().absUrl("src");
                     sixAmCond = elements1.get(11).select("span.pull-left img.media-object").first().absUrl("src");
@@ -2127,6 +2124,9 @@ public class MainActivity extends AppCompatActivity {
                 return;
             case "A Mix Of Sun And Snow":
                 image.setImageResource(R.drawable.chance_of_flurries);
+                return;
+            case "Fog":
+                image.setImageResource(R.drawable.mist);
                 return;
         }
         if (hour >= 8 && hour < 16) {
