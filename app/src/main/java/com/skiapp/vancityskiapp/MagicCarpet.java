@@ -39,6 +39,7 @@ public class MagicCarpet extends AppCompatActivity {
                                     TextView runsOpen = findViewById(R.id.textView380);
                                     runsOpen.setText("Runs Open: " + seymourSingleton.goldieMagicCarpetRunsOpen + "/3");
                                     TextView terrainParksOpen = findViewById(R.id.textView421);
+                                    System.out.println("MUSHROOM 1: " + seymourSingleton.mushroom);
                                     if (seymourSingleton.mushroom.equals("open")) {
                                         terrainParksOpen.setText("Terrain Parks Open: 1/1");
                                     } else {
@@ -48,10 +49,11 @@ public class MagicCarpet extends AppCompatActivity {
                                     setStatus(flowerBasin, seymourSingleton.flowerBasin);
                                     ImageView mushroomRun = findViewById(R.id.imageView386);
                                     setStatus(mushroomRun, seymourSingleton.mushroomRun);
-                                    ImageView rookiesRun = findViewById(R.id.imageView387);
-                                    setStatus(rookiesRun, seymourSingleton.rookiesRun);
+                                    ImageView goldieMeadows = findViewById(R.id.imageView387);
+                                    setStatus(goldieMeadows, seymourSingleton.goldieMagicCarpet);
                                     ImageView mushroom = findViewById(R.id.imageView440);
                                     setStatus(mushroom, seymourSingleton.mushroom);
+                                    System.out.println("MUSHROOM 2: " + seymourSingleton.mushroom);
                                 }
                             }, getApplicationContext());
                             seymourSingleton.startThread();

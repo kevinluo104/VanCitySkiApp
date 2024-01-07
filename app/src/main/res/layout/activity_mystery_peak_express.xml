@@ -433,6 +433,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
+                android:layout_marginTop="1398dp"
+                android:text="Scooter"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline184"
+                app:layout_constraintHorizontal_bias="0.38"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view23" />
+
+            <TextView
+                android:id="@+id/textView241"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
                 android:layout_marginTop="1328dp"
                 android:text="Unicorn"
                 android:textSize="16sp"
@@ -463,6 +476,16 @@
                 app:srcCompat="@drawable/greencircle" />
 
             <ImageView
+                android:id="@+id/imageView308"
+                android:layout_width="23dp"
+                android:layout_height="27dp"
+                android:layout_marginTop="106dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toStartOf="@+id/textView389"
+                app:layout_constraintTop_toBottomOf="@+id/view23"
+                app:srcCompat="@drawable/greencircle" />
+
+            <ImageView
                 android:id="@+id/imageView392"
                 android:layout_width="26dp"
                 android:layout_height="23dp"
@@ -471,16 +494,6 @@
                 app:layout_constraintStart_toEndOf="@+id/textView389"
                 app:layout_constraintTop_toBottomOf="@+id/view23"
                 app:srcCompat="@drawable/nightrun" />
-
-            <ImageView
-                android:id="@+id/imageView393"
-                android:layout_width="27dp"
-                android:layout_height="31dp"
-                android:layout_marginTop="98dp"
-                android:layout_marginEnd="23dp"
-                app:layout_constraintEnd_toStartOf="@+id/textView390"
-                app:layout_constraintTop_toBottomOf="@+id/view23"
-                app:srcCompat="@drawable/bluerun" />
 
             <ImageView
                 android:id="@+id/imageView394"
@@ -648,6 +661,16 @@
                 android:layout_width="19dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="1324dp"
+                android:layout_marginEnd="30dp"
+                app:layout_constraintEnd_toStartOf="@+id/textView407"
+                app:layout_constraintTop_toBottomOf="@+id/view23"
+                app:srcCompat="@drawable/black" />
+
+            <ImageView
+                android:id="@+id/imageView312"
+                android:layout_width="19dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="1394dp"
                 android:layout_marginEnd="30dp"
                 app:layout_constraintEnd_toStartOf="@+id/textView407"
                 app:layout_constraintTop_toBottomOf="@+id/view23"
@@ -895,11 +918,22 @@
                 app:layout_constraintTop_toBottomOf="@+id/view23"
                 app:srcCompat="@drawable/ic_launcher_foreground" />
 
+            <ImageView
+                android:id="@+id/imageView313"
+                android:layout_width="38dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="1380dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.85"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view23"
+                app:srcCompat="@drawable/ic_launcher_foreground" />
+
             <View
                 android:id="@+id/view24"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="1664dp"
+                android:layout_marginTop="1734dp"
                 android:background="@android:color/black"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="0dp" />
@@ -930,25 +964,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/view24" />
 
             <TextView
-                android:id="@+id/textView410"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="43dp"
-                android:layout_marginTop="92dp"
-                android:text="Nuthouse"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline184"
-                app:layout_constraintHorizontal_bias="0.38"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view24" />
-
-            <TextView
                 android:id="@+id/textView411"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="104dp"
-                android:layout_marginTop="164dp"
-                android:text="The Rockstar Energy Pit"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="94dp"
+                android:text="The Pit"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline184"
                 app:layout_constraintHorizontal_bias="0.38"
@@ -967,21 +988,11 @@
                 app:srcCompat="@drawable/terrain_park" />
 
             <ImageView
-                android:id="@+id/imageView434"
-                android:layout_width="31dp"
-                android:layout_height="39dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="84dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view24"
-                app:srcCompat="@drawable/terrain_park" />
-
-            <ImageView
                 android:id="@+id/imageView435"
                 android:layout_width="31dp"
                 android:layout_height="39dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="156dp"
+                android:layout_marginTop="86dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view24"
                 app:srcCompat="@drawable/terrain_park" />
@@ -998,21 +1009,10 @@
                 app:srcCompat="@drawable/ic_launcher_foreground" />
 
             <ImageView
-                android:id="@+id/imageView437"
-                android:layout_width="38dp"
-                android:layout_height="55dp"
-                android:layout_marginTop="77dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.85"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view24"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
-
-            <ImageView
                 android:id="@+id/imageView438"
                 android:layout_width="38dp"
                 android:layout_height="55dp"
-                android:layout_marginTop="150dp"
+                android:layout_marginTop="80dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.85"
                 app:layout_constraintStart_toStartOf="parent"

@@ -38,9 +38,9 @@ public class MysteryPeakExpress extends AppCompatActivity {
                                     }
 
                                     TextView runsOpen = findViewById(R.id.textView387);
-                                    runsOpen.setText("Runs Open: " + seymourSingleton.mysteryPeakExpressRunsOpen + "/19");
+                                    runsOpen.setText("Runs Open: " + seymourSingleton.mysteryPeakExpressRunsOpen + "/20");
                                     TextView terrainParksOpen = findViewById(R.id.textView422);
-                                    terrainParksOpen.setText("Terrain Parks Open: " + seymourSingleton.mysteryPeakExpressTerrainParksOpen + "/3");
+                                    terrainParksOpen.setText("Terrain Parks Open: " + seymourSingleton.mysteryPeakExpressTerrainParksOpen + "/2");
 
                                     ImageView manning = findViewById(R.id.imageView390);
                                     setStatus(manning, seymourSingleton.manning);
@@ -80,11 +80,14 @@ public class MysteryPeakExpress extends AppCompatActivity {
                                     setStatus(nutcracker, seymourSingleton.nutcracker);
                                     ImageView unicorn = findViewById(R.id.imageView432);
                                     setStatus(unicorn, seymourSingleton.unicorn);
+                                    ImageView scooter = findViewById(R.id.imageView313);
+                                    setStatus(scooter, seymourSingleton.scooter);
 
                                     ImageView northlands = findViewById(R.id.imageView436);
                                     setStatus(northlands, seymourSingleton.northlands);
-                                    ImageView nuthouse = findViewById(R.id.imageView437);
-                                    setStatus(nuthouse, seymourSingleton.nuthouse);
+                             //       ImageView nuthouse = findViewById(R.id.imageView437);
+//                                    setStatus(nuthouse, seymourSingleton.nuthouse);
+                                    System.out.println("THE PUTL: " + seymourSingleton.theRockstarEnergyPit);
                                     ImageView rockstarEnergyPit = findViewById(R.id.imageView438);
                                     setStatus(rockstarEnergyPit, seymourSingleton.theRockstarEnergyPit);
                                 }

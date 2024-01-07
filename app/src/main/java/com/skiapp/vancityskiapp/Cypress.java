@@ -122,9 +122,9 @@ public class Cypress extends AppCompatActivity {
                                     liftsOpen.setText("Lifts Open: " + cypressSingleton.liftsOpen + "/6");
                                     System.out.println("Cypress Lifts Open: " + cypressSingleton.liftsOpen);
                                     TextView runsOpen = findViewById(R.id.textView115);
-                                    runsOpen.setText("Runs Open: " + cypressSingleton.runsOpen + "/61");
+                                    runsOpen.setText("Runs Open: " + cypressSingleton.runsOpen + "/62");
                                     TextView terrainParksOpen = findViewById(R.id.textView226);
-                                    terrainParksOpen.setText("Terrain Parks Open: " + cypressSingleton.terrainParksOpen + "/6");
+                                    terrainParksOpen.setText("Terrain Parks Open: " + cypressSingleton.terrainParksOpen + "/7");
                                     TextView runsOpenEagleExpress = findViewById(R.id.textView171);
                                     runsOpenEagleExpress.setText("Runs Open: " + cypressSingleton.runsOpenEagleExpress + "/13");
                                     TextView terrainParksOpenEagleExpress = findViewById(R.id.textView38);
@@ -132,7 +132,7 @@ public class Cypress extends AppCompatActivity {
                                     TextView runsOpenLionsExpress = findViewById(R.id.textView219);
                                     runsOpenLionsExpress.setText("Runs Open: " + cypressSingleton.runsOpenLionsExpress + "/24");
                                     TextView terrainParksOpenLionsExpress = findViewById(R.id.textView224);
-                                    terrainParksOpenLionsExpress.setText("Terrain Parks Open: " + cypressSingleton.terrainParksOpenLionsExpress + "/1");
+                                    terrainParksOpenLionsExpress.setText("Terrain Parks Open: " + cypressSingleton.terrainParksOpenLionsExpress + "/2");
                                     TextView runsOpenRavenRidge = findViewById(R.id.textView220);
                                     runsOpenRavenRidge.setText("Runs Open: " + cypressSingleton.runsOpenRavenRidge + "/13");
                                     TextView runsOpenEasyRider = findViewById(R.id.textView221);

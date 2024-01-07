@@ -37,13 +37,14 @@ public class LodgeChair extends AppCompatActivity {
                                     }
                                     TextView runsOpen = findViewById(R.id.textView367);
                                     runsOpen.setText("Runs Open: " + seymourSingleton.lodgeChairRunsOpen + "/9");
-                                  //  TextView textView420 = findViewById(R.id.textView420);
-                                  //  textView420.setText("Terrain Parks Open: " + seymourSingleton.lodgeChairTerrainParksOpen + "/2");
+                                    TextView textView420 = findViewById(R.id.textView420);
+                                    textView420.setText("Terrain Parks Open: " + seymourSingleton.lodgeChairTerrainParksOpen + "/2");
 
                                     ImageView lodgeConnector = findViewById(R.id.imageView368);
                                     setStatus(lodgeConnector, seymourSingleton.lodgeConnector);
-                                    ImageView mushroomRun = findViewById(R.id.imageView369);
-                                    setStatus(mushroomRun, seymourSingleton.mushroomRun);
+                                    System.out.println("LODGECONE" + seymourSingleton.lodgeConnector);
+//                                    ImageView mushroomRun = findViewById(R.id.imageView369);
+//                                    setStatus(mushroomRun, seymourSingleton.mushroomRun);
                                     ImageView rookiesRun = findViewById(R.id.imageView370);
                                     setStatus(rookiesRun, seymourSingleton.rookiesRun);
                                     ImageView cabinTrail = findViewById(R.id.imageView371);
@@ -60,6 +61,7 @@ public class LodgeChair extends AppCompatActivity {
                                     setStatus(lowerTrapperJohn, seymourSingleton.lowerTrapperJohn);
                                     ImageView upperTrapperJohn = findViewById(R.id.imageView120);
                                     setStatus(upperTrapperJohn, seymourSingleton.upperTrapperJohn);
+                                    System.out.println("MUSHROOM: " + seymourSingleton.mushroom);
                                     ImageView mushroom = findViewById(R.id.imageView443);
                                     setStatus(mushroom, seymourSingleton.mushroom);
                                     ImageView rookies = findViewById(R.id.imageView444);
@@ -69,6 +71,8 @@ public class LodgeChair extends AppCompatActivity {
                                     } else {
                                         mushroom.setImageResource(R.drawable.redx);
                                     }
+
+                                    System.out.println("LODG222ECONE" + seymourSingleton.lodgeConnector);
                                 }
                             }, getApplicationContext());
                             seymourSingleton.startThread();

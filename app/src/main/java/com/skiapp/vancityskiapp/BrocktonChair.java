@@ -37,7 +37,7 @@ public class BrocktonChair extends AppCompatActivity {
                                             break;
                                     }
                                     TextView runsOpen = findViewById(R.id.textView352);
-                                    runsOpen.setText("Runs Open: " + seymourSingleton.brocktonChairRunsOpen + "/11");
+                                    runsOpen.setText("Runs Open: " + seymourSingleton.brocktonChairRunsOpen + "/10");
                                     ImageView brocktonGully = findViewById(R.id.imageView329);
                                     setStatus(brocktonGully, seymourSingleton.brocktonGully);
                                     ImageView backdoor = findViewById(R.id.imageView341);
@@ -75,12 +75,15 @@ public class BrocktonChair extends AppCompatActivity {
     public void setStatus(ImageView image, String status) {
         switch (status) {
             case "Open":
+            case "open":
                 image.setImageResource(R.drawable.greencheck);
                 return;
             case "Closed":
+            case "closed":
                 image.setImageResource(R.drawable.redx);
                 return;
             case "Standby":
+            case "standby":
                 image.setImageResource(R.drawable.triangle);
                 return;
             case "?":

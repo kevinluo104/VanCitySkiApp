@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.Calendar;
+import java.util.Objects;
 
 public class Seymour extends AppCompatActivity {
 
@@ -21,6 +22,7 @@ public class Seymour extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seymour);
+
 
         Button openBrocktonChair = findViewById(R.id.button11);
         openBrocktonChair.setOnClickListener(new View.OnClickListener() {
@@ -93,8 +95,13 @@ public class Seymour extends AppCompatActivity {
                                     TextView tubeParksOpen = findViewById(R.id.textView230);
                                     tubeParksOpen.setText("Tube Parks Open: " + seymourSingleton.tubeParksOpen + "/2");
                                     TextView snowshoeTrailStatus = findViewById(R.id.textView231);
-                                    String snowshoeTrialStatus = seymourSingleton.snowshoeTrailsStatus.substring(0, 1).toUpperCase() + seymourSingleton.snowshoeTrailsStatus.substring(1);
-                                    snowshoeTrailStatus.setText("Snowshoe Trails Status: " + snowshoeTrialStatus);
+                                   // String snowshoeTrialStatus = seymourSingleton.snowshoeTrailsStatus.substring(0, 1).toUpperCase() + seymourSingleton.snowshoeTrailsStatus.substring(1);
+                                    if (Objects.equals(seymourSingleton.discoverySnowshoeTrails, "open")) {
+                                        snowshoeTrailStatus.setText("Snowshoe Trails Status: Open");
+                                    } else {
+                                        snowshoeTrailStatus.setText("Snowshoe Trails Status: Closed");
+                                    }
+
                                     setWeatherIcon(seymourSingleton.conditions);
                                     TextView fortyEightHrSnow = findViewById(R.id.textView328);
                                     fortyEightHrSnow.setText(seymourSingleton.fortyEightHrSnow);
@@ -117,27 +124,27 @@ public class Seymour extends AppCompatActivity {
                                     ImageView enquistSnowTubePark = findViewById(R.id.imageView324);
                                     setStatus(enquistSnowTubePark, seymourSingleton.enquistSnowTubePark);
                                     ImageView tobogganArea = findViewById(R.id.imageView325);
-                                    setStatus(tobogganArea, seymourSingleton.tobagganArea);
+                                    setStatus(tobogganArea, seymourSingleton.tobogganArea);
                                     ImageView discoverySnowshoeTrails = findViewById(R.id.imageView326);
                                     setStatus(discoverySnowshoeTrails, seymourSingleton.discoverySnowshoeTrails);
                                     TextView brocktonChairRunsOpen = findViewById(R.id.textView341);
                                     brocktonChairRunsOpen.setText("Runs Open: " + seymourSingleton.brocktonChairRunsOpen + "/10");
                                     TextView lodgeChairRunsOpen = findViewById(R.id.textView342);
                                     lodgeChairRunsOpen.setText("Runs Open: " + seymourSingleton.lodgeChairRunsOpen + "/9");
-                                   // TextView textView423 = findViewById(R.id.textView423);
-                                  //  textView423.setText("Terrain Parks Open: " + seymourSingleton.lodgeChairTerrainParksOpen + "/2");
+                                    TextView lodgeChairTerrainParksText = findViewById(R.id.textView423);
+                                    lodgeChairTerrainParksText.setText("Terrain Parks Open: " + seymourSingleton.lodgeChairTerrainParksOpen + "/2");
                                     TextView mysteryPeakRunsOpen = findViewById(R.id.textView343);
                                     mysteryPeakRunsOpen.setText("Runs Open: " + seymourSingleton.mysteryPeakExpressRunsOpen+ "/20");
-                               //     TextView textView424 = findViewById(R.id.textView424);
-                                //    textView424.setText("Terrain Parks Open: " + seymourSingleton.mysteryPeakExpressTerrainParksOpen + "/3");
+                                    TextView mysteryPeakTerrainParksText = findViewById(R.id.textView424);
+                                    mysteryPeakTerrainParksText.setText("Terrain Parks Open: " + seymourSingleton.mysteryPeakExpressTerrainParksOpen + "/2");
                                     TextView magicCarpetRunsOpen = findViewById(R.id.textView344);
                                     magicCarpetRunsOpen.setText("Runs Open: " + seymourSingleton.goldieMagicCarpetRunsOpen + "/3");
-                                    TextView textView425 = findViewById(R.id.textView425);
-//                                    if (seymourSingleton.mushroom.equals("open")) {
-//                                        textView425.setText("Terrain Parks Open: 1/1");
-//                                    } else {
-//                                        textView425.setText("Terrain Parks Open: 0/1");
-//                                    }
+                                    TextView goldieMagicCarpetTerrainParksText = findViewById(R.id.textView425);
+                                    if (seymourSingleton.mushroom.equals("open")) {
+                                        goldieMagicCarpetTerrainParksText.setText("Terrain Parks Open: 1/1");
+                                    } else {
+                                        goldieMagicCarpetTerrainParksText.setText("Terrain Parks Open: 0/1");
+                                    }
                                 }
 
                             }, getApplicationContext());
@@ -229,6 +236,9 @@ public class Seymour extends AppCompatActivity {
 
 
     public void setStatus(ImageView image, String status) {
+        System.out.println("STTER" + status);
+        System.out.println("IMASGD" + image.toString());
+
         switch (status.toLowerCase()) {
             case "open":
                 image.setImageResource(R.drawable.greencheck);

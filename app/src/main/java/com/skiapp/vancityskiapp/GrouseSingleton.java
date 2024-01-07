@@ -31,6 +31,7 @@ public class GrouseSingleton extends AppCompatActivity {
     public String peakChair = "";
     public String screamingEagleChair = "";
     public String magicCarpet = "";
+    public String handleTow = "";
     public String chaletRoad = "";
     public String skiWee = "";
     public String blueFace = "";
@@ -64,12 +65,13 @@ public class GrouseSingleton extends AppCompatActivity {
     public String outerLimits = "";
     public String upperBlazes = "";
     public String peakGlades = "";
+    public String noMansLand = "";
     public String cutJumpLine = "";
     public String paradiseJibPark = "";
     public String cutRookiePark = "";
-    public String cutPark = "";
+    public String sideCutPark = "";
     public String grouseWoods = "";
-    public String grousePark = "";
+    public String theCutJumpLine = "";
     public String blueGrouseLoop = "";
     public String damMountainLoop = "";
     public String snowshoeGrind = "";
@@ -119,11 +121,12 @@ public class GrouseSingleton extends AppCompatActivity {
                                 twentyFourHrSnow = setNewSnow(2);
                                 fortyEightHrSnow = setNewSnow(3);
                                   if (counter == 0) {
-                                    greenwayChair = setOpenClosedLifts(2);
+                                    greenwayChair = setOpenClosedLifts(3);
                                     olympicExpressChair = setOpenClosedLifts(0);
-                                    screamingEagleChair = setOpenClosedLifts(1);
-  //                                  peakChair = setOpenClosedLifts(1);
-                                    magicCarpet = setOpenClosedLifts(3);
+                                    screamingEagleChair = setOpenClosedLifts(2);
+                                    peakChair = setOpenClosedLifts(1);
+                                    magicCarpet = setOpenClosedLifts(4);
+                                    handleTow = setOpenClosedLifts(5);
                                     chaletRoad = setOpenClosedRuns(0);
                                     paradise = setOpenClosedRuns(1);
                                     skiWee = setOpenClosedRuns(2);
@@ -157,11 +160,12 @@ public class GrouseSingleton extends AppCompatActivity {
                                     chimney = setOpenClosedRuns(30);
                                     upperBlazes = setOpenClosedRuns(31);
                                     mountainHighway = setOpenClosedRuns(32);
+                                    noMansLand = setOpenClosedRuns(33);
                                    // cutJumpLine = setOpenClosedParks(2);
-                                    paradiseJibPark = setOpenClosedParks(1);
+                                    paradiseJibPark = setOpenClosedParks(0);
                                     cutRookiePark = setOpenClosedParks(2);
-                                    cutPark = setOpenClosedParks(0);
-                                    grousePark = setOpenClosedParks(3);
+                                    sideCutPark = setOpenClosedParks(3);
+                                    theCutJumpLine = setOpenClosedParks(1);
                                     blueGrouseLoop = setOpenClosedSnowshoe(0);
                                     damMountainLoop = setOpenClosedSnowshoe(2);
                                     snowshoeGrind = setOpenClosedSnowshoe(3);

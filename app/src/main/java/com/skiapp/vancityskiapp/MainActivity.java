@@ -218,13 +218,16 @@ public class MainActivity extends AppCompatActivity {
                             setVanTempHourly(tempList, van6amTemp, van9amTemp, van12pmTemp, van3pmTemp, van6pmTemp, van9pmTemp, van12amTemp, van3amTemp);
                             setVanIcon(tempList, sixAmPic, nineAmPic, twelvePmPic, threePmPic, sixPmPic, ninePmPic, twelveAmPic, threeAmPic);
 
+
                             try {
                                 grouseSingleton = GrouseSingleton.getInstance(new ResultListener() {
                                     @Override
                                     public void onResultFetched() {
+                                        System.out.println("GROUSE");
                                         TextView grouseTemp = findViewById(R.id.textView5);
                                         grouseTemp.setText(grouseSingleton.temperature);
                                         TextView grouseVisibility = findViewById(R.id.textView22);
+
                                         switch (grouseSingleton.visibility) {
                                             case "Limited Visibility":
                                                 grouseVisibility.setText("Visibility: Limited");
@@ -241,9 +244,9 @@ public class MainActivity extends AppCompatActivity {
                                         TextView grouseWeather = findViewById(R.id.textView32);
                                         grouseWeather.setText(grouseSingleton.weather);
                                         TextView grouseRunsOpen = findViewById(R.id.textView313);
-                                        grouseRunsOpen.setText("Runs Open: " + grouseSingleton.runsOpen + "/33");
+                                        grouseRunsOpen.setText("Runs Open: " + grouseSingleton.runsOpen + "/34");
                                         TextView grouseLiftsOpen = findViewById(R.id.textView34);
-                                        grouseLiftsOpen.setText("Lifts Open: " + grouseSingleton.liftsOpen + "/5");
+                                        grouseLiftsOpen.setText("Lifts Open: " + grouseSingleton.liftsOpen + "/6");
                                         ImageView grouseCondition = findViewById(R.id.imageView4);
                                         setGrousePic(grouseSingleton.picture, grouseCondition);
                                     }
@@ -293,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
                                         TextView seymourVisibility = findViewById(R.id.textView40);
                                         seymourVisibility.setText("Visibility: " + seymourSingleton.visibility);
                                         TextView seymourRunsOpen = findViewById(R.id.textView41);
-                                        seymourRunsOpen.setText("Runs Open: " + seymourSingleton.runsOpen + "/41");
+                                        seymourRunsOpen.setText("Runs Open: " + seymourSingleton.runsOpen + "/42");
                                         TextView seymourLiftsOpen = findViewById(R.id.textView42);
                                         seymourLiftsOpen.setText("Lifts Open: " + seymourSingleton.liftsOpen + "/4");
                                         TextView seymour24HrSnow = findViewById(R.id.textView43);
@@ -362,7 +365,7 @@ public class MainActivity extends AppCompatActivity {
             image.setImageResource(R.drawable.rain);
             return;
         }
-        if (condition.equals("https://weather.gc.ca/weathericons/24.gif")) {  // MIST
+        if (condition.equals("https://weather.gc.ca/weathericons/24.gif") || condition.equals("https://weather.gc.ca/weathericons/small/24.png")) {  // MIST OR FOG
             image.setImageResource(R.drawable.mist);
             return;
         }
@@ -804,7 +807,7 @@ public class MainActivity extends AppCompatActivity {
                 assignNightIcon(condList.get(10), fourth);
                 assignDayIcon(condList.get(11), fifth);
                 assignDayIcon(condList.get(12), sixth);
-                assignNightIcon(condList.get(13), seventh);
+                assignDayIcon(condList.get(13), seventh);
                 assignNightIcon(condList.get(14), eighth);
                 break;
         }
@@ -813,7 +816,8 @@ public class MainActivity extends AppCompatActivity {
     public void assignDayIcon(String imageLink, View image) {
         ImageView imageView = findViewById(image.getId());
         switch (imageLink) {
-            case "https://weather.gc.ca/weathericons/24.gif": // MIST
+            case "https://weather.gc.ca/weathericons/24.gif": // MIST OR FOG
+            case "https://weather.gc.ca/weathericons/small/24.png":
                 imageView.setImageResource(R.drawable.mist);
                 return;
             case "https://weather.gc.ca/weathericons/15.gif": // WET SNOW MIXED WITH RAIN
@@ -891,7 +895,8 @@ public class MainActivity extends AppCompatActivity {
     public void assignNightIcon(String imageLink, View image) {
         ImageView imageView = findViewById(image.getId());
         switch (imageLink) {
-            case "https://weather.gc.ca/weathericons/24.gif": // MIST
+            case "https://weather.gc.ca/weathericons/24.gif": // MIST OR FOG
+            case "https://weather.gc.ca/weathericons/small/24.png":
                 imageView.setImageResource(R.drawable.mist);
                 return;
             case "https://weather.gc.ca/weathericons/28.gif":
@@ -2126,7 +2131,7 @@ public class MainActivity extends AppCompatActivity {
                 image.setImageResource(R.drawable.chance_of_flurries);
                 return;
             case "Fog":
-                image.setImageResource(R.drawable.mist);
+                image.setImageResource(R.drawable.fog);
                 return;
         }
         if (hour >= 8 && hour < 16) {

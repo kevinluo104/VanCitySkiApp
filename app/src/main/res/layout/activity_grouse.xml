@@ -441,6 +441,18 @@
                 android:id="@+id/textView65"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="166dp"
+                android:layout_marginEnd="23dp"
+                android:text="Handle Tow"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+            <TextView
+                android:id="@+id/textView240"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="96dp"
                 android:layout_marginEnd="23dp"
                 android:text="Magic Carpet"
@@ -454,6 +466,17 @@
                 android:layout_width="31dp"
                 android:layout_height="39dp"
                 android:layout_marginTop="88dp"
+                android:layout_marginEnd="136dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline53"
+                app:layout_constraintTop_toBottomOf="@+id/view2"
+                app:srcCompat="@drawable/ic_launcher_foreground" />
+
+            <ImageView
+                android:id="@+id/imageView215"
+                android:layout_width="31dp"
+                android:layout_height="39dp"
+                android:layout_marginTop="158dp"
                 android:layout_marginEnd="136dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline53"
@@ -892,6 +915,28 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/view3" />
 
+            <TextView
+                android:id="@+id/textView242"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1176dp"
+                android:layout_marginEnd="32dp"
+                android:text="No Man's Land"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/view3" />
+
+            <TextView
+                android:id="@+id/textView273"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1106dp"
+                android:layout_marginEnd="48dp"
+                android:text="Peak Glades"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/view3" />
+
             <ImageView
                 android:id="@+id/imageView21"
                 android:layout_width="31dp"
@@ -1217,6 +1262,16 @@
                 android:layout_width="31dp"
                 android:layout_height="39dp"
                 android:layout_marginTop="1096dp"
+                android:layout_marginEnd="150dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view3"
+                app:srcCompat="@drawable/ic_launcher_foreground" />
+
+            <ImageView
+                android:id="@+id/imageView314"
+                android:layout_width="31dp"
+                android:layout_height="39dp"
+                android:layout_marginTop="1166dp"
                 android:layout_marginEnd="150dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view3"
@@ -1642,6 +1697,16 @@
                 app:srcCompat="@drawable/double_black" />
 
             <ImageView
+                android:id="@+id/imageView353"
+                android:layout_width="26dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="1171dp"
+                app:layout_constraintStart_toEndOf="@+id/textView99"
+                app:layout_constraintTop_toBottomOf="@+id/view3"
+                app:srcCompat="@drawable/bluerun" />
+
+            <ImageView
                 android:id="@+id/imageView96"
                 android:layout_width="26dp"
                 android:layout_height="23dp"
@@ -1731,8 +1796,9 @@
                 android:id="@+id/textView100"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
                 android:layout_marginTop="22dp"
-                android:text="Cut Park"
+                android:text="Side Cut Park"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline52"
                 app:layout_constraintHorizontal_bias="0.38"
@@ -1770,8 +1836,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
-                android:layout_marginEnd="76dp"
-                android:text="Grouse Park"
+                android:layout_marginEnd="62dp"
+                android:text="Cut Jump Line"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/view4" />
@@ -1832,6 +1898,7 @@
                 android:id="@+id/imageView110"
                 android:layout_width="32sp"
                 android:layout_height="38sp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="15dp"
                 app:layout_constraintStart_toEndOf="@+id/textView100"
                 app:layout_constraintTop_toBottomOf="@+id/view4"

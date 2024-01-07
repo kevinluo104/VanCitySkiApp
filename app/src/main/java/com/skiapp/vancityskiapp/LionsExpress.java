@@ -87,11 +87,13 @@ public class LionsExpress extends AppCompatActivity {
 
                                     ImageView sunrisePark = findViewById(R.id.imageView243);
                                     setStatus(sunrisePark, cypressSingleton.sunrisePark);
+                                    ImageView collinsPark = findViewById(R.id.imageView138);
+                                    setStatus(collinsPark, cypressSingleton.collinsPark);
 
                                     TextView runsOpen = findViewById(R.id.textView154);
                                     runsOpen.setText("Runs Open: " + cypressSingleton.runsOpenLionsExpress + "/24");
                                     TextView terrainParksOpen = findViewById(R.id.textView418);
-                                    terrainParksOpen.setText("Terrain Parks Open: " + cypressSingleton.terrainParksOpenLionsExpress + "/1");
+                                    terrainParksOpen.setText("Terrain Parks Open: " + cypressSingleton.terrainParksOpenLionsExpress + "/2");
                                 }
                             }, getApplicationContext());
                             cypressSingleton.startThread();

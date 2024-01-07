@@ -78,6 +78,8 @@ public class Grouse extends AppCompatActivity {
                                     setStatus(peakChair, grouseSingleton.peakChair);
                                     ImageView magicCarpet = findViewById(R.id.imageView20);
                                     setStatus(magicCarpet, grouseSingleton.magicCarpet);
+                                    ImageView handleTow = findViewById(R.id.imageView215);
+                                    setStatus(handleTow, grouseSingleton.handleTow);
 
                                     ImageView chaletRoad = findViewById(R.id.imageView21);
                                     setStatus(chaletRoad, grouseSingleton.chaletRoad);
@@ -147,6 +149,8 @@ public class Grouse extends AppCompatActivity {
                                     setStatus(upperBlazes, grouseSingleton.upperBlazes);
                                     ImageView peakGlades = findViewById(R.id.imageView53);
                                     setStatus(peakGlades, grouseSingleton.peakGlades);
+                                    ImageView noMansLand = findViewById(R.id.imageView314);
+                                    setStatus(noMansLand, grouseSingleton.noMansLand);
 
                                     ImageView cutJumpLine = findViewById(R.id.imageView103);
                                //     setStatus(cutJumpLine, grouseSingleton.cutJumpLine);
@@ -156,7 +160,7 @@ public class Grouse extends AppCompatActivity {
                                     ImageView cutRookiePark = findViewById(R.id.imageView105);
                                     setStatus(cutRookiePark, grouseSingleton.cutRookiePark);
                                     ImageView cutPark = findViewById(R.id.imageView106);
-                                    setStatus(cutPark, grouseSingleton.cutPark);
+                                    setStatus(cutPark, grouseSingleton.sideCutPark);
                                     ImageView lightWalk = findViewById(R.id.imageView107);
                                     setStatus(lightWalk, grouseSingleton.lightWalk);
 //                                    ImageView iv108 = findViewById(R.id.imageView108);
@@ -174,7 +178,7 @@ public class Grouse extends AppCompatActivity {
                                     TextView runsOpen = findViewById(R.id.textView48);
                                     runsOpen.setText("Runs Open: " + grouseSingleton.runsOpen + "/33");
                                     TextView liftsOpen = findViewById(R.id.textView50);
-                                    liftsOpen.setText("Lifts Open: " + grouseSingleton.liftsOpen + "/5");
+                                    liftsOpen.setText("Lifts Open: " + grouseSingleton.liftsOpen + "/6");
                                     TextView terrainParksOpen = findViewById(R.id.textView114);
                                     terrainParksOpen.setText("Terrain Parks Open: " + grouseSingleton.terrainParksOpen + "/4");
                                     TextView snowshoeTrailsOpen = findViewById(R.id.textView227);

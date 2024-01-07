@@ -1198,6 +1198,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="48dp"
+                android:layout_marginTop="92dp"
+                android:text="Collins Park"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline85"
+                app:layout_constraintHorizontal_bias="0.38"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view11" />
+
+            <TextView
+                android:id="@+id/textView239"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
                 android:layout_marginTop="21dp"
                 android:text="Sunrise Park"
                 android:textSize="16sp"
@@ -1217,12 +1230,33 @@
                 app:srcCompat="@drawable/terrain_park" />
 
             <ImageView
+                android:id="@+id/imageView76"
+                android:layout_width="31dp"
+                android:layout_height="39dp"
+                android:layout_marginTop="84dp"
+                android:layout_marginEnd="17dp"
+                app:layout_constraintEnd_toStartOf="@+id/textView182"
+                app:layout_constraintTop_toBottomOf="@+id/view11"
+                app:srcCompat="@drawable/terrain_park" />
+
+            <ImageView
                 android:id="@+id/imageView243"
                 android:layout_width="38dp"
                 android:layout_height="55dp"
                 android:layout_marginTop="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.85"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view11"
+                app:srcCompat="@drawable/ic_launcher_foreground" />
+
+            <ImageView
+                android:id="@+id/imageView138"
+                android:layout_width="38dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="78dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.849"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view11"
                 app:srcCompat="@drawable/ic_launcher_foreground" />

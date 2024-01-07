@@ -568,7 +568,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="69dp"
                 android:layout_marginTop="96dp"
-                android:text="Tobaggan Area"
+                android:text="Toboggan Area"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guideline140"

@@ -93,6 +93,8 @@ public class CypressSingleton extends AppCompatActivity {
     public String gibsonGlades = "";
     public String sunrisePark = "";
 
+    public String collinsPark = "";
+
 
     public String bennys = "";
     public String crazyRaven = "";
@@ -183,8 +185,8 @@ public class CypressSingleton extends AppCompatActivity {
 
                                     eagleExpress = setChairliftStatus(eagleExpress, 0);
                                     lionsExpress = setChairliftStatus(lionsExpress, 1);
-                                    ravenRidge = setChairliftStatus(ravenRidge, 2);
-                                    easyRider = setChairliftStatus(easyRider, 3);
+                                    ravenRidge = setChairliftStatus(ravenRidge, 3);
+                                    easyRider = setChairliftStatus(easyRider, 2);
                                     skyChair = setChairliftStatus(skyChair, 4);
                                     midwayChair = setChairliftStatus(midwayChair, 5);
 
@@ -202,7 +204,7 @@ public class CypressSingleton extends AppCompatActivity {
                                     bHip = setRunStatusEagleExpress(bHip, 10);
                                     blowBy = setRunStatusEagleExpress(blowBy, 11);
                                     detentionGlades = setRunStatusEagleExpress(detentionGlades, 12);
-                                    System.out.println("DSGSDG" + lowerFork);
+
 
                                     skatePark = setTerrainParkStatusEagleExpress(skatePark, 13);
                                     district = setTerrainParkStatusEagleExpress(district, 14);
@@ -235,36 +237,37 @@ public class CypressSingleton extends AppCompatActivity {
                                     gibsonGlades = setRunStatusLionsExpress(gibsonGlades, 39);
 
                                     sunrisePark = setTerrainParkStatusLionsExpress(sunrisePark, 40);
+                                    collinsPark = setTerrainParkStatusLionsExpress(collinsPark, 41);
 
-                                    bennys = setRunStatusRavenRidge(bennys, 41);
-                                    crazyRaven = setRunStatusRavenRidge(crazyRaven, 42);
-                                    lowerCoyote7 = setRunStatusRavenRidge(lowerCoyote7, 43);
-                                    threeBears = setRunStatusRavenRidge(threeBears, 44);
-                                    rideout = setRunStatusRavenRidge(rideout, 45);
-                                    bilodeau = setRunStatusRavenRidge(bilodeau, 46);
-                                    upperCoyote7 = setRunStatusRavenRidge(upperCoyote7, 47);
-                                    firstSun = setRunStatusRavenRidge(firstSun, 48);
-                                    shoreGlades = setRunStatusRavenRidge(shoreGlades, 49);
-                                    shoreLine = setRunStatusRavenRidge(shoreLine, 50);
-                                    backOnBlack = setRunStatusRavenRidge(backOnBlack, 51);
-                                    meteor = setRunStatusRavenRidge(meteor, 52);
-                                    blackFly = setRunStatusRavenRidge(blackFly, 53);
+                                    bennys = setRunStatusRavenRidge(bennys, 42);
+                                    crazyRaven = setRunStatusRavenRidge(crazyRaven, 43);
+                                    lowerCoyote7 = setRunStatusRavenRidge(lowerCoyote7, 44);
+                                    threeBears = setRunStatusRavenRidge(threeBears, 45);
+                                    rideout = setRunStatusRavenRidge(rideout, 46);
+                                    bilodeau = setRunStatusRavenRidge(bilodeau, 47);
+                                    upperCoyote7 = setRunStatusRavenRidge(upperCoyote7, 48);
+                                    firstSun = setRunStatusRavenRidge(firstSun, 49);
+                                    shoreGlades = setRunStatusRavenRidge(shoreGlades, 50);
+                                    shoreLine = setRunStatusRavenRidge(shoreLine, 51);
+                                    backOnBlack = setRunStatusRavenRidge(backOnBlack, 52);
+                                    meteor = setRunStatusRavenRidge(meteor, 53);
+                                    blackFly = setRunStatusRavenRidge(blackFly, 54);
 
-                                    runway = setRunStatusEasyRider(runway, 54);
-                                    steezyRider = setTerrainParkStatusEasyRider(steezyRider, 55);
-                                    gnarlysDen = setTerrainParkStatusEasyRider(gnarlysDen, 56);
+                                    runway = setRunStatusEasyRider(runway, 55);
+                                    steezyRider = setTerrainParkStatusEasyRider(steezyRider, 56);
+                                    gnarlysDen = setTerrainParkStatusEasyRider(gnarlysDen, 57);
 
-                                    T33 = setRunStatusSkyChair(T33, 57);
-                                    horseflyCanyon = setRunStatusSkyChair(horseflyCanyon, 58);
-                                    glades = setRunStatusSkyChair(glades, 59);
-                                    tomcat = setRunStatusSkyChair(tomcat, 60);
-                                    ripcord = setRunStatusSkyChair(ripcord, 61);
-                                    topGun = setRunStatusSkyChair(topGun, 62);
+                                    T33 = setRunStatusSkyChair(T33, 58);
+                                    horseflyCanyon = setRunStatusSkyChair(horseflyCanyon, 59);
+                                    glades = setRunStatusSkyChair(glades, 60);
+                                    tomcat = setRunStatusSkyChair(tomcat, 61);
+                                    ripcord = setRunStatusSkyChair(ripcord, 62);
+                                    topGun = setRunStatusSkyChair(topGun, 63);
 
-                                    shuttle = setRunStatusMidwayChair(shuttle, 63);
-                                    blaster = setRunStatusMidwayChair(blaster, 64);
-                                    hutRun = setRunStatusMidwayChair(hutRun, 65);
-                                    webbSite = setRunStatusMidwayChair(webbSite, 66);
+                                    shuttle = setRunStatusMidwayChair(shuttle, 64);
+                                    blaster = setRunStatusMidwayChair(blaster, 65);
+                                    hutRun = setRunStatusMidwayChair(hutRun, 66);
+                                    webbSite = setRunStatusMidwayChair(webbSite, 67);
                                 }
                                 counter++;
                                 listener.onResultFetched();
