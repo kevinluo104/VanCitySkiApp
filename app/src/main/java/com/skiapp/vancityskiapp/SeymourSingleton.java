@@ -9,10 +9,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import java.time.LocalTime;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class SeymourSingleton extends AppCompatActivity {
@@ -159,7 +159,7 @@ public class SeymourSingleton extends AppCompatActivity {
                             sevenDaySnow = seymourWeather.select("#block-conditions > div > div > div:nth-child(4) > div > ul > li:nth-child(3) > div.gradient.border-radius-full.t-c-green.f-size-30.lh-1.value > div > div.f-size-30.f-w-xbold.value").get(0).ownText() + "cm";
                             seasonSnow = seymourWeather.select("#block-conditions > div > div > div:nth-child(4) > div > ul > li:nth-child(6) > div.gradient.border-radius-full.t-c-green.f-size-30.lh-1.value > div > div.f-size-30.f-w-xbold.value").get(0).ownText() + "cm";
                             if (counter == 0) {
-                                discoverySnowshoeTrails = setSnowshoeTrailStatus(discoverySnowshoeTrails);
+                                discoverySnowshoeTrails = setSnowshoeTrailStatus();
                                 lodgeConnector = setLodgeChairRunStatus(0);
                                 System.out.println("LIODGEE" + lodgeConnector);
                                 rookiesRun = setLodgeChairRunStatus(1);
@@ -239,6 +239,7 @@ public class SeymourSingleton extends AppCompatActivity {
 //                            setLodgeChairRuns();
 //                            setMysteryPeakExpressRuns();
 //                            setGoldieMagicCarpetRuns();
+                            runsOpen = brocktonChairRunsOpen + lodgeChairRunsOpen + mysteryPeakExpressRunsOpen + goldieMagicCarpetRunsOpen;
                             counter++;
                             listener.onResultFetched();
                         }
@@ -314,8 +315,10 @@ public class SeymourSingleton extends AppCompatActivity {
                 } catch (Exception e) {
                     Element divElement = goldieAccordionHeading.select("td.no-wrap").first();
                     status = divElement.text().trim();
+                    System.out.println("STATis: " + status);
                     liftName = checkStatus(status);
                     if (Objects.equals(liftName, "open")) liftsOpen++;
+                    System.out.println("STATisll: " + liftName);
                     return liftName;
                 }
         }
@@ -347,6 +350,7 @@ public class SeymourSingleton extends AppCompatActivity {
                 } catch (Exception e) {
                     Element divElement = tobogganRow.select("td.no-wrap").first();
                     status = divElement.text().trim();
+                    System.out.println("TOBAGGAN");
                     tobogganArea = checkStatus(status);
                     if (Objects.equals(tobogganArea, "open")) tubeParksOpen++;
                 }
@@ -355,30 +359,27 @@ public class SeymourSingleton extends AppCompatActivity {
     }
 
     public String checkStatus(String status) {
-        DateTimeFormatter formatter = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            formatter = DateTimeFormatter.ofPattern("h:mm a");
-        }
+        Pattern pattern = Pattern.compile("(\\d{1,2}):(\\d{2}) (AM|PM) - (\\d{1,2}):(\\d{2}) (AM|PM)");
 
-        int start = 0;
-        int end = 0;
-        // Parse the start and end times
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            LocalTime startTime = LocalTime.parse(status.split("-")[0].trim(), formatter);
-            start = startTime.getHour();
-        }
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            LocalTime endTime = LocalTime.parse(status.split("-")[1].trim(), formatter);
-            end = endTime.getHour();
-        }
+        // Match the pattern against the input string
+        Matcher matcher = pattern.matcher(status);
 
-        if (hour < start || hour > end) {
-            return "closed";
+        // Check if the pattern is found
+        if (matcher.find()) {
+            // Extract hours and minutes from the matched groups
+            int startHour = Integer.parseInt(matcher.group(1));
+            int endHour = Integer.parseInt(matcher.group(4));
+            if (hour < startHour || hour > endHour + 12) {
+                return "closed";
+            }
+            return "open";
+        } else {
+            System.out.println("No match found");
         }
         return "open";
     }
 
-    public String setSnowshoeTrailStatus(String trail) {
+    public String setSnowshoeTrailStatus() {
         String status = null;
         Element snowshoeAccordionHeading = seymourWeather.select("tr.accordion-heading").get(4);
         try {
@@ -389,7 +390,9 @@ public class SeymourSingleton extends AppCompatActivity {
         } catch (Exception e) {
             Element divElement = snowshoeAccordionHeading.select("td.no-wrap").first();
             status = divElement.text().trim();
-            trail = checkStatus(status);
+            System.out.println("SHTRAIL: " + status);
+            String trail = checkStatus(status);
+            System.out.println("SHTRAIL: " + trail);
             return trail;
         }
     }

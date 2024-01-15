@@ -246,6 +246,10 @@ public class Cypress extends AppCompatActivity {
             image.setImageResource(R.drawable.ice_pellets);
             return;
         }
+        if (text.equals("Cloud/sun/mixed")) {
+            image.setImageResource(R.drawable.a_mix_of_sun_and_cloud);
+            return;
+        }
         if (hour >= 6 && hour < 21) {
             switch (text) {
             }

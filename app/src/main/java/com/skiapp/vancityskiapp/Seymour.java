@@ -223,16 +223,15 @@ public class Seymour extends AppCompatActivity {
             case "A Mix Of Sun And Snow":
                 imageView319.setImageResource(R.drawable.chance_of_flurries);
                 return;
-        }
-            if (hour >= 6 && hour < 21) {
-                switch (conditions) {
+            case "Clear Skies":
+                if (hour < 17) {
+                    imageView319.setImageResource(R.drawable.sunny);
+                } else {
+                    imageView319.setImageResource(R.drawable.clear_night);
                 }
-            } else {
-                switch (conditions) {
-                }
-
-            }
+                return;
         }
+    }
 
 
     public void setStatus(ImageView image, String status) {
