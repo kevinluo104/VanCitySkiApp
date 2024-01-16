@@ -171,10 +171,10 @@ public class CypressSingleton extends AppCompatActivity {
                             try {
                                 temperature = cypressWeather.select("span.js-measurement").get(0).ownText();
                                 System.out.println("TEMPRAUTE" + temperature);
-                                twentyFourHrSnow = cypressWeather.select("span.js-measurement").get(1).ownText() + "cm";
-                                fortyEightHrSnow = cypressWeather.select("span.js-measurement").get(2).ownText() + "cm";
-                                sevenDaySnow = cypressWeather.select("span.js-measurement").get(3).ownText()+ "cm";
-                                seasonSnow = cypressWeather.select("span.js-measurement").get(4).ownText() + "cm";
+                                twentyFourHrSnow = cypressWeather.select("span.js-measurement").get(3).ownText() + "cm";
+                                fortyEightHrSnow = cypressWeather.select("span.js-measurement").get(4).ownText() + "cm";
+                                sevenDaySnow = cypressWeather.select("span.js-measurement").get(5).ownText()+ "cm";
+                                seasonSnow = cypressWeather.select("span.js-measurement").get(6).ownText() + "cm";
                                 System.out.println("SEAOSN" + seasonSnow);
 
                              //   Element firstCondition = cypressWeather.select("span.text.text_24.text_30Md.mix-text_bold.mix-text_spaceBreak.mix-text_color1.mix-text_alignCenter.mix-text_alignLeftMd.mix-text_lessStrict").first();

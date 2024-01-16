@@ -393,6 +393,11 @@ public class MainActivity extends AppCompatActivity {
             image.setImageResource(R.drawable.chance_of_showers_day);
             return;
         }
+        if (condition.equals("https://weather.gc.ca/weathericons/18.gif")) { // SNOW AT TIMES HEAVY / SNOW AT TIMES HEAVY. RISK OF FREEZING RAIN
+            image.setImageResource(R.drawable.snow_at_times_heavy);
+            return;
+        }
+
         if (hour >= 8 && hour < 16) {
             switch (condition) {
                 case "https://weather.gc.ca/weathericons/03.gif":  // MOSTLY CLOUDY
@@ -888,6 +893,9 @@ public class MainActivity extends AppCompatActivity {
             case "https://weather.gc.ca/weathericons/small/28.png":  // LIGHT DRIZZLE
                 imageView.setImageResource(R.drawable.light_drizzle);
                 return;
+            case "https://weather.gc.ca/weathericons/small/18.png": // SNOW AT TIMES HEAVY / SNOW AT TIMES HEAVY. RISK OF FREEZING RAIN
+            case "https://weather.gc.ca/weathericons/18.gif":
+                imageView.setImageResource(R.drawable.snow_at_times_heavy);
             }
         }
 
@@ -976,6 +984,9 @@ public class MainActivity extends AppCompatActivity {
             case "https://weather.gc.ca/weathericons/small/17.png": // SNOW
                 imageView.setImageResource(R.drawable.snow);
                 return;
+            case "https://weather.gc.ca/weathericons/small/18.png": // SNOW AT TIMES HEAVY / SNOW AT TIMES HEAVY. RISK OF FREEZING RAIN
+            case "https://weather.gc.ca/weathericons/18.gif":
+                imageView.setImageResource(R.drawable.snow_at_times_heavy);
         }
     }
 
