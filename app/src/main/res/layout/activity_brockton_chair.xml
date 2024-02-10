@@ -296,24 +296,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/view20" />
 
             <TextView
-                android:id="@+id/textView362"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="26dp"
-                android:layout_marginTop="608dp"
-                android:text="Scooter"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline151"
-                app:layout_constraintHorizontal_bias="0.38"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view20" />
-
-            <TextView
                 android:id="@+id/textView363"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
-                android:layout_marginTop="680dp"
+                android:layout_marginTop="608dp"
                 android:text="Sterns Stairway"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline151"
@@ -326,7 +313,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
-                android:layout_marginTop="752dp"
+                android:layout_marginTop="680dp"
                 android:text="Sunshine Ridge"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline151"
@@ -426,20 +413,10 @@
                 app:srcCompat="@drawable/black" />
 
             <ImageView
-                android:id="@+id/imageView338"
-                android:layout_width="19dp"
-                android:layout_height="25dp"
-                android:layout_marginTop="604dp"
-                android:layout_marginEnd="24dp"
-                app:layout_constraintEnd_toStartOf="@+id/textView362"
-                app:layout_constraintTop_toBottomOf="@+id/view20"
-                app:srcCompat="@drawable/black" />
-
-            <ImageView
                 android:id="@+id/imageView339"
                 android:layout_width="19dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="676dp"
+                android:layout_marginTop="604dp"
                 android:layout_marginEnd="24dp"
                 app:layout_constraintEnd_toStartOf="@+id/textView363"
                 app:layout_constraintTop_toBottomOf="@+id/view20"
@@ -449,7 +426,7 @@
                 android:id="@+id/imageView340"
                 android:layout_width="19dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="748dp"
+                android:layout_marginTop="676dp"
                 android:layout_marginEnd="25dp"
                 app:layout_constraintEnd_toStartOf="@+id/textView364"
                 app:layout_constraintTop_toBottomOf="@+id/view20"
@@ -532,8 +509,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/view20"
                 app:srcCompat="@drawable/ic_launcher_foreground" />
 
+
             <ImageView
-                android:id="@+id/imageView348"
+                android:id="@+id/imageView349"
                 android:layout_width="38dp"
                 android:layout_height="55dp"
                 android:layout_marginTop="590dp"
@@ -545,22 +523,10 @@
 
 
             <ImageView
-                android:id="@+id/imageView349"
-                android:layout_width="38dp"
-                android:layout_height="55dp"
-                android:layout_marginTop="662dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.85"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view20"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
-
-
-            <ImageView
                 android:id="@+id/imageView350"
                 android:layout_width="38dp"
                 android:layout_height="55dp"
-                android:layout_marginTop="736dp"
+                android:layout_marginTop="662dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.85"
                 app:layout_constraintStart_toStartOf="parent"

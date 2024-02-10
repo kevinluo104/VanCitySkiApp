@@ -150,8 +150,7 @@ public class CypressSingleton extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         public void run() {
                             try {
-                                conditions = cypressWeather.select(("#conditions_current_e62ddfa83ed0c6d03d9e2b03ad704a26 > div > div > div > div.displayFlex.box_top2 > div.now-row > div:nth-child(3) > span")).get(0).ownText();
-
+                                conditions = cypressWeather.select(("#conditions_current_e62ddfa83ed0c6d03d9e2b03ad704a26 > div > div > div > ul > li:nth-child(2) > div > ul > li:nth-child(1) > ul > li:nth-child(2) > span")).get(0).ownText();
                                 String[] arr = conditions.split(" ");
                                 StringBuffer sb = new StringBuffer();
 
@@ -161,7 +160,6 @@ public class CypressSingleton extends AppCompatActivity {
                                             .append(arr[i].substring(1)).append(" ");
                                 }
                                 conditions = sb.toString().trim();
-                                System.out.println("arr22222: " + conditions);
                                 if (conditions.equals("Rain/snow"))
                                     conditions = "Rain/Snow";
                             } catch (Exception ignored) {

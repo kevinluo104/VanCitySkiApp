@@ -175,7 +175,6 @@ public class MainActivity extends AppCompatActivity {
                     });
                     vanWeather = Jsoup.connect("https://weather.gc.ca/city/pages/bc-74_metric_e.html").userAgent("Mozilla").get();  // VANCOUVER WEATHER
                     hourlyVan = Jsoup.connect("https://weather.gc.ca/forecast/hourly/bc-74_metric_e.html").get(); // VANCOUVER HOURLY WEATHER
-                    System.out.println("HIOII22III");
 
                     runOnUiThread(new Runnable() {
                         public void run() {
@@ -212,9 +211,6 @@ public class MainActivity extends AppCompatActivity {
                             TextView seventhHourSlot = findViewById(R.id.textView17);
                             TextView eighthHourSlot = findViewById(R.id.textView18);
                             setHourlyVanTimeSlot(firstHourSlot, secondHourSlot, thirdHourSlot, fourthHourSlot, fifthHourSlot, sixthHourSlot, seventhHourSlot, eighthHourSlot);
-                            for (String s: tempList) {
-                                System.out.println("HEREEEEE: " + s);
-                            }
                             setVanTempHourly(tempList, van6amTemp, van9amTemp, van12pmTemp, van3pmTemp, van6pmTemp, van9pmTemp, van12amTemp, van3amTemp);
                             setVanIcon(tempList, sixAmPic, nineAmPic, twelvePmPic, threePmPic, sixPmPic, ninePmPic, twelveAmPic, threeAmPic);
 
@@ -275,11 +271,6 @@ public class MainActivity extends AppCompatActivity {
                                         cypressNewSnow.setText("New Snow: " + cypressSingleton.twentyFourHrSnow);
                                         ImageView cypressWeather = findViewById(R.id.imageView2);
                                         setCypressPic(cypressSingleton.conditions, cypressWeather);
-                                      /*  if (cypressSingleton.conditions.equals("Rain/snow"))
-                                            cypressSingleton.conditions = "Rain/Snow";*/
-
-                                        //    TextView tv7 = findViewById(R.id.cypressVisibility);
-                                        //  tv7.setText("Refresh at bottom of screen if nothing shows up!");
                                         mainErrorText.setText("");
                                     }
                                 }, getApplicationContext());
@@ -2169,6 +2160,7 @@ public class MainActivity extends AppCompatActivity {
                 image.setImageResource(R.drawable.a_mix_of_sun_and_cloud);
                 return;
             case "Raining":
+            case "Showers":
                 image.setImageResource(R.drawable.rain);
                 return;
             case "Windy":
@@ -2179,6 +2171,9 @@ public class MainActivity extends AppCompatActivity {
                 return;
             case "Fog":
                 image.setImageResource(R.drawable.fog);
+                return;
+            case "Rain/Mix":
+                image.setImageResource(R.drawable.wet_snow_mixed_with_rain);
                 return;
             case "Clear Skies":
                 if (hour < 17) {

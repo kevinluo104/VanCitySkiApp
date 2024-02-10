@@ -179,7 +179,7 @@ public class Seymour extends AppCompatActivity {
     }
 
     public void setWeatherIcon(String conditions) {
-        ImageView imageView319 = findViewById(R.id.imageView319);
+        ImageView weatherIcon = findViewById(R.id.imageView319);
         String[] arr = conditions.split(" ");
         StringBuffer sb = new StringBuffer();
 
@@ -191,43 +191,47 @@ public class Seymour extends AppCompatActivity {
 
         switch (conditions) {
             case "Light Rain":
-                imageView319.setImageResource(R.drawable.chance_of_showers);
+                weatherIcon.setImageResource(R.drawable.chance_of_showers);
                 return;
             case "Snowing":
            // case "Fresh snow":
-                imageView319.setImageResource(R.drawable.snow);
+                weatherIcon.setImageResource(R.drawable.snow);
                 return;
             case "Sunny":
             case "Fresh Snow":
             case "Chilly":
-                imageView319.setImageResource(R.drawable.sunny);
+                weatherIcon.setImageResource(R.drawable.sunny);
                 return;
             case "Clear":
-                imageView319.setImageResource(R.drawable.clear_night);
+                weatherIcon.setImageResource(R.drawable.clear_night);
                 return;
             case "Overcast":
-                imageView319.setImageResource(R.drawable.overcast);
+                weatherIcon.setImageResource(R.drawable.overcast);
                 return;
             case "Light Snow":
-                imageView319.setImageResource(R.drawable.light_snow);
+                weatherIcon.setImageResource(R.drawable.light_snow);
                 return;
             case "Mix Of Sun And Cloud":
-                imageView319.setImageResource(R.drawable.a_mix_of_sun_and_cloud);
+                weatherIcon.setImageResource(R.drawable.a_mix_of_sun_and_cloud);
                 return;
             case "Raining":
-                imageView319.setImageResource(R.drawable.rain);
+            case "Showers":
+                weatherIcon.setImageResource(R.drawable.rain);
                 return;
             case "Windy":
-                imageView319.setImageResource(R.drawable.windy);
+                weatherIcon.setImageResource(R.drawable.windy);
                 return;
             case "A Mix Of Sun And Snow":
-                imageView319.setImageResource(R.drawable.chance_of_flurries);
+                weatherIcon.setImageResource(R.drawable.chance_of_flurries);
+                return;
+            case "Rain/Mix":
+                weatherIcon.setImageResource(R.drawable.wet_snow_mixed_with_rain);
                 return;
             case "Clear Skies":
                 if (hour < 17) {
-                    imageView319.setImageResource(R.drawable.sunny);
+                    weatherIcon.setImageResource(R.drawable.sunny);
                 } else {
-                    imageView319.setImageResource(R.drawable.clear_night);
+                    weatherIcon.setImageResource(R.drawable.clear_night);
                 }
                 return;
         }

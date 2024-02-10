@@ -176,7 +176,7 @@ public class Grouse extends AppCompatActivity {
                                     setStatus(thunderbirdRidge, grouseSingleton.thunderbirdRidge);
 
                                     TextView runsOpen = findViewById(R.id.textView48);
-                                    runsOpen.setText("Runs Open: " + grouseSingleton.runsOpen + "/33");
+                                    runsOpen.setText("Runs Open: " + grouseSingleton.runsOpen + "/34");
                                     TextView liftsOpen = findViewById(R.id.textView50);
                                     liftsOpen.setText("Lifts Open: " + grouseSingleton.liftsOpen + "/6");
                                     TextView terrainParksOpen = findViewById(R.id.textView114);

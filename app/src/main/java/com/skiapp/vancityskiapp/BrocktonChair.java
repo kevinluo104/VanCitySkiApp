@@ -54,8 +54,8 @@ public class BrocktonChair extends AppCompatActivity {
                                     setStatus(sammysExpress, seymourSingleton.sammysExpress);
                                     ImageView cliffHouse = findViewById(R.id.imageView347);
                                     setStatus(cliffHouse, seymourSingleton.cliffHouse);
-                                    ImageView scooter = findViewById(R.id.imageView348);
-                                    setStatus(scooter, seymourSingleton.scooter);
+//                                    ImageView scooter = findViewById(R.id.imageView348);
+//                                    setStatus(scooter, seymourSingleton.scooter);
                                     ImageView sternsStairway = findViewById(R.id.imageView349);
                                     setStatus(sternsStairway, seymourSingleton.sternsStairway);
                                     ImageView sunshineRidge = findViewById(R.id.imageView350);
