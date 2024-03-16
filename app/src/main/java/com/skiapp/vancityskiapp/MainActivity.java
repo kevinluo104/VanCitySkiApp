@@ -719,7 +719,7 @@ public class MainActivity extends AppCompatActivity {
                 assignDayIcon(condList.get(11), fourth);
                 assignDayIcon(condList.get(12), fifth);
                 assignDayIcon(condList.get(13), sixth);
-                assignNightIcon(condList.get(14), seventh);
+                assignDayIcon(condList.get(14), seventh);
                 assignNightIcon(condList.get(15), eighth);
                 break;
             case 1:
@@ -730,7 +730,7 @@ public class MainActivity extends AppCompatActivity {
                 assignDayIcon(condList.get(11), third);
                 assignDayIcon(condList.get(12), fourth);
                 assignDayIcon(condList.get(13), fifth);
-                assignNightIcon(condList.get(14), sixth);
+                assignDayIcon(condList.get(14), sixth);
                 assignNightIcon(condList.get(15), seventh);
                 assignNightIcon(condList.get(8), eighth);
                 break;
@@ -741,7 +741,7 @@ public class MainActivity extends AppCompatActivity {
                 assignDayIcon(condList.get(11), second);
                 assignDayIcon(condList.get(12), third);
                 assignDayIcon(condList.get(13), fourth);
-                assignNightIcon(condList.get(14), fifth);
+                assignDayIcon(condList.get(14), fifth);
                 assignNightIcon(condList.get(15), sixth);
                 assignNightIcon(condList.get(8), seventh);
                 assignNightIcon(condList.get(9), eighth);
@@ -752,7 +752,7 @@ public class MainActivity extends AppCompatActivity {
                 assignDayIcon(condList.get(11), first);
                 assignDayIcon(condList.get(12), second);
                 assignDayIcon(condList.get(13), third);
-                assignNightIcon(condList.get(14), fourth);
+                assignDayIcon(condList.get(14), fourth);
                 assignNightIcon(condList.get(15), fifth);
                 assignNightIcon(condList.get(8), sixth);
                 assignNightIcon(condList.get(9), seventh);
@@ -763,7 +763,7 @@ public class MainActivity extends AppCompatActivity {
             case 11:
                 assignDayIcon(condList.get(12), first);
                 assignDayIcon(condList.get(13), second);
-                assignNightIcon(condList.get(14), third);
+                assignDayIcon(condList.get(14), third);
                 assignNightIcon(condList.get(15), fourth);
                 assignNightIcon(condList.get(8), fifth);
                 assignNightIcon(condList.get(9), sixth);
@@ -774,7 +774,7 @@ public class MainActivity extends AppCompatActivity {
             case 15:
             case 14:
                 assignDayIcon(condList.get(13), first);
-                assignNightIcon(condList.get(14), second);
+                assignDayIcon(condList.get(14), second);
                 assignNightIcon(condList.get(15), third);
                 assignNightIcon(condList.get(8), fourth);
                 assignNightIcon(condList.get(9), fifth);
@@ -785,7 +785,7 @@ public class MainActivity extends AppCompatActivity {
             case 16:
             case 18:
             case 17:
-                assignNightIcon(condList.get(14), first);
+                assignDayIcon(condList.get(14), first);
                 assignNightIcon(condList.get(15), second);
                 assignNightIcon(condList.get(8), third);
                 assignNightIcon(condList.get(9), fourth);
@@ -804,7 +804,7 @@ public class MainActivity extends AppCompatActivity {
                 assignDayIcon(condList.get(11), fifth);
                 assignDayIcon(condList.get(12), sixth);
                 assignDayIcon(condList.get(13), seventh);
-                assignNightIcon(condList.get(14), eighth);
+                assignDayIcon(condList.get(14), eighth);
                 break;
         }
     }
