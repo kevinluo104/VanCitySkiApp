@@ -56,20 +56,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-//        AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(MainActivity.this);
-//        Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
-//        appUpdateInfoTask.addOnSuccessListener(result -> {
-//            if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && result.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
-//                try {
-//                    appUpdateManager.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, MainActivity.this, REQUEST_CODE);
-//                } catch (IntentSender.SendIntentException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-
         final long startTime = System.currentTimeMillis();
         final TextView loadingDataText = findViewById(R.id.textView233);
         loadingDataText.setText("Loading data...");
@@ -137,16 +123,16 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     TextView errorText = findViewById(R.id.textView257);
                     errorText.setText("");
-                    cypressReportButton = findViewById(R.id.button);
+                 //   cypressReportButton = findViewById(R.id.button);
                     grouseReportButton = findViewById(R.id.button2);
                     seymourReportButton = findViewById(R.id.button3);
 
-                    cypressReportButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            openCypress();
-                        }
-                    });
+//                    cypressReportButton.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            openCypress();
+//                        }
+//                    });
                     grouseReportButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -173,17 +159,20 @@ public class MainActivity extends AppCompatActivity {
                             openFAQ();
                         }
                     });
-                    vanWeather = Jsoup.connect("https://weather.gc.ca/city/pages/bc-74_metric_e.html").userAgent("Mozilla").get();  // VANCOUVER WEATHER
-                    hourlyVan = Jsoup.connect("https://weather.gc.ca/forecast/hourly/bc-74_metric_e.html").get(); // VANCOUVER HOURLY WEATHER
+                    vanWeather = Jsoup.connect("https://weather.gc.ca/en/location/index.html?coords=49.245,-123.115").userAgent("Mozilla").get();  // VANCOUVER WEATHER
+                    hourlyVan = Jsoup.connect("https://weather.gc.ca/en/forecast/hourly/index.html?coords=49.245,-123.115").get(); // VANCOUVER HOURLY WEATHER
 
                     runOnUiThread(new Runnable() {
                         public void run() {
                             ImageView image = findViewById(R.id.imageView);
-                            vancouverWeather(vanWeather.select("img.center-block.mrgn-tp-md").first().absUrl("src"), image);
+                            System.out.println("GOT TO WHERE1");
+                            vancouverWeather(vanWeather.select("img").get(1).attr("src"), image);
+                            System.out.println("GOT TO WHERE");
                             TextView vanTemp = findViewById(R.id.textView);
-                            vanTemp.setText(vanWeather.select("#mainContent > details.panel.panel-default.wxo-obs.hidden-details-print-close > div.hidden-xs.row.no-gutters > div.col-sm-2.brdr-rght.text-center.currcond-height.hidden-print > p > span").first().text());
+                            vanTemp.setText(vanWeather.select("p span").first().text());
                             TextView vanConditions = findViewById(R.id.textView10);
-                            vanConditions.setText(vanWeather.select("#mainContent > details.panel.panel-default.wxo-obs.hidden-details-print-close > div.hidden-xs.row.no-gutters > div.col-sm-10.text-center.currcond-height.hidden-print > div:nth-child(2) > dl > dd:nth-child(2) > span").first().text());
+                            String vanCurConditions = vanWeather.select("dt:contains(Condition:) + dd span").first().text();
+                            vanConditions.setText(vanCurConditions);
                             ArrayList<String> tempList = setHourlyTemp(hourlyVan, hour);
                             TextView van6amTemp = findViewById(R.id.textView23);
                             TextView van9amTemp = findViewById(R.id.textView24);
@@ -213,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
                             setHourlyVanTimeSlot(firstHourSlot, secondHourSlot, thirdHourSlot, fourthHourSlot, fifthHourSlot, sixthHourSlot, seventhHourSlot, eighthHourSlot);
                             setVanTempHourly(tempList, van6amTemp, van9amTemp, van12pmTemp, van3pmTemp, van6pmTemp, van9pmTemp, van12amTemp, van3amTemp);
                             setVanIcon(tempList, sixAmPic, nineAmPic, twelvePmPic, threePmPic, sixPmPic, ninePmPic, twelveAmPic, threeAmPic);
-
+                            System.out.println("GOT TO VHERE");
 
                             try {
                                 grouseSingleton = GrouseSingleton.getInstance(new ResultListener() {
@@ -253,24 +242,23 @@ public class MainActivity extends AppCompatActivity {
                             }
                             try {
                                 final TextView mainErrorText = findViewById(R.id.textView255);
-                                mainErrorText.setText("Refresh at bottom of screen if conditions don't show up!");
+                                mainErrorText.setText("");
                                 cypressSingleton = CypressSingleton.getInstance(new ResultListener() {
                                     @Override
                                     public void onResultFetched() {
-
-                                        TextView cypressConditions = findViewById(R.id.textView31);
-                                        String upperS = cypressSingleton.conditions.substring(0, 1).toUpperCase() + cypressSingleton.conditions.substring(1);
-                                        cypressConditions.setText(upperS);
-                                        TextView cypressTemp = findViewById(R.id.textView6);
-                                        cypressTemp.setText(cypressSingleton.temperature + "°C");
-                                        TextView cypressRunsOpen = findViewById(R.id.textView21);
-                                        cypressRunsOpen.setText("Runs Open: " + cypressSingleton.runsOpen + "/61");
-                                        TextView cypressLiftsOpen = findViewById(R.id.textView29);
-                                        cypressLiftsOpen.setText("Lifts Open: " + cypressSingleton.liftsOpen + "/6");
-                                        TextView cypressNewSnow = findViewById(R.id.textView35);
-                                        cypressNewSnow.setText("New Snow: " + cypressSingleton.twentyFourHrSnow);
-                                        ImageView cypressWeather = findViewById(R.id.imageView2);
-                                        setCypressPic(cypressSingleton.conditions, cypressWeather);
+//                                        TextView cypressConditions = findViewById(R.id.textView31);
+//                                        String upperS = cypressSingleton.conditions.substring(0, 1).toUpperCase() + cypressSingleton.conditions.substring(1);
+//                                        cypressConditions.setText(upperS);
+//                                        TextView cypressTemp = findViewById(R.id.textView6);
+//                                        cypressTemp.setText(cypressSingleton.temperature + "°C");
+//                                        TextView cypressRunsOpen = findViewById(R.id.textView21);
+//                                        cypressRunsOpen.setText("Runs Open: " + cypressSingleton.runsOpen + "/61");
+//                                        TextView cypressLiftsOpen = findViewById(R.id.textView29);
+//                                        cypressLiftsOpen.setText("Lifts Open: " + cypressSingleton.liftsOpen + "/6");
+//                                        TextView cypressNewSnow = findViewById(R.id.textView35);
+//                                        cypressNewSnow.setText("New Snow: " + cypressSingleton.twentyFourHrSnow);
+//                                        ImageView cypressWeather = findViewById(R.id.imageView2);
+                                     //   setCypressPic(cypressSingleton.conditions, cypressWeather);
                                         mainErrorText.setText("");
                                     }
                                 }, getApplicationContext());
@@ -278,8 +266,8 @@ public class MainActivity extends AppCompatActivity {
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
-                            TextView cypressVisibility = findViewById(R.id.textView7);
-                            cypressVisibility.setText("");
+                         //   TextView cypressVisibility = findViewById(R.id.textView7);
+                            //cypressVisibility.setText("");
                             try {
                                 seymourSingleton = SeymourSingleton.getInstance(new ResultListener() {
                                     @Override
@@ -336,6 +324,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void vancouverWeather(String condition, ImageView image) {
+        condition = "https://weather.gc.ca" + condition;
+        System.out.println("THE CONDITIONS ARE:" + condition);
         if (condition.equals("https://weather.gc.ca/weathericons/12.gif")) {   // LIGHT RAIN
             image.setImageResource(R.drawable.chance_of_showers);
             return;

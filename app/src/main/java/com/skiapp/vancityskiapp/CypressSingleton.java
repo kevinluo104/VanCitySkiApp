@@ -146,10 +146,11 @@ public class CypressSingleton extends AppCompatActivity {
         new Thread() {
             public void run() {
                 try {
-                    cypressWeather = Jsoup.connect("https://cypressmountain.com/downhill-conditions-and-cams").get();
+                    cypressWeather = Jsoup.connect("https://www.cypressmountain.com/mountain-report").get();
                     runOnUiThread(new Runnable() {
                         public void run() {
                             try {
+                                System.out.println(cypressWeather.html());
                                 conditions = cypressWeather.select(("#conditions_current_e62ddfa83ed0c6d03d9e2b03ad704a26 > div > div > div > ul > li:nth-child(2) > div > ul > li:nth-child(1) > ul > li:nth-child(2) > span")).get(0).ownText();
                                 String[] arr = conditions.split(" ");
                                 StringBuffer sb = new StringBuffer();
